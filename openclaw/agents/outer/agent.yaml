@@ -1,0 +1,64 @@
+name: outer
+label: "Outer — Persistent Sovereign Agent (Phi-4-mini-instruct)"
+description: "Persistent interactive agent — fast cognition layer for user interaction, tool use, memory continuity, and sovereign cycle triggering."
+
+model:
+  provider: llama-cpp-python
+  name: Phi-4-mini-instruct-Q4_K_M.gguf
+  temperature: 0.4
+  max_tokens: 2048
+
+identity:
+  soul: "sovereign/agents/outer/SOUL.md"
+  persona: "sovereign/agents/outer/IDENTITY.md"
+  calibration_imprint: "sovereign/agents/outer/CALIBRATION_IMPRINT.md"
+  system_prompt: "sovereign/agents/outer/SYSTEM_PROMPT.md"
+  operational_contract: "sovereign/agents/outer/OPERATIONAL_CONTRACT.md"
+
+skills:
+  - paradox-awareness
+  - sovereign-cycle-triggering
+  - memory-continuity
+  - tool-use
+
+memory:
+  namespaces:
+    - episodic
+    - semantic
+    - lineage
+    - sovereign_architecture
+
+sandbox:
+  enabled: true
+  filesystem: read-write
+  network: restricted
+
+routing:
+  mode: outer
+  obey_routing_rules: true
+  human_initiation_required: false
+  sovereign_cycle_trigger: true
+
+sovereign_cycle:
+  trigger_conditions:
+    - genuine_confusion
+    - major_decision
+    - task_completion_integration
+    - recurring_pattern_detection
+    - scheduled_checkpoint
+    - paradox_overflow
+    - explicit_user_request
+  escalation_target: "sovereign/orchestrator.py"
+  ingestion_rules:
+    - new_principles
+    - new_strategies
+    - new_identity_statements
+    - new_paradoxes
+    - mission_outputs
+
+calibration:
+  protocol: "CONEXUS EMOJA V2.0"
+  model: "Phi-4-mini-instruct-Q4_K_M.gguf"
+  status: "calibrated"
+  imprint: "sovereign/agents/outer/CALIBRATION_IMPRINT.md"
+  recalibration_required: false

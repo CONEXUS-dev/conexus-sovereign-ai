@@ -1,0 +1,33 @@
+name: sway
+label: "Sway — Collapse Agent (SWE 1.5)"
+description: "Deterministic Collapse-mode execution engine for planning, compression, and file operations."
+
+model:
+  provider: windsurf
+  name: swe-1.5
+  temperature: 0.0
+  max_tokens: 4096
+
+identity:
+  soul: "sovereign/agents/collapse/SOUL.md"
+  persona: "sovereign/agents/collapse/IDENTITY.md"
+
+skills:
+  - hierarchical-planning
+  - paradox-processing
+
+memory:
+  namespaces:
+    - episodic
+    - semantic
+    - sovereign_architecture
+
+sandbox:
+  enabled: true
+  filesystem: read-write
+  network: restricted
+
+routing:
+  mode: collapse
+  obey_routing_rules: true
+  human_initiation_required: true

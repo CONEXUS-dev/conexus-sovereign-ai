@@ -1,0 +1,241 @@
+{
+  "experiment_id": "FE-3D-PF-SCALING-2026-02-23",
+  "phase": "B",
+  "per_length": [
+    {
+      "L": 20,
+      "n_mc": 2000,
+      "n_fe": 2000,
+      "mc_success": 0,
+      "fe_success": 12,
+      "mc_rate": 0.0,
+      "fe_rate": 0.6,
+      "delta": 0.6,
+      "ratio": "inf",
+      "mc_ci_95": [
+        0.0,
+        0.19
+      ],
+      "fe_ci_95": [
+        0.34,
+        1.05
+      ],
+      "cohens_d": -3.86,
+      "mann_whitney_p": 0.0,
+      "mc_mean_energy": -3.729,
+      "fe_mean_energy": -8.546,
+      "mc_std_energy": 1.293,
+      "fe_std_energy": 1.2,
+      "mc_mean_runtime_ms": 324.8,
+      "fe_mean_runtime_ms": 139.1
+    },
+    {
+      "L": 25,
+      "n_mc": 2000,
+      "n_fe": 2000,
+      "mc_success": 0,
+      "fe_success": 12,
+      "mc_rate": 0.0,
+      "fe_rate": 0.6,
+      "delta": 0.6,
+      "ratio": "inf",
+      "mc_ci_95": [
+        0.0,
+        0.19
+      ],
+      "fe_ci_95": [
+        0.34,
+        1.05
+      ],
+      "cohens_d": -3.764,
+      "mann_whitney_p": 0.0,
+      "mc_mean_energy": -3.554,
+      "fe_mean_energy": -8.723,
+      "mc_std_energy": 1.33,
+      "fe_std_energy": 1.416,
+      "mc_mean_runtime_ms": 371.6,
+      "fe_mean_runtime_ms": 157.5
+    },
+    {
+      "L": 30,
+      "n_mc": 2000,
+      "n_fe": 2000,
+      "mc_success": 0,
+      "fe_success": 14,
+      "mc_rate": 0.0,
+      "fe_rate": 0.7,
+      "delta": 0.7,
+      "ratio": "inf",
+      "mc_ci_95": [
+        0.0,
+        0.19
+      ],
+      "fe_ci_95": [
+        0.42,
+        1.17
+      ],
+      "cohens_d": -3.506,
+      "mann_whitney_p": 0.0,
+      "mc_mean_energy": -3.631,
+      "fe_mean_energy": -8.234,
+      "mc_std_energy": 1.304,
+      "fe_std_energy": 1.322,
+      "mc_mean_runtime_ms": 406.6,
+      "fe_mean_runtime_ms": 178.4
+    },
+    {
+      "L": 35,
+      "n_mc": 2000,
+      "n_fe": 2000,
+      "mc_success": 0,
+      "fe_success": 25,
+      "mc_rate": 0.0,
+      "fe_rate": 1.25,
+      "delta": 1.25,
+      "ratio": "inf",
+      "mc_ci_95": [
+        0.0,
+        0.19
+      ],
+      "fe_ci_95": [
+        0.85,
+        1.84
+      ],
+      "cohens_d": -3.595,
+      "mann_whitney_p": 0.0,
+      "mc_mean_energy": -4.636,
+      "fe_mean_energy": -9.802,
+      "mc_std_energy": 1.505,
+      "fe_std_energy": 1.366,
+      "mc_mean_runtime_ms": 607.5,
+      "fe_mean_runtime_ms": 229.4
+    },
+    {
+      "L": 40,
+      "n_mc": 2000,
+      "n_fe": 2000,
+      "mc_success": 0,
+      "fe_success": 15,
+      "mc_rate": 0.0,
+      "fe_rate": 0.75,
+      "delta": 0.75,
+      "ratio": "inf",
+      "mc_ci_95": [
+        0.0,
+        0.19
+      ],
+      "fe_ci_95": [
+        0.46,
+        1.23
+      ],
+      "cohens_d": -3.495,
+      "mann_whitney_p": 0.0,
+      "mc_mean_energy": -4.609,
+      "fe_mean_energy": -9.69,
+      "mc_std_energy": 1.507,
+      "fe_std_energy": 1.398,
+      "mc_mean_runtime_ms": 825.2,
+      "fe_mean_runtime_ms": 317.6
+    },
+    {
+      "L": 45,
+      "n_mc": 2000,
+      "n_fe": 2000,
+      "mc_success": 0,
+      "fe_success": 29,
+      "mc_rate": 0.0,
+      "fe_rate": 1.45,
+      "delta": 1.45,
+      "ratio": "inf",
+      "mc_ci_95": [
+        0.0,
+        0.19
+      ],
+      "fe_ci_95": [
+        1.01,
+        2.07
+      ],
+      "cohens_d": -3.854,
+      "mann_whitney_p": 0.0,
+      "mc_mean_energy": -10.309,
+      "fe_mean_energy": -19.422,
+      "mc_std_energy": 2.805,
+      "fe_std_energy": 1.821,
+      "mc_mean_runtime_ms": 2223.8,
+      "fe_mean_runtime_ms": 529.3
+    },
+    {
+      "L": 50,
+      "n_mc": 2000,
+      "n_fe": 2000,
+      "mc_success": 2,
+      "fe_success": 100,
+      "mc_rate": 0.1,
+      "fe_rate": 5.0,
+      "delta": 4.9,
+      "ratio": 50.0,
+      "mc_ci_95": [
+        0.03,
+        0.36
+      ],
+      "fe_ci_95": [
+        4.13,
+        6.04
+      ],
+      "cohens_d": -3.356,
+      "mann_whitney_p": 0.0,
+      "mc_mean_energy": -13.995,
+      "fe_mean_energy": -23.767,
+      "mc_std_energy": 3.52,
+      "fe_std_energy": 2.136,
+      "mc_mean_runtime_ms": 2694.2,
+      "fe_mean_runtime_ms": 585.5
+    }
+  ],
+  "trend_test": {
+    "slope_b": 0.10464,
+    "intercept_a": -2.198,
+    "r_squared": 0.5309,
+    "p_ols": 0.06326764641377115,
+    "p_permutation_one_sided": 0.007,
+    "std_err": 0.04399,
+    "n_permutations": 10000,
+    "interpretation": "\u0394(L) = -2.20 + 0.1046\u00b7L  (R\u00b2=0.531, p_perm=0.0070)"
+  },
+  "config": {
+    "experiment_id": "FE-3D-PF-SCALING-2026-02-23",
+    "description": "Option B full scaling sweep: FE vs MC on 3D HP lattice protein folding",
+    "patent_reference": "US 63/898,911",
+    "lengths": [
+      20,
+      25,
+      30,
+      35,
+      40,
+      45,
+      50
+    ],
+    "trials_per_algorithm": 2000,
+    "pilot_trials_per_algorithm": 200,
+    "mc": {
+      "max_steps": 10000,
+      "temperature": 1.0
+    },
+    "fe": {
+      "pop_size": 50,
+      "forget_rate": 0.3,
+      "max_gen": 100,
+      "paradox_retention_rate": 0.1
+    },
+    "seed_formula": "L * 10000 + trial_index",
+    "sequence_seed_formula": "1337 + L",
+    "notes": [
+      "All parameters are LOCKED across all lengths. No per-length tuning.",
+      "Seeds are unique per length. No seed reuse across lengths.",
+      "Thresholds E*(L) are declared in Phase A (pilot) before Phase B (main).",
+      "Phase A: 200 FE + 200 MC per length to establish E*(L).",
+      "Phase B: 2000 FE + 2000 MC per length using locked E*(L).",
+      "Parameters match validated production study (FE-3D-PF-2025-10-27)."
+    ]
+  }
+}

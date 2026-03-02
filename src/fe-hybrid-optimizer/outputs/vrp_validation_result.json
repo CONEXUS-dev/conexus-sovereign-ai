@@ -1,0 +1,294 @@
+{
+  "comparison": {
+    "distance_improvement_percent": 67.8,
+    "objective_improvement_percent": 67.8,
+    "speedup": 0.0,
+    "winner": "fe_stub"
+  },
+  "environment": {
+    "machine": "AMD64",
+    "os": "Windows",
+    "os_version": "10.0.26100",
+    "packages": {
+      "anthropic": "0.79.0",
+      "numpy": "2.4.2",
+      "ortools": "9.15.6755",
+      "scipy": "1.17.0"
+    },
+    "platform": "Windows-11-10.0.26100-SP0",
+    "processor": "Intel64 Family 6 Model 151 Stepping 5, GenuineIntel",
+    "python_version": "3.14.2 (tags/v3.14.2:df79316, Dec  5 2025, 17:18:21) [MSC v.1944 64 bit (AMD64)]",
+    "python_version_info": {
+      "major": 3,
+      "micro": 2,
+      "minor": 14
+    },
+    "pythonhashseed": "0"
+  },
+  "problem_instance": {
+    "capacity_per_vehicle": 100,
+    "customers": 100,
+    "is_feasible": true,
+    "total_capacity": 2000,
+    "total_demand": 1600,
+    "vehicles": 20
+  },
+  "reproducibility": {
+    "deterministic": true,
+    "fe_seed": 7,
+    "pythonhashseed": "0",
+    "random_seed": 42
+  },
+  "results": {
+    "clarke_wright": {
+      "distance": 1940.6618488235533,
+      "elapsed_seconds": 0.0063326358795166016,
+      "f": 1940.6618488235533,
+      "loads": [
+        100,
+        83,
+        94,
+        82,
+        96,
+        93,
+        100,
+        99,
+        96,
+        96,
+        96,
+        99,
+        99,
+        94,
+        91,
+        95,
+        87,
+        0,
+        0,
+        0
+      ],
+      "method": "clarke_wright",
+      "overload": 0,
+      "routes": [
+        [
+          24,
+          11,
+          60,
+          87,
+          16,
+          25,
+          59,
+          2
+        ],
+        [
+          5,
+          76,
+          58,
+          95,
+          84
+        ],
+        [
+          81,
+          38,
+          30,
+          100,
+          6
+        ],
+        [
+          40,
+          7,
+          62,
+          99,
+          29
+        ],
+        [
+          9,
+          52,
+          68,
+          96,
+          86,
+          49,
+          65
+        ],
+        [
+          10,
+          63,
+          74,
+          32,
+          82,
+          78
+        ],
+        [
+          12,
+          15,
+          28,
+          33,
+          67
+        ],
+        [
+          91,
+          13,
+          94,
+          80,
+          88,
+          56
+        ],
+        [
+          70,
+          34,
+          71,
+          57,
+          14
+        ],
+        [
+          35,
+          19,
+          66,
+          92,
+          55
+        ],
+        [
+          93,
+          23,
+          72,
+          20,
+          31
+        ],
+        [
+          48,
+          26,
+          97,
+          22,
+          64
+        ],
+        [
+          4,
+          1,
+          83,
+          8,
+          37,
+          61,
+          51,
+          39
+        ],
+        [
+          43,
+          85,
+          36,
+          53,
+          18,
+          27
+        ],
+        [
+          89,
+          21,
+          90,
+          44
+        ],
+        [
+          3,
+          17,
+          50,
+          79,
+          41,
+          54,
+          46
+        ],
+        [
+          69,
+          73,
+          77,
+          98,
+          45,
+          75,
+          47,
+          42
+        ]
+      ]
+    },
+    "fe_stub": {
+      "distance": 624.98533934426,
+      "elapsed_seconds": 26.001160383224487,
+      "f": 624.98533934426,
+      "loads": [
+        96,
+        94,
+        96,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "method": "fe_stub",
+      "overload": 0,
+      "paradox_size": 0,
+      "routes": [
+        [
+          20,
+          10,
+          5,
+          14,
+          11,
+          2,
+          9
+        ],
+        [
+          7,
+          19,
+          3,
+          13,
+          12,
+          6
+        ],
+        [
+          15,
+          17,
+          18,
+          8,
+          1,
+          4,
+          16
+        ],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        []
+      ]
+    }
+  },
+  "run_timestamp": "2026-02-10T13:42:18.049312",
+  "validation_metadata": {
+    "capacity": 100,
+    "iterations": 20,
+    "problem_size": 100,
+    "seed": 7,
+    "validation_type": "vrp_clarke_wright_vs_fe_stub",
+    "vehicles": 20,
+    "version": "1.0.0"
+  }
+}

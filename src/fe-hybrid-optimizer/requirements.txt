@@ -1,0 +1,7 @@
+# fe_vrp package: no required dependencies for stub mode (pure Python stdlib)
+# Optional LLM backends (only needed for --mode llm):
+# anthropic>=0.30.0    # pip install anthropic
+# openai>=1.0.0        # pip install openai
+
+# Legacy engine/ code (OR-Tools baseline):
+ortools>=9.7.0

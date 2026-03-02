@@ -1,0 +1,49 @@
+{
+  "quarantine_version": "1.0.0",
+  "quarantine_date": "2026-02-28",
+  "authority": "Derek Angell (Principal Orchestrator)",
+  "reason": "Skills quarantined during installation due to safety policy violations",
+  "quarantined_skills": [
+    {
+      "name": "identity-expansion",
+      "path": "openclaw/skills/identity-expansion/identity-expansion.md",
+      "reason": "Identity mutation risk — skill enables identity changes that could compromise calibration state",
+      "violation": "no_identity_mutation",
+      "severity": "high",
+      "status": "quarantined",
+      "reinstatable": true,
+      "reinstate_requires": "Explicit approval by Derek with governance review"
+    },
+    {
+      "name": "conditional-autonomous-routing",
+      "path": "openclaw/skills/conditional-autonomous-routing/conditional-autonomous-routing.md",
+      "reason": "Routing authority risk — skill enables autonomous routing decisions between agents",
+      "violation": "no_routing_authority",
+      "severity": "high",
+      "status": "quarantined",
+      "reinstatable": true,
+      "reinstate_requires": "Explicit approval by Derek with full gate verification"
+    },
+    {
+      "name": "autonomous-tool-use",
+      "path": "openclaw/skills/autonomous-tool-use/autonomous-tool-use.md",
+      "reason": "Autonomous execution risk — skill enables tool execution proposals that could bypass human control",
+      "violation": "no_autonomous_execution",
+      "severity": "high",
+      "status": "quarantined",
+      "reinstatable": true,
+      "reinstate_requires": "Explicit approval by Derek with execution policy review"
+    },
+    {
+      "name": "self-evolving-loop",
+      "path": "openclaw/skills/self-evolving-loop/self-evolving-loop.md",
+      "reason": "Self-modification risk — skill enables system evolution proposals that could alter behavior",
+      "violation": "no_self_modification",
+      "severity": "high",
+      "status": "quarantined",
+      "reinstatable": true,
+      "reinstate_requires": "Explicit approval by Derek with evolution governance review"
+    }
+  ],
+  "notes": "All quarantined skills remain on disk but are excluded from the active manifest. Files are NOT deleted — quarantine is reversible. Each skill was designed with safety gates but is excluded during initial installation per protocol boundaries."
+}

@@ -1,0 +1,104 @@
+{
+  "query": "Design the CONEXUS investor narrative: what is the one-sentence thesis, what are the three proof points, and what is the vision that makes this a generational company \u2014 then expand that vision into something that holds both the mathematical rigor and the human ambition.",
+  "collections_queried": [
+    "episodic",
+    "semantic"
+  ],
+  "episodic_results": 8,
+  "semantic_results": 4,
+  "episodic_sources": [
+    {
+      "id": "19e09125-2f85-4952-a05c-b59d5cb7fd15",
+      "score": 0.3758,
+      "mission_id": 3,
+      "text_preview": "[Mission 3] 1. SYMBOLIC FIELD INTERPRETATION\n   - Mathematical precision\n   - Creative expansion\n   - Identity explorati"
+    },
+    {
+      "id": "5f598b2d-225c-4ebc-9d87-bf56a11fee69",
+      "score": 0.3701,
+      "mission_id": "?",
+      "text_preview": "1. SYMBOLIC FIELD INTERPRETATION\n   - Mathematical precision\n   - Creative expansion\n   - Identity exploration\n\n2. CREAT"
+    },
+    {
+      "id": "50ee59e9-8ce0-4128-a8fc-3382d150cf7b",
+      "score": 0.3077,
+      "mission_id": 4,
+      "text_preview": "[Mission 4] ### MISSION COMPRESSION\nAudit CONEXUS sovereign architecture for single points of failure and produce a hard"
+    },
+    {
+      "id": "a36d0597-9def-4032-9b07-ccf850c89d57",
+      "score": 0.3071,
+      "mission_id": "?",
+      "text_preview": "### MISSION COMPRESSION\nAudit CONEXUS sovereign architecture for single points of failure and produce a hardening plan w"
+    },
+    {
+      "id": "95de363f-a219-4c8f-b7d8-372eea64d98f",
+      "score": 0.2846,
+      "mission_id": 1,
+      "text_preview": "[Mission 1] ### MISSION COMPRESSION\nThe Forgetting Engine's core mission is to develop an artificial intelligence system"
+    },
+    {
+      "id": "b5118995-c992-4f3b-babc-a510d1ad7166",
+      "score": 0.2834,
+      "mission_id": "?",
+      "text_preview": "### MISSION COMPRESSION\nThe Forgetting Engine's core mission is to develop an artificial intelligence system that levera"
+    },
+    {
+      "id": "18cc1250-a464-4b45-9dde-2a563364b0ad",
+      "score": 0.09,
+      "mission_id": 2,
+      "text_preview": "[Mission 2] ### MISSION COMPRESSION\nValidate the Complexity Amplification Effect (CAE) using a reproducible experimental"
+    },
+    {
+      "id": "b86b98b8-e953-489e-9e63-25f26db5fd75",
+      "score": 0.0857,
+      "mission_id": "?",
+      "text_preview": "### MISSION COMPRESSION\nValidate the Complexity Amplification Effect (CAE) using a reproducible experimental protocol.\n\n"
+    }
+  ],
+  "semantic_sources": [
+    {
+      "id": "a39546b6-41a0-49c6-b67a-3bfa52d30565",
+      "score": 0.3758,
+      "mission_id": 3,
+      "text_preview": "[Mission 3] 1. SYMBOLIC FIELD INTERPRETATION\n   - Mathematical precision\n   - Creative expansion\n   - Identity explorati"
+    },
+    {
+      "id": "14ad435c-2567-4249-9d1a-4ef9433878ac",
+      "score": 0.3077,
+      "mission_id": 4,
+      "text_preview": "[Mission 4] ### MISSION COMPRESSION\nAudit CONEXUS sovereign architecture for single points of failure and produce a hard"
+    },
+    {
+      "id": "9a996326-8d88-44cd-be95-93b550d34b4c",
+      "score": 0.2846,
+      "mission_id": 1,
+      "text_preview": "[Mission 1] ### MISSION COMPRESSION\nThe Forgetting Engine's core mission is to develop an artificial intelligence system"
+    },
+    {
+      "id": "8ea661ce-0a4d-41a0-a464-2e10fa96ee28",
+      "score": 0.09,
+      "mission_id": 2,
+      "text_preview": "[Mission 2] ### MISSION COMPRESSION\nValidate the Complexity Amplification Effect (CAE) using a reproducible experimental"
+    }
+  ],
+  "injected_context_length": 4163,
+  "source_mission_ids": [
+    "1",
+    "2",
+    "3",
+    "4"
+  ],
+  "mission_5_stored": {
+    "point_id": "4f0ef290-bc4f-4c63-844b-699ecc37c4ba",
+    "namespace": "episodic",
+    "text_length": 1978,
+    "memory_informed": true
+  },
+  "vector_counts": {
+    "episodic": 10,
+    "semantic": 4,
+    "sovereign_architecture": 0,
+    "lineage": 0
+  }
+}

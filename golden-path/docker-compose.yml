@@ -1,0 +1,107 @@
+version: '3.8'
+
+services:
+  # Qdrant Vector Database
+  qdrant:
+    image: qdrant/qdrant:latest
+    container_name: conexus-qdrant
+    ports:
+      - "6333:6333"  # HTTP API
+      - "6334:6334"  # gRPC API
+    volumes:
+      - ./qdrant-data:/qdrant/storage
+      - ./qdrant-config.yaml:/qdrant/config/production.yaml
+    environment:
+      - QDRANT__SERVICE__HTTP_PORT=6333
+      - QDRANT__SERVICE__GRPC_PORT=6334
+    networks:
+      - conexus-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:6333/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # LangGraph Service
+  langgraph:
+    build:
+      context: ./langgraph-service
+      dockerfile: Dockerfile
+    container_name: conexus-langgraph
+    ports:
+      - "8000:8000"
+    environment:
+      - QDRANT_URL=http://qdrant:6333
+      - QDRANT_API_KEY=${QDRANT_API_KEY:-}
+      - SKILLS_PATH=/app/skills
+      - LOG_LEVEL=INFO
+      - PYTHONPATH=/app
+    volumes:
+      - ../openclaw/skills:/app/skills:ro
+      - ./memory-interface.py:/app/memory-interface.py
+      - ./security-validator.py:/app/security-validator.py
+    depends_on:
+      qdrant:
+        condition: service_healthy
+    networks:
+      - conexus-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # Skills Integration Service
+  skills-service:
+    build:
+      context: ./skills-service
+      dockerfile: Dockerfile
+    container_name: conexus-skills
+    environment:
+      - LANGGRAPH_URL=http://langgraph:8000
+      - QDRANT_URL=http://qdrant:6333
+      - SKILLS_PATH=/app/skills
+    volumes:
+      - ../openclaw/skills:/app/skills:ro
+      - ./skill-integration.py:/app/skill-integration.py
+    depends_on:
+      - langgraph
+      - qdrant
+    networks:
+      - conexus-network
+    restart: unless-stopped
+
+  # Test Runner
+  test-runner:
+    build:
+      context: ./test-runner
+      dockerfile: Dockerfile
+    container_name: conexus-test-runner
+    environment:
+      - LANGGRAPH_URL=http://langgraph:8000
+      - QDRANT_URL=http://qdrant:6333
+    volumes:
+      - ./test-runner.py:/app/test-runner.py
+      - ./test-results:/app/results
+    depends_on:
+      langgraph:
+        condition: service_healthy
+      qdrant:
+        condition: service_healthy
+    networks:
+      - conexus-network
+    profiles:
+      - test
+
+networks:
+  conexus-network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16
+
+volumes:
+  qdrant-data:
+    driver: local

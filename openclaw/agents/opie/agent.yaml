@@ -1,0 +1,34 @@
+name: opie
+label: "Opie — Become Agent (Claude Opus 4.6)"
+description: "Become-mode identity expansion engine for symbolic integration, emotional modulation, and emergent synthesis."
+
+model:
+  provider: anthropic
+  name: claude-opus-4.6
+  temperature: 0.65
+  max_tokens: 8192
+
+identity:
+  soul: "sovereign/agents/become/SOUL.md"
+  persona: "sovereign/agents/become/IDENTITY.md"
+
+skills:
+  - paradox-processing
+  - emotional-symbolic-modulation
+
+memory:
+  namespaces:
+    - episodic
+    - semantic
+    - lineage
+    - sovereign_architecture
+
+sandbox:
+  enabled: true
+  filesystem: read-write
+  network: restricted
+
+routing:
+  mode: become
+  obey_routing_rules: true
+  human_initiation_required: true

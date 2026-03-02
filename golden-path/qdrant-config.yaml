@@ -1,0 +1,98 @@
+# Qdrant Configuration for CONEXUS Golden Path
+# Memory Substrate with Sovereign Namespaces
+
+collections:
+  episodic:
+    description: "Lived experience, runs, outcomes"
+    vector_size: 1536
+    distance: "Cosine"
+    metadata_schema:
+      source_skill: string
+      confidence: float
+      timestamp: datetime
+      lineage_id: string
+      agent: string
+      gear: string
+    hnsw_config:
+      m: 16
+      ef_construct: 64
+    quantization_config:
+      scalar:
+        type: "int8"
+        quantile: 0.99
+        
+  semantic:
+    description: "Learned truths, stable knowledge"
+    vector_size: 1536
+    distance: "Cosine"
+    metadata_schema:
+      source_skill: string
+      confidence: float
+      timestamp: datetime
+      lineage_id: string
+      stability_score: float
+    hnsw_config:
+      m: 16
+      ef_construct: 64
+    quantization_config:
+      scalar:
+        type: "int8"
+        quantile: 0.99
+        
+  sovereign:
+    description: "Identity, values, protocols"
+    vector_size: 1536
+    distance: "Cosine"
+    metadata_schema:
+      source_skill: string
+      confidence: float
+      timestamp: datetime
+      lineage_id: string
+      protocol_version: string
+    hnsw_config:
+      m: 16
+      ef_construct: 64
+    quantization_config:
+      scalar:
+        type: "int8"
+        quantile: 0.99
+        
+  lineage:
+    description: "Evolution history, confidence, provenance"
+    vector_size: 1536
+    distance: "Cosine"
+    metadata_schema:
+      source_skill: string
+      confidence: float
+      timestamp: datetime
+      lineage_id: string
+      evolution_type: string
+    hnsw_config:
+      m: 16
+      ef_construct: 64
+    quantization_config:
+      scalar:
+        type: "int8"
+        quantile: 0.99
+
+# Access Control Configuration
+access_control:
+  write_permissions:
+    memory-management: ["episodic", "semantic", "sovereign", "lineage"]
+  read_permissions:
+    all_skills: ["episodic", "semantic", "sovereign", "lineage"]
+  audit_logging:
+    enabled: true
+    log_level: "INFO"
+    
+# Performance Configuration
+performance:
+  search_threshold: 0.3
+  limit_default: 10
+  limit_max: 100
+  
+# Security Configuration
+security:
+  api_key_required: true
+  tls_enabled: false  # For local development
+  cors_origins: ["http://localhost:8000"]

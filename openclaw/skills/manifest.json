@@ -1,0 +1,244 @@
+{
+  "manifest_version": "1.0.0",
+  "generated": "2026-02-28",
+  "authority": "Derek Angell (Principal Orchestrator)",
+  "total_skills": 27,
+  "active_skills": 23,
+  "quarantined_skills": 4,
+  "skills": {
+    "active": [
+      {
+        "name": "SovereignCalibration",
+        "path": "SovereignCalibration/SKILL.md",
+        "source": "custom",
+        "mode": "dual",
+        "agents": ["sway", "opie"],
+        "calibration_type": "patent-7-bearing",
+        "status": "active"
+      },
+      {
+        "name": "memory-management",
+        "path": "memory-management/memory-management.md",
+        "source": "custom",
+        "mode": "dual",
+        "agents": ["sway", "opie"],
+        "calibration_type": "patent-7-bearing",
+        "status": "active"
+      },
+      {
+        "name": "protocol-driven-reasoning",
+        "path": "protocol-driven-reasoning/protocol-driven-reasoning.md",
+        "source": "custom",
+        "mode": "dual",
+        "agents": ["opie"],
+        "status": "active"
+      },
+      {
+        "name": "paradox-processing",
+        "path": "paradox-processing/paradox-processing.md",
+        "source": "custom",
+        "mode": "dual",
+        "agents": ["sway", "opus"],
+        "calibration_type": "patent-7-bearing",
+        "status": "active"
+      },
+      {
+        "name": "multi-agent-coordination",
+        "path": "multi-agent-coordination/multi-agent-coordination.md",
+        "source": "custom",
+        "mode": "dual",
+        "agents": ["sway", "opie"],
+        "status": "active"
+      },
+      {
+        "name": "stress-navigation",
+        "path": "stress-navigation/stress-navigation.md",
+        "source": "custom",
+        "mode": "dual",
+        "agents": ["sway", "opie"],
+        "calibration_type": "patent-7-bearing",
+        "status": "active"
+      },
+      {
+        "name": "emotional-symbolic-modulation",
+        "path": "emotional-symbolic-modulation/emotional-symbolic-modulation.md",
+        "source": "custom",
+        "mode": "become",
+        "agents": ["opus"],
+        "calibration_type": "patent-7-bearing",
+        "status": "active"
+      },
+      {
+        "name": "ethics-value-integration",
+        "path": "ethics-value-integration/ethics-value-integration.md",
+        "source": "custom",
+        "mode": "dual",
+        "agents": ["sway", "opie"],
+        "calibration_type": "patent-7-bearing",
+        "status": "active"
+      },
+      {
+        "name": "hierarchical-planning",
+        "path": "hierarchical-planning/hierarchical-planning.md",
+        "source": "custom",
+        "mode": "collapse",
+        "agents": ["sway"],
+        "status": "active"
+      },
+      {
+        "name": "mission-compression",
+        "path": "mission-compression/mission-compression.md",
+        "source": "custom",
+        "mode": "collapse",
+        "agents": ["sway"],
+        "status": "active"
+      },
+      {
+        "name": "secure-execution",
+        "path": "secure-execution/secure-execution.md",
+        "source": "custom",
+        "mode": "dual",
+        "agents": ["sway"],
+        "status": "active"
+      },
+      {
+        "name": "python",
+        "path": "python/python.md",
+        "source": "custom",
+        "mode": "dual",
+        "agents": ["sway", "opie"],
+        "status": "active"
+      },
+      {
+        "name": "google-search",
+        "path": "google-search/google-search.md",
+        "source": "custom",
+        "mode": "dual",
+        "agents": ["sway", "opie"],
+        "status": "active"
+      },
+      {
+        "name": "agent-browser",
+        "path": "agent-browser/",
+        "source": "custom",
+        "mode": "dual",
+        "agents": ["sway", "opie"],
+        "status": "active",
+        "notes": "Full npm package with node_modules"
+      },
+      {
+        "name": "exa",
+        "path": "exa/SKILL.md",
+        "source": "online (openclaw/skills — fardeenxyz/exa)",
+        "mode": "dual",
+        "agents": ["sway", "opie", "outer"],
+        "status": "active",
+        "requires_env": ["EXA_API_KEY"]
+      },
+      {
+        "name": "regex-wizard",
+        "path": "regex-wizard/SKILL.md",
+        "source": "online",
+        "mode": "collapse",
+        "agents": ["sway", "opie", "outer"],
+        "status": "active"
+      },
+      {
+        "name": "sql-query-pro",
+        "path": "sql-query-pro/SKILL.md",
+        "source": "online",
+        "mode": "collapse",
+        "agents": ["sway", "opie", "outer"],
+        "status": "active"
+      },
+      {
+        "name": "pdf-data-extractor",
+        "path": "pdf-data-extractor/SKILL.md",
+        "source": "online",
+        "mode": "collapse",
+        "agents": ["sway", "opie", "outer"],
+        "status": "active",
+        "requires_packages": ["pymupdf", "tabula-py", "pdfplumber"]
+      },
+      {
+        "name": "prompt-guard",
+        "path": "prompt-guard/SKILL.md",
+        "source": "online",
+        "mode": "dual",
+        "agents": ["sway", "opie", "outer"],
+        "status": "active"
+      },
+      {
+        "name": "security-monitor",
+        "path": "security-monitor/SKILL.md",
+        "source": "online (adibirzu/openclaw-security-monitor)",
+        "mode": "dual",
+        "agents": ["sway", "outer"],
+        "status": "active"
+      },
+      {
+        "name": "token-saver",
+        "path": "token-saver/SKILL.md",
+        "source": "online",
+        "mode": "collapse",
+        "agents": ["sway", "opie", "outer"],
+        "status": "active"
+      },
+      {
+        "name": "model-usage-tracker",
+        "path": "model-usage-tracker/SKILL.md",
+        "source": "online (openclaw/skills — steipete/model-usage)",
+        "mode": "dual",
+        "agents": ["sway", "opie", "outer"],
+        "status": "active"
+      },
+      {
+        "name": "environment-sanitizer",
+        "path": "environment-sanitizer/SKILL.md",
+        "source": "online",
+        "mode": "collapse",
+        "agents": ["sway", "outer"],
+        "status": "active"
+      },
+      {
+        "name": "speedtest-cli",
+        "path": "speedtest-cli/SKILL.md",
+        "source": "online",
+        "mode": "collapse",
+        "agents": ["sway", "outer"],
+        "status": "active",
+        "requires_packages": ["speedtest-cli"]
+      }
+    ],
+    "quarantined": [
+      {
+        "name": "identity-expansion",
+        "path": "identity-expansion/identity-expansion.md",
+        "source": "custom",
+        "reason": "Identity mutation risk",
+        "status": "quarantined"
+      },
+      {
+        "name": "conditional-autonomous-routing",
+        "path": "conditional-autonomous-routing/conditional-autonomous-routing.md",
+        "source": "custom",
+        "reason": "Routing authority risk",
+        "status": "quarantined"
+      },
+      {
+        "name": "autonomous-tool-use",
+        "path": "autonomous-tool-use/autonomous-tool-use.md",
+        "source": "custom",
+        "reason": "Autonomous execution risk",
+        "status": "quarantined"
+      },
+      {
+        "name": "self-evolving-loop",
+        "path": "self-evolving-loop/self-evolving-loop.md",
+        "source": "custom",
+        "reason": "Self-modification risk",
+        "status": "quarantined"
+      }
+    ]
+  }
+}

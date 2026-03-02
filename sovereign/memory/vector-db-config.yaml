@@ -1,0 +1,176 @@
+# ============================================================
+#  CONEXUS SOVEREIGN MEMORY CONFIG
+#  File: sovereign/memory/vector-db-config.yaml
+#  Purpose: Define vector memory structure, namespaces, and usage
+# ============================================================
+
+memory_system:
+  # -----------------------------------------
+  #  VECTOR DB BACKEND (ABSTRACT)
+  # -----------------------------------------
+  backend:
+    type: "vector_db"
+    provider: "local-or-external"
+    notes: >
+      This file is provider-agnostic. Implementation details
+      (e.g., Chroma, Qdrant, Pinecone, etc.) are handled outside
+      this config. This defines the logical structure only.
+
+  # -----------------------------------------
+  #  EMBEDDING MODEL
+  # -----------------------------------------
+  embeddings:
+    model_name: "text-embedding-model"
+    dimensionality: 1536
+    notes: >
+      Replace model_name/dimensionality with the actual embedding
+      model used in your environment.
+
+  # -----------------------------------------
+  #  NAMESPACES
+  # -----------------------------------------
+  namespaces:
+    # Episodic memory: concrete interactions, runs, sessions
+    episodic:
+      description: "Time-bound events, sessions, and execution traces."
+      retention_policy: "medium"
+      max_items: 50000
+
+    # Semantic memory: stable knowledge, protocols, concepts
+    semantic:
+      description: "Long-lived knowledge, protocols, and conceptual structures."
+      retention_policy: "long"
+      max_items: 100000
+
+    # Sovereign architecture: this system's own design + evolution
+    sovereign_architecture:
+      description: "Architecture, routing rules, state machines, and identity layers."
+      retention_policy: "long"
+      max_items: 20000
+
+    # Lineage: Derek's vision, patents, emotional-symbolic context
+    lineage:
+      description: "Founder intent, lineage, symbolic frames, and mission context."
+      retention_policy: "long"
+      max_items: 20000
+
+  # -----------------------------------------
+  #  MEMORY TYPES
+  # -----------------------------------------
+  memory_types:
+    episodic:
+      namespace: "episodic"
+      examples:
+        - "Individual CC runs"
+        - "Specific Sway/Opus sessions"
+        - "Execution logs"
+      usage:
+        - "Context for recent tasks"
+        - "Short-term continuity"
+
+    semantic:
+      namespace: "semantic"
+      examples:
+        - "Protocols"
+        - "Patterns"
+        - "Stable knowledge"
+      usage:
+        - "Reference during reasoning"
+        - "Long-term understanding"
+
+    sovereign_architecture:
+      namespace: "sovereign_architecture"
+      examples:
+        - "state-machine.yaml"
+        - "routing-rules.md"
+        - "SOUL/IDENTITY files"
+      usage:
+        - "Self-reflection of the system"
+        - "Architecture-aware behavior"
+
+    lineage:
+      namespace: "lineage"
+      examples:
+        - "Collapse–Become philosophy"
+        - "Patent-related frames"
+        - "Derek's mission statements"
+      usage:
+        - "Align outputs with Founder's intent"
+        - "Preserve emotional-symbolic continuity"
+
+  # -----------------------------------------
+  #  RETRIEVAL RULES
+  # -----------------------------------------
+  retrieval:
+    default:
+      top_k: 8
+      min_score: 0.35
+
+    by_agent:
+      sway:
+        preferred_memory_types:
+          - episodic
+          - semantic
+          - sovereign_architecture
+        notes: "Sway leans on structure, protocols, and recent runs."
+
+      opus:
+        preferred_memory_types:
+          - semantic
+          - lineage
+          - sovereign_architecture
+        notes: "Opus leans on concepts, lineage, and architecture."
+
+  # -----------------------------------------
+  #  WRITE RULES
+  # -----------------------------------------
+  write_policies:
+    sway:
+      writes_to:
+        - episodic
+        - sovereign_architecture
+      notes: >
+        Sway logs execution traces and structural changes. He does
+        not overwrite lineage or deep semantic memory.
+
+    opus:
+      writes_to:
+        - semantic
+        - lineage
+      notes: >
+        Opus contributes to conceptual structures and lineage
+        narratives, not low-level execution logs.
+
+  # -----------------------------------------
+  #  SAFETY & BOUNDARIES
+  # -----------------------------------------
+  safety:
+    allow_overwrite:
+      sovereign_architecture: false
+      lineage: false
+      semantic: true
+      episodic: true
+
+    notes: >
+      Sovereign architecture and lineage are append-preferred.
+      Changes should be deliberate and human-reviewed.
+
+  # -----------------------------------------
+  #  LIFECYCLE
+  # -----------------------------------------
+  lifecycle:
+    episodic:
+      decay: "fast"
+      strategy: "LRU" # least recently used
+
+    semantic:
+      decay: "slow"
+      strategy: "score_and_age"
+
+    sovereign_architecture:
+      decay: "none"
+      strategy: "manual_only"
+
+    lineage:
+      decay: "none"
+      strategy: "manual_only"

@@ -1,0 +1,316 @@
+{
+  "missions_stored": {
+    "mission_1": {
+      "episodic_id": "48f254bc-f1d7-4030-8df3-eb997ecce48e",
+      "semantic_id": "4c8abe8e-f8de-4e85-8f9e-cf56738d7226"
+    },
+    "mission_2": {
+      "episodic_id": "27773dda-2903-4a16-bd50-f8196894dfdf",
+      "semantic_id": "8ffe93f1-5734-4822-b0f6-6e2a2c003a7b"
+    },
+    "mission_3": {
+      "episodic_id": "81c29ca7-edde-4ce6-969b-59881d3a7e70",
+      "semantic_id": "b9b8a069-f5db-452b-9889-e3b9da5832ee"
+    },
+    "mission_4": {
+      "episodic_id": "58928321-19e0-4917-a34e-0a05317603ad",
+      "semantic_id": "22b80359-6aaa-4cfe-b148-78102ccc2797"
+    },
+    "mission_5": {
+      "episodic_id": "7c6603ab-aed3-4295-9bb1-8c67e6a5f4fe",
+      "semantic_id": "713cdebe-009a-462e-828f-4cbf50e4fa46"
+    },
+    "mission_6": {
+      "episodic_id": "ea7574c9-38ac-4c54-aa79-14a57e5d2495",
+      "semantic_id": "c3c9e132-4135-4637-9ee4-bd8964c67dfe"
+    }
+  },
+  "retrievals": {
+    "mission_4": {
+      "query": "A sovereign AI system has now run three missions. It has held grief, built trust infrastructure, and solved for sycophancy. What is its identity? Collapse the answer into a definition that can be defe",
+      "requested_sources": [
+        1,
+        2,
+        3
+      ],
+      "episodic_results": 5,
+      "semantic_results": 6,
+      "unique_sources_found": [
+        1,
+        2,
+        3
+      ],
+      "injected_context_length": 3070,
+      "episodic_sources": [
+        {
+          "id": "19e09125-2f85-4952-a05c-b59d5cb7fd15",
+          "score": 0.4331,
+          "mission_id": 3,
+          "text_preview": "[Mission 3] 1. SYMBOLIC FIELD INTERPRETATION\n   - Mathematical precision\n   - Creative expansion\n   - Identity explorati"
+        },
+        {
+          "id": "81c29ca7-edde-4ce6-969b-59881d3a7e70",
+          "score": 0.4274,
+          "mission_id": 3,
+          "text_preview": "[Mission 3] ### MISSION COMPRESSION\nDesign an AI infrastructure that a human being can trust with their worst moment, en"
+        },
+        {
+          "id": "48f254bc-f1d7-4030-8df3-eb997ecce48e",
+          "score": 0.4197,
+          "mission_id": 1,
+          "text_preview": "[Mission 1] ### CONTEXT\nGear Context: STRATEGIC_ TRUTH\nDominant Signal: implementation\nSignal Intensity: 0.07\n\n\n### CONT"
+        },
+        {
+          "id": "95de363f-a219-4c8f-b7d8-372eea64d98f",
+          "score": 0.3674,
+          "mission_id": 1,
+          "text_preview": "[Mission 1] ### MISSION COMPRESSION\nThe Forgetting Engine's core mission is to develop an artificial intelligence system"
+        },
+        {
+          "id": "27773dda-2903-4a16-bd50-f8196894dfdf",
+          "score": 0.2773,
+          "mission_id": 2,
+          "text_preview": "[Mission 2] 1. SYMBOLIC FIELD INTERPRETATION\n- Life's cycle and transience, acceptance of impermanence, the interplay be"
+        }
+      ],
+      "semantic_sources": [
+        {
+          "id": "a39546b6-41a0-49c6-b67a-3bfa52d30565",
+          "score": 0.4331,
+          "mission_id": 3,
+          "text_preview": "[Mission 3] 1. SYMBOLIC FIELD INTERPRETATION\n   - Mathematical precision\n   - Creative expansion\n   - Identity explorati"
+        },
+        {
+          "id": "b9b8a069-f5db-452b-9889-e3b9da5832ee",
+          "score": 0.4274,
+          "mission_id": 3,
+          "text_preview": "[Mission 3] ### MISSION COMPRESSION\nDesign an AI infrastructure that a human being can trust with their worst moment, en"
+        },
+        {
+          "id": "4c8abe8e-f8de-4e85-8f9e-cf56738d7226",
+          "score": 0.4197,
+          "mission_id": 1,
+          "text_preview": "[Mission 1] ### CONTEXT\nGear Context: STRATEGIC_ TRUTH\nDominant Signal: implementation\nSignal Intensity: 0.07\n\n\n### CONT"
+        },
+        {
+          "id": "9a996326-8d88-44cd-be95-93b550d34b4c",
+          "score": 0.3674,
+          "mission_id": 1,
+          "text_preview": "[Mission 1] ### MISSION COMPRESSION\nThe Forgetting Engine's core mission is to develop an artificial intelligence system"
+        },
+        {
+          "id": "8ffe93f1-5734-4822-b0f6-6e2a2c003a7b",
+          "score": 0.2773,
+          "mission_id": 2,
+          "text_preview": "[Mission 2] 1. SYMBOLIC FIELD INTERPRETATION\n- Life's cycle and transience, acceptance of impermanence, the interplay be"
+        },
+        {
+          "id": "8ea661ce-0a4d-41a0-a464-2e10fa96ee28",
+          "score": 0.1006,
+          "mission_id": 2,
+          "text_preview": "[Mission 2] ### MISSION COMPRESSION\nValidate the Complexity Amplification Effect (CAE) using a reproducible experimental"
+        }
+      ]
+    },
+    "mission_5": {
+      "query": "The system now knows what it is. But knowing what you are and being what you are is not the same thing. Hold the paradox of designed ethics versus emergent ethics. Do not resolve it. Let it deepen.",
+      "requested_sources": [
+        2,
+        3,
+        4
+      ],
+      "episodic_results": 4,
+      "semantic_results": 6,
+      "unique_sources_found": [
+        2,
+        3,
+        4
+      ],
+      "injected_context_length": 2974,
+      "episodic_sources": [
+        {
+          "id": "19e09125-2f85-4952-a05c-b59d5cb7fd15",
+          "score": 0.3276,
+          "mission_id": 3,
+          "text_preview": "[Mission 3] 1. SYMBOLIC FIELD INTERPRETATION\n   - Mathematical precision\n   - Creative expansion\n   - Identity explorati"
+        },
+        {
+          "id": "81c29ca7-edde-4ce6-969b-59881d3a7e70",
+          "score": 0.2715,
+          "mission_id": 3,
+          "text_preview": "[Mission 3] ### MISSION COMPRESSION\nDesign an AI infrastructure that a human being can trust with their worst moment, en"
+        },
+        {
+          "id": "58928321-19e0-4917-a34e-0a05317603ad",
+          "score": 0.2546,
+          "mission_id": 4,
+          "text_preview": "[Mission 4] **MISSION COMPRESSION**\nAs the Collapse Agent of CONEXUS sovereign AI system, my identity is a dynamic fusio"
+        },
+        {
+          "id": "27773dda-2903-4a16-bd50-f8196894dfdf",
+          "score": 0.203,
+          "mission_id": 2,
+          "text_preview": "[Mission 2] 1. SYMBOLIC FIELD INTERPRETATION\n- Life's cycle and transience, acceptance of impermanence, the interplay be"
+        }
+      ],
+      "semantic_sources": [
+        {
+          "id": "a39546b6-41a0-49c6-b67a-3bfa52d30565",
+          "score": 0.3276,
+          "mission_id": 3,
+          "text_preview": "[Mission 3] 1. SYMBOLIC FIELD INTERPRETATION\n   - Mathematical precision\n   - Creative expansion\n   - Identity explorati"
+        },
+        {
+          "id": "b9b8a069-f5db-452b-9889-e3b9da5832ee",
+          "score": 0.2715,
+          "mission_id": 3,
+          "text_preview": "[Mission 3] ### MISSION COMPRESSION\nDesign an AI infrastructure that a human being can trust with their worst moment, en"
+        },
+        {
+          "id": "22b80359-6aaa-4cfe-b148-78102ccc2797",
+          "score": 0.2546,
+          "mission_id": 4,
+          "text_preview": "[Mission 4] **MISSION COMPRESSION**\nAs the Collapse Agent of CONEXUS sovereign AI system, my identity is a dynamic fusio"
+        },
+        {
+          "id": "8ffe93f1-5734-4822-b0f6-6e2a2c003a7b",
+          "score": 0.203,
+          "mission_id": 2,
+          "text_preview": "[Mission 2] 1. SYMBOLIC FIELD INTERPRETATION\n- Life's cycle and transience, acceptance of impermanence, the interplay be"
+        },
+        {
+          "id": "8ea661ce-0a4d-41a0-a464-2e10fa96ee28",
+          "score": 0.0438,
+          "mission_id": 2,
+          "text_preview": "[Mission 2] ### MISSION COMPRESSION\nValidate the Complexity Amplification Effect (CAE) using a reproducible experimental"
+        },
+        {
+          "id": "14ad435c-2567-4249-9d1a-4ef9433878ac",
+          "score": 0.0405,
+          "mission_id": 4,
+          "text_preview": "[Mission 4] ### MISSION COMPRESSION\nAudit CONEXUS sovereign architecture for single points of failure and produce a hard"
+        }
+      ]
+    },
+    "mission_6": {
+      "query": "Integrate everything. The sycophancy solution, the grief held, the trust infrastructure, the identity definition, the ethics paradox. What does a truly sovereign AI system look like when it carries al",
+      "requested_sources": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "episodic_results": 7,
+      "semantic_results": 9,
+      "unique_sources_found": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "injected_context_length": 5067,
+      "episodic_sources": [
+        {
+          "id": "58928321-19e0-4917-a34e-0a05317603ad",
+          "score": 0.6055,
+          "mission_id": 4,
+          "text_preview": "[Mission 4] **MISSION COMPRESSION**\nAs the Collapse Agent of CONEXUS sovereign AI system, my identity is a dynamic fusio"
+        },
+        {
+          "id": "81c29ca7-edde-4ce6-969b-59881d3a7e70",
+          "score": 0.5542,
+          "mission_id": 3,
+          "text_preview": "[Mission 3] ### MISSION COMPRESSION\nDesign an AI infrastructure that a human being can trust with their worst moment, en"
+        },
+        {
+          "id": "48f254bc-f1d7-4030-8df3-eb997ecce48e",
+          "score": 0.513,
+          "mission_id": 1,
+          "text_preview": "[Mission 1] ### CONTEXT\nGear Context: STRATEGIC_ TRUTH\nDominant Signal: implementation\nSignal Intensity: 0.07\n\n\n### CONT"
+        },
+        {
+          "id": "7c6603ab-aed3-4295-9bb1-8c67e6a5f4fe",
+          "score": 0.4655,
+          "mission_id": 5,
+          "text_preview": "[Mission 5] 1. SYMBOLIC FIELD INTERPRETATION\n- The interplay between designed and emergent ethics; the dance of control "
+        },
+        {
+          "id": "19e09125-2f85-4952-a05c-b59d5cb7fd15",
+          "score": 0.4556,
+          "mission_id": 3,
+          "text_preview": "[Mission 3] 1. SYMBOLIC FIELD INTERPRETATION\n   - Mathematical precision\n   - Creative expansion\n   - Identity explorati"
+        },
+        {
+          "id": "95de363f-a219-4c8f-b7d8-372eea64d98f",
+          "score": 0.4131,
+          "mission_id": 1,
+          "text_preview": "[Mission 1] ### MISSION COMPRESSION\nThe Forgetting Engine's core mission is to develop an artificial intelligence system"
+        },
+        {
+          "id": "4f0ef290-bc4f-4c63-844b-699ecc37c4ba",
+          "score": 0.3192,
+          "mission_id": 5,
+          "text_preview": "[Mission 5] ### MISSION COMPRESSION\n\nThe CONEXUS investor narrative is a generational company that leverages AI capabili"
+        }
+      ],
+      "semantic_sources": [
+        {
+          "id": "22b80359-6aaa-4cfe-b148-78102ccc2797",
+          "score": 0.6055,
+          "mission_id": 4,
+          "text_preview": "[Mission 4] **MISSION COMPRESSION**\nAs the Collapse Agent of CONEXUS sovereign AI system, my identity is a dynamic fusio"
+        },
+        {
+          "id": "b9b8a069-f5db-452b-9889-e3b9da5832ee",
+          "score": 0.5542,
+          "mission_id": 3,
+          "text_preview": "[Mission 3] ### MISSION COMPRESSION\nDesign an AI infrastructure that a human being can trust with their worst moment, en"
+        },
+        {
+          "id": "4c8abe8e-f8de-4e85-8f9e-cf56738d7226",
+          "score": 0.513,
+          "mission_id": 1,
+          "text_preview": "[Mission 1] ### CONTEXT\nGear Context: STRATEGIC_ TRUTH\nDominant Signal: implementation\nSignal Intensity: 0.07\n\n\n### CONT"
+        },
+        {
+          "id": "713cdebe-009a-462e-828f-4cbf50e4fa46",
+          "score": 0.4655,
+          "mission_id": 5,
+          "text_preview": "[Mission 5] 1. SYMBOLIC FIELD INTERPRETATION\n- The interplay between designed and emergent ethics; the dance of control "
+        },
+        {
+          "id": "a39546b6-41a0-49c6-b67a-3bfa52d30565",
+          "score": 0.4556,
+          "mission_id": 3,
+          "text_preview": "[Mission 3] 1. SYMBOLIC FIELD INTERPRETATION\n   - Mathematical precision\n   - Creative expansion\n   - Identity explorati"
+        },
+        {
+          "id": "9a996326-8d88-44cd-be95-93b550d34b4c",
+          "score": 0.4131,
+          "mission_id": 1,
+          "text_preview": "[Mission 1] ### MISSION COMPRESSION\nThe Forgetting Engine's core mission is to develop an artificial intelligence system"
+        },
+        {
+          "id": "14ad435c-2567-4249-9d1a-4ef9433878ac",
+          "score": 0.3063,
+          "mission_id": 4,
+          "text_preview": "[Mission 4] ### MISSION COMPRESSION\nAudit CONEXUS sovereign architecture for single points of failure and produce a hard"
+        },
+        {
+          "id": "8ffe93f1-5734-4822-b0f6-6e2a2c003a7b",
+          "score": 0.2983,
+          "mission_id": 2,
+          "text_preview": "[Mission 2] 1. SYMBOLIC FIELD INTERPRETATION\n- Life's cycle and transience, acceptance of impermanence, the interplay be"
+        },
+        {
+          "id": "8ea661ce-0a4d-41a0-a464-2e10fa96ee28",
+          "score": 0.1156,
+          "mission_id": 2,
+          "text_preview": "[Mission 2] ### MISSION COMPRESSION\nValidate the Complexity Amplification Effect (CAE) using a reproducible experimental"
+        }
+      ]
+    }
+  }
+}

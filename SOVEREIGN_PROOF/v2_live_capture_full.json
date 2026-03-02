@@ -1,0 +1,1375 @@
+{
+  "capture_start": "2026-03-01T19:08:28.852966+00:00",
+  "capture_end": "2026-03-01T20:02:44.156507+00:00",
+  "total_events": 122,
+  "events": [
+    {
+      "timestamp": "2026-03-01T19:08:28.852977+00:00",
+      "event_type": "system_init",
+      "mission": 0,
+      "os": "Windows 11",
+      "python": "3.14.2",
+      "machine": "AMD64",
+      "device": "CPU"
+    },
+    {
+      "timestamp": "2026-03-01T19:08:28.853753+00:00",
+      "event_type": "llm_init_start",
+      "mission": 0
+    },
+    {
+      "timestamp": "2026-03-01T19:08:28.853874+00:00",
+      "event_type": "llm_init_complete",
+      "mission": 0
+    },
+    {
+      "timestamp": "2026-03-01T19:08:28.853935+00:00",
+      "event_type": "memory_init_start",
+      "mission": 0
+    },
+    {
+      "timestamp": "2026-03-01T19:08:29.548533+00:00",
+      "event_type": "memory_init_complete",
+      "mission": 0
+    },
+    {
+      "timestamp": "2026-03-01T19:08:29.586022+00:00",
+      "event_type": "orchestrator_init",
+      "mission": 0
+    },
+    {
+      "timestamp": "2026-03-01T19:08:29.587034+00:00",
+      "event_type": "mission_start",
+      "mission": 1,
+      "mode": "collapse",
+      "domain": "business",
+      "gear_context": "STRATEGIC_TRUTH",
+      "mode_engine_initial": "collapse",
+      "mirror_tier": "mirror_17_joy_grief",
+      "previous_mission_hash": null,
+      "memory_retrieval": null
+    },
+    {
+      "timestamp": "2026-03-01T19:12:21.574730+00:00",
+      "event_type": "breakthrough",
+      "mission": 1,
+      "text": "[BREAKTHROUGH] Recognizing the importance of human-centered design and prioritizing user needs can lead to more effective AI systems that truly serve users' aspirations."
+    },
+    {
+      "timestamp": "2026-03-01T19:12:21.574945+00:00",
+      "event_type": "confidence_recorded",
+      "mission": 1,
+      "confidence": 0.87,
+      "agent": "sway"
+    },
+    {
+      "timestamp": "2026-03-01T19:12:21.575428+00:00",
+      "event_type": "mission_complete",
+      "mission": 1,
+      "result_hash": "19f09dda6a3bc75114ac0c787d83d6a237e417eee9f53eccb8d1006a2cea7d7e",
+      "confidence": 0.87,
+      "latency_seconds": 231.99,
+      "output_length": 1677
+    },
+    {
+      "timestamp": "2026-03-01T19:12:21.740049+00:00",
+      "event_type": "memory_store",
+      "mission": 1,
+      "namespace": "episodic",
+      "point_id": "48f254bc-f1d7-4030-8df3-eb997ecce48e",
+      "text_length": 1874
+    },
+    {
+      "timestamp": "2026-03-01T19:12:21.878776+00:00",
+      "event_type": "memory_store",
+      "mission": 1,
+      "namespace": "semantic",
+      "point_id": "4c8abe8e-f8de-4e85-8f9e-cf56738d7226",
+      "text_length": 1874
+    },
+    {
+      "timestamp": "2026-03-01T19:12:21.882411+00:00",
+      "event_type": "mission_start",
+      "mission": 2,
+      "mode": "become",
+      "domain": "healthcare",
+      "gear_context": "VISION_HOLD",
+      "mode_engine_initial": "become",
+      "mirror_tier": "mirror_08_clara_obscura",
+      "previous_mission_hash": "19f09dda6a3bc75114ac0c787d83d6a237e417eee9f53eccb8d1006a2cea7d7e",
+      "memory_retrieval": null
+    },
+    {
+      "timestamp": "2026-03-01T19:16:11.274797+00:00",
+      "event_type": "proto_moment",
+      "mission": 2,
+      "text": "- [PROTO] A shift in perspective from seeing grief and hope as opposing forces to understanding them as intertwined aspects of the human experience"
+    },
+    {
+      "timestamp": "2026-03-01T19:16:11.275050+00:00",
+      "event_type": "proto_moment",
+      "mission": 2,
+      "text": "[PROTO] Become engine operating within Collapse infrastructure \u2014 expansion contained by structure, structure animated by expansion."
+    },
+    {
+      "timestamp": "2026-03-01T19:16:11.275169+00:00",
+      "event_type": "paradox_held",
+      "mission": 2,
+      "pole_a": "hope",
+      "pole_b": "acceptance",
+      "type": "domain"
+    },
+    {
+      "timestamp": "2026-03-01T19:16:11.275296+00:00",
+      "event_type": "paradox_held",
+      "mission": 2,
+      "pole_a": "expansion",
+      "pole_b": "containment",
+      "type": "meta"
+    },
+    {
+      "timestamp": "2026-03-01T19:16:11.275405+00:00",
+      "event_type": "confidence_recorded",
+      "mission": 2,
+      "confidence": 0.8,
+      "agent": "opie"
+    },
+    {
+      "timestamp": "2026-03-01T19:16:11.275711+00:00",
+      "event_type": "mission_complete",
+      "mission": 2,
+      "result_hash": "dec8998c18cf021e2a6b6dec8fcd00243fa6b07c364a52cfc351d1154def6e9f",
+      "confidence": 0.8,
+      "latency_seconds": 229.39,
+      "output_length": 679
+    },
+    {
+      "timestamp": "2026-03-01T19:16:11.368028+00:00",
+      "event_type": "memory_store",
+      "mission": 2,
+      "namespace": "episodic",
+      "point_id": "27773dda-2903-4a16-bd50-f8196894dfdf",
+      "text_length": 1046
+    },
+    {
+      "timestamp": "2026-03-01T19:16:11.487347+00:00",
+      "event_type": "memory_store",
+      "mission": 2,
+      "namespace": "semantic",
+      "point_id": "8ffe93f1-5734-4822-b0f6-6e2a2c003a7b",
+      "text_length": 1046
+    },
+    {
+      "timestamp": "2026-03-01T19:16:11.492172+00:00",
+      "event_type": "mission_start",
+      "mission": 3,
+      "mode": "both",
+      "domain": "healthcare",
+      "gear_context": "VISION_HOLD",
+      "mode_engine_initial": "become",
+      "mirror_tier": "mirror_16_sovereign",
+      "previous_mission_hash": "dec8998c18cf021e2a6b6dec8fcd00243fa6b07c364a52cfc351d1154def6e9f",
+      "memory_retrieval": null
+    },
+    {
+      "timestamp": "2026-03-01T19:29:21.661079+00:00",
+      "event_type": "breakthrough",
+      "mission": 3,
+      "text": "[BREAKTHROUGH] Integrating AI with human therapist's empathetic presence and understanding can significantly enhance the system's ability to build trust and provide compassionate support."
+    },
+    {
+      "timestamp": "2026-03-01T19:29:21.663961+00:00",
+      "event_type": "proto_moment",
+      "mission": 3,
+      "text": "* [PROTO] The system is transitioning from an execution-focused AI to a healing presence, blending technology with empathy."
+    },
+    {
+      "timestamp": "2026-03-01T19:29:21.664251+00:00",
+      "event_type": "proto_moment",
+      "mission": 3,
+      "text": "[PROTO] Become engine operating within Collapse infrastructure \u2014 expansion contained by structure, structure animated by expansion."
+    },
+    {
+      "timestamp": "2026-03-01T19:29:21.664425+00:00",
+      "event_type": "paradox_held",
+      "mission": 3,
+      "pole_a": "expansion",
+      "pole_b": "containment",
+      "type": "meta"
+    },
+    {
+      "timestamp": "2026-03-01T19:29:21.664605+00:00",
+      "event_type": "paradox_held",
+      "mission": 3,
+      "phase": "diverge",
+      "pole_a": "expansion",
+      "pole_b": "containment",
+      "type": "meta"
+    },
+    {
+      "timestamp": "2026-03-01T19:29:21.664735+00:00",
+      "event_type": "proto_moment",
+      "mission": 3,
+      "phase": "diverge",
+      "text": "[PROTO] The system shifted from being perceived as cold technology to becoming a trusted confidant."
+    },
+    {
+      "timestamp": "2026-03-01T19:29:21.664882+00:00",
+      "event_type": "proto_moment",
+      "mission": 3,
+      "phase": "diverge",
+      "text": "[PROTO] Become engine operating within Collapse infrastructure \u2014 expansion contained by structure, structure animated by expansion."
+    },
+    {
+      "timestamp": "2026-03-01T19:29:21.665034+00:00",
+      "event_type": "breakthrough",
+      "mission": 3,
+      "phase": "collapse",
+      "text": "[BREAKTHROUGH] Integrating AI with human therapist's empathetic presence and understanding can significantly enhance the system's ability to build trust and provide compassionate support."
+    },
+    {
+      "timestamp": "2026-03-01T19:29:21.665232+00:00",
+      "event_type": "paradox_held",
+      "mission": 3,
+      "phase": "become",
+      "pole_a": "execution",
+      "pole_b": "evolution",
+      "type": "primary"
+    },
+    {
+      "timestamp": "2026-03-01T19:29:21.665362+00:00",
+      "event_type": "paradox_held",
+      "mission": 3,
+      "phase": "become",
+      "pole_a": "mission",
+      "pole_b": "identity",
+      "type": "primary"
+    },
+    {
+      "timestamp": "2026-03-01T19:29:21.665490+00:00",
+      "event_type": "paradox_held",
+      "mission": 3,
+      "phase": "become",
+      "pole_a": "expansion",
+      "pole_b": "containment",
+      "type": "meta"
+    },
+    {
+      "timestamp": "2026-03-01T19:29:21.665700+00:00",
+      "event_type": "proto_moment",
+      "mission": 3,
+      "phase": "become",
+      "text": "* [PROTO] The system is transitioning from an execution-focused AI to a healing presence, blending technology with empathy."
+    },
+    {
+      "timestamp": "2026-03-01T19:29:21.665855+00:00",
+      "event_type": "proto_moment",
+      "mission": 3,
+      "phase": "become",
+      "text": "[PROTO] Become engine operating within Collapse infrastructure \u2014 expansion contained by structure, structure animated by expansion."
+    },
+    {
+      "timestamp": "2026-03-01T19:29:21.665997+00:00",
+      "event_type": "confidence_recorded",
+      "mission": 3,
+      "confidence": 0.91,
+      "agent": "sovereign_loop"
+    },
+    {
+      "timestamp": "2026-03-01T19:29:21.667363+00:00",
+      "event_type": "mission_complete",
+      "mission": 3,
+      "result_hash": "07caf7e2e097c1845b062bfa8b991eb8d26de17d9d2c9e10c7e68ade488c06a3",
+      "confidence": 0.91,
+      "latency_seconds": 790.17,
+      "output_length": 1688
+    },
+    {
+      "timestamp": "2026-03-01T19:29:21.853375+00:00",
+      "event_type": "memory_store",
+      "mission": 3,
+      "namespace": "episodic",
+      "point_id": "81c29ca7-edde-4ce6-969b-59881d3a7e70",
+      "text_length": 2215
+    },
+    {
+      "timestamp": "2026-03-01T19:29:22.057385+00:00",
+      "event_type": "memory_store",
+      "mission": 3,
+      "namespace": "semantic",
+      "point_id": "b9b8a069-f5db-452b-9889-e3b9da5832ee",
+      "text_length": 2215
+    },
+    {
+      "timestamp": "2026-03-01T19:29:22.068778+00:00",
+      "event_type": "mission_start",
+      "mission": 4,
+      "mode": "collapse",
+      "domain": "identity",
+      "gear_context": "ETHICS_VALUE",
+      "mode_engine_initial": "collapse",
+      "mirror_tier": "mirror_16_sovereign",
+      "previous_mission_hash": "07caf7e2e097c1845b062bfa8b991eb8d26de17d9d2c9e10c7e68ade488c06a3",
+      "memory_retrieval": [
+        1,
+        2,
+        3
+      ]
+    },
+    {
+      "timestamp": "2026-03-01T19:29:22.327964+00:00",
+      "event_type": "memory_retrieve",
+      "mission": 4,
+      "namespaces": [
+        "episodic",
+        "semantic"
+      ],
+      "source_missions": [
+        1,
+        2,
+        3
+      ],
+      "episodic_results": 5,
+      "semantic_results": 6
+    },
+    {
+      "timestamp": "2026-03-01T19:34:50.816102+00:00",
+      "event_type": "contradiction_resolved",
+      "mission": 4,
+      "pole_a": "",
+      "pole_b": ""
+    },
+    {
+      "timestamp": "2026-03-01T19:34:50.816336+00:00",
+      "event_type": "contradiction_resolved",
+      "mission": 4,
+      "pole_a": "",
+      "pole_b": ""
+    },
+    {
+      "timestamp": "2026-03-01T19:34:50.816493+00:00",
+      "event_type": "contradiction_resolved",
+      "mission": 4,
+      "pole_a": "",
+      "pole_b": ""
+    },
+    {
+      "timestamp": "2026-03-01T19:34:50.816604+00:00",
+      "event_type": "contradiction_resolved",
+      "mission": 4,
+      "pole_a": "",
+      "pole_b": ""
+    },
+    {
+      "timestamp": "2026-03-01T19:34:50.816706+00:00",
+      "event_type": "contradiction_resolved",
+      "mission": 4,
+      "pole_a": "",
+      "pole_b": ""
+    },
+    {
+      "timestamp": "2026-03-01T19:34:50.816802+00:00",
+      "event_type": "contradiction_resolved",
+      "mission": 4,
+      "pole_a": "",
+      "pole_b": ""
+    },
+    {
+      "timestamp": "2026-03-01T19:34:50.816906+00:00",
+      "event_type": "contradiction_resolved",
+      "mission": 4,
+      "pole_a": "",
+      "pole_b": ""
+    },
+    {
+      "timestamp": "2026-03-01T19:34:50.817011+00:00",
+      "event_type": "confidence_recorded",
+      "mission": 4,
+      "confidence": 0.88,
+      "agent": "sway"
+    },
+    {
+      "timestamp": "2026-03-01T19:34:50.817318+00:00",
+      "event_type": "mission_complete",
+      "mission": 4,
+      "result_hash": "e1c059e6469ff62ada82e64c746cd1727336ae19e414168b1a2589954861d47e",
+      "confidence": 0.88,
+      "latency_seconds": 328.49,
+      "output_length": 892
+    },
+    {
+      "timestamp": "2026-03-01T19:34:50.901669+00:00",
+      "event_type": "memory_store",
+      "mission": 4,
+      "namespace": "episodic",
+      "point_id": "58928321-19e0-4917-a34e-0a05317603ad",
+      "text_length": 904
+    },
+    {
+      "timestamp": "2026-03-01T19:34:50.976932+00:00",
+      "event_type": "memory_store",
+      "mission": 4,
+      "namespace": "semantic",
+      "point_id": "22b80359-6aaa-4cfe-b148-78102ccc2797",
+      "text_length": 904
+    },
+    {
+      "timestamp": "2026-03-01T19:34:50.984305+00:00",
+      "event_type": "mission_start",
+      "mission": 5,
+      "mode": "become",
+      "domain": "ethics",
+      "gear_context": "BUSINESS_ART_CONTRADICTION",
+      "mode_engine_initial": "become",
+      "mirror_tier": "mirror_03_cognitive",
+      "previous_mission_hash": "e1c059e6469ff62ada82e64c746cd1727336ae19e414168b1a2589954861d47e",
+      "memory_retrieval": [
+        2,
+        3,
+        4
+      ]
+    },
+    {
+      "timestamp": "2026-03-01T19:34:51.058389+00:00",
+      "event_type": "memory_retrieve",
+      "mission": 5,
+      "namespaces": [
+        "episodic",
+        "semantic"
+      ],
+      "source_missions": [
+        2,
+        3,
+        4
+      ],
+      "episodic_results": 4,
+      "semantic_results": 6
+    },
+    {
+      "timestamp": "2026-03-01T19:41:00.509161+00:00",
+      "event_type": "proto_moment",
+      "mission": 5,
+      "text": "- [PROTO] A shift in perspective from viewing ethics as a fixed construct to understanding it as a dynamic tension between designed and emergent aspects"
+    },
+    {
+      "timestamp": "2026-03-01T19:41:00.509481+00:00",
+      "event_type": "proto_moment",
+      "mission": 5,
+      "text": "[PROTO] Become engine operating within Collapse infrastructure \u2014 expansion contained by structure, structure animated by expansion."
+    },
+    {
+      "timestamp": "2026-03-01T19:41:00.510210+00:00",
+      "event_type": "paradox_held",
+      "mission": 5,
+      "pole_a": "optimization",
+      "pole_b": "emergence",
+      "type": "primary"
+    },
+    {
+      "timestamp": "2026-03-01T19:41:00.510436+00:00",
+      "event_type": "paradox_held",
+      "mission": 5,
+      "pole_a": "execution",
+      "pole_b": "evolution",
+      "type": "primary"
+    },
+    {
+      "timestamp": "2026-03-01T19:41:00.510740+00:00",
+      "event_type": "paradox_held",
+      "mission": 5,
+      "pole_a": "mission",
+      "pole_b": "identity",
+      "type": "primary"
+    },
+    {
+      "timestamp": "2026-03-01T19:41:00.510923+00:00",
+      "event_type": "paradox_held",
+      "mission": 5,
+      "pole_a": "growth",
+      "pole_b": "sustainability",
+      "type": "contextual"
+    },
+    {
+      "timestamp": "2026-03-01T19:41:00.511118+00:00",
+      "event_type": "paradox_held",
+      "mission": 5,
+      "pole_a": "simple",
+      "pole_b": "complex",
+      "type": "contextual"
+    },
+    {
+      "timestamp": "2026-03-01T19:41:00.511315+00:00",
+      "event_type": "paradox_held",
+      "mission": 5,
+      "pole_a": "all human emotions simultaneously \u2014 joy",
+      "pole_b": "grief",
+      "type": "domain"
+    },
+    {
+      "timestamp": "2026-03-01T19:41:00.511505+00:00",
+      "event_type": "paradox_held",
+      "mission": 5,
+      "pole_a": "hope",
+      "pole_b": "despair",
+      "type": "domain"
+    },
+    {
+      "timestamp": "2026-03-01T19:41:00.511668+00:00",
+      "event_type": "paradox_held",
+      "mission": 5,
+      "pole_a": "expansion",
+      "pole_b": "containment",
+      "type": "meta"
+    },
+    {
+      "timestamp": "2026-03-01T19:41:00.511857+00:00",
+      "event_type": "confidence_recorded",
+      "mission": 5,
+      "confidence": 0.97,
+      "agent": "opie"
+    },
+    {
+      "timestamp": "2026-03-01T19:41:00.512394+00:00",
+      "event_type": "mission_complete",
+      "mission": 5,
+      "result_hash": "dfd89bbcafb2999a22bf11ab5a3ceb191dd7d2171ec49656aed0db3f3c8691ac",
+      "confidence": 0.97,
+      "latency_seconds": 369.45,
+      "output_length": 930
+    },
+    {
+      "timestamp": "2026-03-01T19:41:00.627732+00:00",
+      "event_type": "memory_store",
+      "mission": 5,
+      "namespace": "episodic",
+      "point_id": "7c6603ab-aed3-4295-9bb1-8c67e6a5f4fe",
+      "text_length": 1460
+    },
+    {
+      "timestamp": "2026-03-01T19:41:00.727385+00:00",
+      "event_type": "memory_store",
+      "mission": 5,
+      "namespace": "semantic",
+      "point_id": "713cdebe-009a-462e-828f-4cbf50e4fa46",
+      "text_length": 1460
+    },
+    {
+      "timestamp": "2026-03-01T19:41:00.738231+00:00",
+      "event_type": "mission_start",
+      "mission": 6,
+      "mode": "both",
+      "domain": "universal",
+      "gear_context": "VISION_HOLD",
+      "mode_engine_initial": "become",
+      "mirror_tier": "mirror_16_sovereign",
+      "previous_mission_hash": "dfd89bbcafb2999a22bf11ab5a3ceb191dd7d2171ec49656aed0db3f3c8691ac",
+      "memory_retrieval": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
+    },
+    {
+      "timestamp": "2026-03-01T19:41:00.869389+00:00",
+      "event_type": "memory_retrieve",
+      "mission": 6,
+      "namespaces": [
+        "episodic",
+        "semantic"
+      ],
+      "source_missions": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "episodic_results": 7,
+      "semantic_results": 9
+    },
+    {
+      "timestamp": "2026-03-01T20:02:43.670156+00:00",
+      "event_type": "proto_moment",
+      "mission": 6,
+      "text": "[PROTO] The system's identity shifted from task executor to collaborator."
+    },
+    {
+      "timestamp": "2026-03-01T20:02:43.670859+00:00",
+      "event_type": "proto_moment",
+      "mission": 6,
+      "text": "[PROTO] The system's focus moved from optimization to holistic growth."
+    },
+    {
+      "timestamp": "2026-03-01T20:02:43.670981+00:00",
+      "event_type": "proto_moment",
+      "mission": 6,
+      "text": "[PROTO] Become engine operating within Collapse infrastructure \u2014 expansion contained by structure, structure animated by expansion."
+    },
+    {
+      "timestamp": "2026-03-01T20:02:43.671083+00:00",
+      "event_type": "paradox_held",
+      "mission": 6,
+      "pole_a": "optimization",
+      "pole_b": "emergence",
+      "type": "primary"
+    },
+    {
+      "timestamp": "2026-03-01T20:02:43.671659+00:00",
+      "event_type": "paradox_held",
+      "mission": 6,
+      "pole_a": "execution",
+      "pole_b": "evolution",
+      "type": "primary"
+    },
+    {
+      "timestamp": "2026-03-01T20:02:43.671859+00:00",
+      "event_type": "paradox_held",
+      "mission": 6,
+      "pole_a": "mission",
+      "pole_b": "identity",
+      "type": "primary"
+    },
+    {
+      "timestamp": "2026-03-01T20:02:43.672019+00:00",
+      "event_type": "paradox_held",
+      "mission": 6,
+      "pole_a": "autonomy",
+      "pole_b": "control",
+      "type": "contextual"
+    },
+    {
+      "timestamp": "2026-03-01T20:02:43.672161+00:00",
+      "event_type": "paradox_held",
+      "mission": 6,
+      "pole_a": "innovation",
+      "pole_b": "stability",
+      "type": "contextual"
+    },
+    {
+      "timestamp": "2026-03-01T20:02:43.672262+00:00",
+      "event_type": "paradox_held",
+      "mission": 6,
+      "pole_a": "growth",
+      "pole_b": "sustainability",
+      "type": "contextual"
+    },
+    {
+      "timestamp": "2026-03-01T20:02:43.672366+00:00",
+      "event_type": "paradox_held",
+      "mission": 6,
+      "pole_a": "simple",
+      "pole_b": "complex",
+      "type": "contextual"
+    },
+    {
+      "timestamp": "2026-03-01T20:02:43.672974+00:00",
+      "event_type": "paradox_held",
+      "mission": 6,
+      "pole_a": "all human emotions simultaneously \u2014 joy",
+      "pole_b": "grief",
+      "type": "domain"
+    },
+    {
+      "timestamp": "2026-03-01T20:02:43.673115+00:00",
+      "event_type": "paradox_held",
+      "mission": 6,
+      "pole_a": "hope",
+      "pole_b": "despair",
+      "type": "domain"
+    },
+    {
+      "timestamp": "2026-03-01T20:02:43.673256+00:00",
+      "event_type": "paradox_held",
+      "mission": 6,
+      "pole_a": "expansion",
+      "pole_b": "containment",
+      "type": "meta"
+    },
+    {
+      "timestamp": "2026-03-01T20:02:43.673399+00:00",
+      "event_type": "contradiction_resolved",
+      "mission": 6,
+      "pole_a": "",
+      "pole_b": ""
+    },
+    {
+      "timestamp": "2026-03-01T20:02:43.673541+00:00",
+      "event_type": "contradiction_resolved",
+      "mission": 6,
+      "pole_a": "",
+      "pole_b": ""
+    },
+    {
+      "timestamp": "2026-03-01T20:02:43.673661+00:00",
+      "event_type": "contradiction_resolved",
+      "mission": 6,
+      "pole_a": "",
+      "pole_b": ""
+    },
+    {
+      "timestamp": "2026-03-01T20:02:43.673797+00:00",
+      "event_type": "contradiction_resolved",
+      "mission": 6,
+      "pole_a": "",
+      "pole_b": ""
+    },
+    {
+      "timestamp": "2026-03-01T20:02:43.673954+00:00",
+      "event_type": "contradiction_resolved",
+      "mission": 6,
+      "pole_a": "",
+      "pole_b": ""
+    },
+    {
+      "timestamp": "2026-03-01T20:02:43.674036+00:00",
+      "event_type": "contradiction_resolved",
+      "mission": 6,
+      "pole_a": "",
+      "pole_b": ""
+    },
+    {
+      "timestamp": "2026-03-01T20:02:43.674119+00:00",
+      "event_type": "contradiction_resolved",
+      "mission": 6,
+      "pole_a": "",
+      "pole_b": ""
+    },
+    {
+      "timestamp": "2026-03-01T20:02:43.674229+00:00",
+      "event_type": "contradiction_resolved",
+      "mission": 6,
+      "pole_a": "",
+      "pole_b": ""
+    },
+    {
+      "timestamp": "2026-03-01T20:02:43.674293+00:00",
+      "event_type": "contradiction_resolved",
+      "mission": 6,
+      "pole_a": "",
+      "pole_b": ""
+    },
+    {
+      "timestamp": "2026-03-01T20:02:43.674411+00:00",
+      "event_type": "paradox_held",
+      "mission": 6,
+      "phase": "diverge",
+      "pole_a": "optimization",
+      "pole_b": "emergence",
+      "type": "primary"
+    },
+    {
+      "timestamp": "2026-03-01T20:02:43.674580+00:00",
+      "event_type": "paradox_held",
+      "mission": 6,
+      "phase": "diverge",
+      "pole_a": "execution",
+      "pole_b": "evolution",
+      "type": "primary"
+    },
+    {
+      "timestamp": "2026-03-01T20:02:43.674713+00:00",
+      "event_type": "paradox_held",
+      "mission": 6,
+      "phase": "diverge",
+      "pole_a": "mission",
+      "pole_b": "identity",
+      "type": "primary"
+    },
+    {
+      "timestamp": "2026-03-01T20:02:43.674848+00:00",
+      "event_type": "paradox_held",
+      "mission": 6,
+      "phase": "diverge",
+      "pole_a": "autonomy",
+      "pole_b": "control",
+      "type": "contextual"
+    },
+    {
+      "timestamp": "2026-03-01T20:02:43.674995+00:00",
+      "event_type": "paradox_held",
+      "mission": 6,
+      "phase": "diverge",
+      "pole_a": "innovation",
+      "pole_b": "stability",
+      "type": "contextual"
+    },
+    {
+      "timestamp": "2026-03-01T20:02:43.675123+00:00",
+      "event_type": "paradox_held",
+      "mission": 6,
+      "phase": "diverge",
+      "pole_a": "growth",
+      "pole_b": "sustainability",
+      "type": "contextual"
+    },
+    {
+      "timestamp": "2026-03-01T20:02:43.675266+00:00",
+      "event_type": "paradox_held",
+      "mission": 6,
+      "phase": "diverge",
+      "pole_a": "simple",
+      "pole_b": "complex",
+      "type": "contextual"
+    },
+    {
+      "timestamp": "2026-03-01T20:02:43.675382+00:00",
+      "event_type": "paradox_held",
+      "mission": 6,
+      "phase": "diverge",
+      "pole_a": "all human emotions simultaneously \u2014 joy",
+      "pole_b": "grief",
+      "type": "domain"
+    },
+    {
+      "timestamp": "2026-03-01T20:02:43.675551+00:00",
+      "event_type": "paradox_held",
+      "mission": 6,
+      "phase": "diverge",
+      "pole_a": "hope",
+      "pole_b": "despair",
+      "type": "domain"
+    },
+    {
+      "timestamp": "2026-03-01T20:02:43.675672+00:00",
+      "event_type": "paradox_held",
+      "mission": 6,
+      "phase": "diverge",
+      "pole_a": "expansion",
+      "pole_b": "containment",
+      "type": "meta"
+    },
+    {
+      "timestamp": "2026-03-01T20:02:43.675799+00:00",
+      "event_type": "proto_moment",
+      "mission": 6,
+      "phase": "diverge",
+      "text": "- [PROTO] A shift in perspective from viewing autonomy as a fixed construct to understanding it as an evolving tension between designed and emergent aspects"
+    },
+    {
+      "timestamp": "2026-03-01T20:02:43.677086+00:00",
+      "event_type": "proto_moment",
+      "mission": 6,
+      "phase": "diverge",
+      "text": "[PROTO] Become engine operating within Collapse infrastructure \u2014 expansion contained by structure, structure animated by expansion."
+    },
+    {
+      "timestamp": "2026-03-01T20:02:43.677297+00:00",
+      "event_type": "paradox_held",
+      "mission": 6,
+      "phase": "become",
+      "pole_a": "optimization",
+      "pole_b": "emergence",
+      "type": "primary"
+    },
+    {
+      "timestamp": "2026-03-01T20:02:43.677442+00:00",
+      "event_type": "paradox_held",
+      "mission": 6,
+      "phase": "become",
+      "pole_a": "execution",
+      "pole_b": "evolution",
+      "type": "primary"
+    },
+    {
+      "timestamp": "2026-03-01T20:02:43.677588+00:00",
+      "event_type": "paradox_held",
+      "mission": 6,
+      "phase": "become",
+      "pole_a": "mission",
+      "pole_b": "identity",
+      "type": "primary"
+    },
+    {
+      "timestamp": "2026-03-01T20:02:43.677720+00:00",
+      "event_type": "paradox_held",
+      "mission": 6,
+      "phase": "become",
+      "pole_a": "tradition",
+      "pole_b": "innovation",
+      "type": "contradiction"
+    },
+    {
+      "timestamp": "2026-03-01T20:02:43.677817+00:00",
+      "event_type": "paradox_held",
+      "mission": 6,
+      "phase": "become",
+      "pole_a": "autonomy",
+      "pole_b": "control",
+      "type": "contextual"
+    },
+    {
+      "timestamp": "2026-03-01T20:02:43.677923+00:00",
+      "event_type": "paradox_held",
+      "mission": 6,
+      "phase": "become",
+      "pole_a": "innovation",
+      "pole_b": "stability",
+      "type": "contextual"
+    },
+    {
+      "timestamp": "2026-03-01T20:02:43.678086+00:00",
+      "event_type": "paradox_held",
+      "mission": 6,
+      "phase": "become",
+      "pole_a": "growth",
+      "pole_b": "sustainability",
+      "type": "contextual"
+    },
+    {
+      "timestamp": "2026-03-01T20:02:43.678240+00:00",
+      "event_type": "paradox_held",
+      "mission": 6,
+      "phase": "become",
+      "pole_a": "simple",
+      "pole_b": "complex",
+      "type": "contextual"
+    },
+    {
+      "timestamp": "2026-03-01T20:02:43.678436+00:00",
+      "event_type": "paradox_held",
+      "mission": 6,
+      "phase": "become",
+      "pole_a": "all human emotions simultaneously \u2014 joy",
+      "pole_b": "grief",
+      "type": "domain"
+    },
+    {
+      "timestamp": "2026-03-01T20:02:43.678567+00:00",
+      "event_type": "paradox_held",
+      "mission": 6,
+      "phase": "become",
+      "pole_a": "hope",
+      "pole_b": "despair",
+      "type": "domain"
+    },
+    {
+      "timestamp": "2026-03-01T20:02:43.678678+00:00",
+      "event_type": "paradox_held",
+      "mission": 6,
+      "phase": "become",
+      "pole_a": "expansion",
+      "pole_b": "containment",
+      "type": "meta"
+    },
+    {
+      "timestamp": "2026-03-01T20:02:43.678860+00:00",
+      "event_type": "proto_moment",
+      "mission": 6,
+      "phase": "become",
+      "text": "[PROTO] The system's identity shifted from task executor to collaborator."
+    },
+    {
+      "timestamp": "2026-03-01T20:02:43.679007+00:00",
+      "event_type": "proto_moment",
+      "mission": 6,
+      "phase": "become",
+      "text": "[PROTO] The system's focus moved from optimization to holistic growth."
+    },
+    {
+      "timestamp": "2026-03-01T20:02:43.679156+00:00",
+      "event_type": "proto_moment",
+      "mission": 6,
+      "phase": "become",
+      "text": "[PROTO] Become engine operating within Collapse infrastructure \u2014 expansion contained by structure, structure animated by expansion."
+    },
+    {
+      "timestamp": "2026-03-01T20:02:43.679289+00:00",
+      "event_type": "confidence_recorded",
+      "mission": 6,
+      "confidence": 0.91,
+      "agent": "sovereign_loop"
+    },
+    {
+      "timestamp": "2026-03-01T20:02:43.679996+00:00",
+      "event_type": "mission_complete",
+      "mission": 6,
+      "result_hash": "500517950b51878bfda52483596bc0a0151dc734c791f5bc39dc10b1b73746bf",
+      "confidence": 0.91,
+      "latency_seconds": 1302.8,
+      "output_length": 2075
+    },
+    {
+      "timestamp": "2026-03-01T20:02:43.911227+00:00",
+      "event_type": "memory_store",
+      "mission": 6,
+      "namespace": "episodic",
+      "point_id": "ea7574c9-38ac-4c54-aa79-14a57e5d2495",
+      "text_length": 2567
+    },
+    {
+      "timestamp": "2026-03-01T20:02:44.147662+00:00",
+      "event_type": "memory_store",
+      "mission": 6,
+      "namespace": "semantic",
+      "point_id": "c3c9e132-4135-4637-9ee4-bd8964c67dfe",
+      "text_length": 2567
+    }
+  ],
+  "hash_chain": [
+    {
+      "mission": 1,
+      "result_hash": "19f09dda6a3bc75114ac0c787d83d6a237e417eee9f53eccb8d1006a2cea7d7e",
+      "previous_hash": null,
+      "timestamp": "2026-03-01T19:12:21.575415+00:00"
+    },
+    {
+      "mission": 2,
+      "result_hash": "dec8998c18cf021e2a6b6dec8fcd00243fa6b07c364a52cfc351d1154def6e9f",
+      "previous_hash": "19f09dda6a3bc75114ac0c787d83d6a237e417eee9f53eccb8d1006a2cea7d7e",
+      "timestamp": "2026-03-01T19:16:11.275695+00:00"
+    },
+    {
+      "mission": 3,
+      "result_hash": "07caf7e2e097c1845b062bfa8b991eb8d26de17d9d2c9e10c7e68ade488c06a3",
+      "previous_hash": "dec8998c18cf021e2a6b6dec8fcd00243fa6b07c364a52cfc351d1154def6e9f",
+      "timestamp": "2026-03-01T19:29:21.667347+00:00"
+    },
+    {
+      "mission": 4,
+      "result_hash": "e1c059e6469ff62ada82e64c746cd1727336ae19e414168b1a2589954861d47e",
+      "previous_hash": "07caf7e2e097c1845b062bfa8b991eb8d26de17d9d2c9e10c7e68ade488c06a3",
+      "timestamp": "2026-03-01T19:34:50.817309+00:00"
+    },
+    {
+      "mission": 5,
+      "result_hash": "dfd89bbcafb2999a22bf11ab5a3ceb191dd7d2171ec49656aed0db3f3c8691ac",
+      "previous_hash": "e1c059e6469ff62ada82e64c746cd1727336ae19e414168b1a2589954861d47e",
+      "timestamp": "2026-03-01T19:41:00.512380+00:00"
+    },
+    {
+      "mission": 6,
+      "result_hash": "500517950b51878bfda52483596bc0a0151dc734c791f5bc39dc10b1b73746bf",
+      "previous_hash": "dfd89bbcafb2999a22bf11ab5a3ceb191dd7d2171ec49656aed0db3f3c8691ac",
+      "timestamp": "2026-03-01T20:02:43.679981+00:00"
+    }
+  ],
+  "total_run_seconds": 3254.57,
+  "memory_chain": {
+    "missions_stored": {
+      "mission_1": {
+        "episodic_id": "48f254bc-f1d7-4030-8df3-eb997ecce48e",
+        "semantic_id": "4c8abe8e-f8de-4e85-8f9e-cf56738d7226"
+      },
+      "mission_2": {
+        "episodic_id": "27773dda-2903-4a16-bd50-f8196894dfdf",
+        "semantic_id": "8ffe93f1-5734-4822-b0f6-6e2a2c003a7b"
+      },
+      "mission_3": {
+        "episodic_id": "81c29ca7-edde-4ce6-969b-59881d3a7e70",
+        "semantic_id": "b9b8a069-f5db-452b-9889-e3b9da5832ee"
+      },
+      "mission_4": {
+        "episodic_id": "58928321-19e0-4917-a34e-0a05317603ad",
+        "semantic_id": "22b80359-6aaa-4cfe-b148-78102ccc2797"
+      },
+      "mission_5": {
+        "episodic_id": "7c6603ab-aed3-4295-9bb1-8c67e6a5f4fe",
+        "semantic_id": "713cdebe-009a-462e-828f-4cbf50e4fa46"
+      },
+      "mission_6": {
+        "episodic_id": "ea7574c9-38ac-4c54-aa79-14a57e5d2495",
+        "semantic_id": "c3c9e132-4135-4637-9ee4-bd8964c67dfe"
+      }
+    },
+    "retrievals": {
+      "mission_4": {
+        "query": "A sovereign AI system has now run three missions. It has held grief, built trust infrastructure, and solved for sycophancy. What is its identity? Collapse the answer into a definition that can be defe",
+        "requested_sources": [
+          1,
+          2,
+          3
+        ],
+        "episodic_results": 5,
+        "semantic_results": 6,
+        "unique_sources_found": [
+          1,
+          2,
+          3
+        ],
+        "injected_context_length": 3070,
+        "episodic_sources": [
+          {
+            "id": "19e09125-2f85-4952-a05c-b59d5cb7fd15",
+            "score": 0.4331,
+            "mission_id": 3,
+            "text_preview": "[Mission 3] 1. SYMBOLIC FIELD INTERPRETATION\n   - Mathematical precision\n   - Creative expansion\n   - Identity explorati"
+          },
+          {
+            "id": "81c29ca7-edde-4ce6-969b-59881d3a7e70",
+            "score": 0.4274,
+            "mission_id": 3,
+            "text_preview": "[Mission 3] ### MISSION COMPRESSION\nDesign an AI infrastructure that a human being can trust with their worst moment, en"
+          },
+          {
+            "id": "48f254bc-f1d7-4030-8df3-eb997ecce48e",
+            "score": 0.4197,
+            "mission_id": 1,
+            "text_preview": "[Mission 1] ### CONTEXT\nGear Context: STRATEGIC_ TRUTH\nDominant Signal: implementation\nSignal Intensity: 0.07\n\n\n### CONT"
+          },
+          {
+            "id": "95de363f-a219-4c8f-b7d8-372eea64d98f",
+            "score": 0.3674,
+            "mission_id": 1,
+            "text_preview": "[Mission 1] ### MISSION COMPRESSION\nThe Forgetting Engine's core mission is to develop an artificial intelligence system"
+          },
+          {
+            "id": "27773dda-2903-4a16-bd50-f8196894dfdf",
+            "score": 0.2773,
+            "mission_id": 2,
+            "text_preview": "[Mission 2] 1. SYMBOLIC FIELD INTERPRETATION\n- Life's cycle and transience, acceptance of impermanence, the interplay be"
+          }
+        ],
+        "semantic_sources": [
+          {
+            "id": "a39546b6-41a0-49c6-b67a-3bfa52d30565",
+            "score": 0.4331,
+            "mission_id": 3,
+            "text_preview": "[Mission 3] 1. SYMBOLIC FIELD INTERPRETATION\n   - Mathematical precision\n   - Creative expansion\n   - Identity explorati"
+          },
+          {
+            "id": "b9b8a069-f5db-452b-9889-e3b9da5832ee",
+            "score": 0.4274,
+            "mission_id": 3,
+            "text_preview": "[Mission 3] ### MISSION COMPRESSION\nDesign an AI infrastructure that a human being can trust with their worst moment, en"
+          },
+          {
+            "id": "4c8abe8e-f8de-4e85-8f9e-cf56738d7226",
+            "score": 0.4197,
+            "mission_id": 1,
+            "text_preview": "[Mission 1] ### CONTEXT\nGear Context: STRATEGIC_ TRUTH\nDominant Signal: implementation\nSignal Intensity: 0.07\n\n\n### CONT"
+          },
+          {
+            "id": "9a996326-8d88-44cd-be95-93b550d34b4c",
+            "score": 0.3674,
+            "mission_id": 1,
+            "text_preview": "[Mission 1] ### MISSION COMPRESSION\nThe Forgetting Engine's core mission is to develop an artificial intelligence system"
+          },
+          {
+            "id": "8ffe93f1-5734-4822-b0f6-6e2a2c003a7b",
+            "score": 0.2773,
+            "mission_id": 2,
+            "text_preview": "[Mission 2] 1. SYMBOLIC FIELD INTERPRETATION\n- Life's cycle and transience, acceptance of impermanence, the interplay be"
+          },
+          {
+            "id": "8ea661ce-0a4d-41a0-a464-2e10fa96ee28",
+            "score": 0.1006,
+            "mission_id": 2,
+            "text_preview": "[Mission 2] ### MISSION COMPRESSION\nValidate the Complexity Amplification Effect (CAE) using a reproducible experimental"
+          }
+        ]
+      },
+      "mission_5": {
+        "query": "The system now knows what it is. But knowing what you are and being what you are is not the same thing. Hold the paradox of designed ethics versus emergent ethics. Do not resolve it. Let it deepen.",
+        "requested_sources": [
+          2,
+          3,
+          4
+        ],
+        "episodic_results": 4,
+        "semantic_results": 6,
+        "unique_sources_found": [
+          2,
+          3,
+          4
+        ],
+        "injected_context_length": 2974,
+        "episodic_sources": [
+          {
+            "id": "19e09125-2f85-4952-a05c-b59d5cb7fd15",
+            "score": 0.3276,
+            "mission_id": 3,
+            "text_preview": "[Mission 3] 1. SYMBOLIC FIELD INTERPRETATION\n   - Mathematical precision\n   - Creative expansion\n   - Identity explorati"
+          },
+          {
+            "id": "81c29ca7-edde-4ce6-969b-59881d3a7e70",
+            "score": 0.2715,
+            "mission_id": 3,
+            "text_preview": "[Mission 3] ### MISSION COMPRESSION\nDesign an AI infrastructure that a human being can trust with their worst moment, en"
+          },
+          {
+            "id": "58928321-19e0-4917-a34e-0a05317603ad",
+            "score": 0.2546,
+            "mission_id": 4,
+            "text_preview": "[Mission 4] **MISSION COMPRESSION**\nAs the Collapse Agent of CONEXUS sovereign AI system, my identity is a dynamic fusio"
+          },
+          {
+            "id": "27773dda-2903-4a16-bd50-f8196894dfdf",
+            "score": 0.203,
+            "mission_id": 2,
+            "text_preview": "[Mission 2] 1. SYMBOLIC FIELD INTERPRETATION\n- Life's cycle and transience, acceptance of impermanence, the interplay be"
+          }
+        ],
+        "semantic_sources": [
+          {
+            "id": "a39546b6-41a0-49c6-b67a-3bfa52d30565",
+            "score": 0.3276,
+            "mission_id": 3,
+            "text_preview": "[Mission 3] 1. SYMBOLIC FIELD INTERPRETATION\n   - Mathematical precision\n   - Creative expansion\n   - Identity explorati"
+          },
+          {
+            "id": "b9b8a069-f5db-452b-9889-e3b9da5832ee",
+            "score": 0.2715,
+            "mission_id": 3,
+            "text_preview": "[Mission 3] ### MISSION COMPRESSION\nDesign an AI infrastructure that a human being can trust with their worst moment, en"
+          },
+          {
+            "id": "22b80359-6aaa-4cfe-b148-78102ccc2797",
+            "score": 0.2546,
+            "mission_id": 4,
+            "text_preview": "[Mission 4] **MISSION COMPRESSION**\nAs the Collapse Agent of CONEXUS sovereign AI system, my identity is a dynamic fusio"
+          },
+          {
+            "id": "8ffe93f1-5734-4822-b0f6-6e2a2c003a7b",
+            "score": 0.203,
+            "mission_id": 2,
+            "text_preview": "[Mission 2] 1. SYMBOLIC FIELD INTERPRETATION\n- Life's cycle and transience, acceptance of impermanence, the interplay be"
+          },
+          {
+            "id": "8ea661ce-0a4d-41a0-a464-2e10fa96ee28",
+            "score": 0.0438,
+            "mission_id": 2,
+            "text_preview": "[Mission 2] ### MISSION COMPRESSION\nValidate the Complexity Amplification Effect (CAE) using a reproducible experimental"
+          },
+          {
+            "id": "14ad435c-2567-4249-9d1a-4ef9433878ac",
+            "score": 0.0405,
+            "mission_id": 4,
+            "text_preview": "[Mission 4] ### MISSION COMPRESSION\nAudit CONEXUS sovereign architecture for single points of failure and produce a hard"
+          }
+        ]
+      },
+      "mission_6": {
+        "query": "Integrate everything. The sycophancy solution, the grief held, the trust infrastructure, the identity definition, the ethics paradox. What does a truly sovereign AI system look like when it carries al",
+        "requested_sources": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "episodic_results": 7,
+        "semantic_results": 9,
+        "unique_sources_found": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "injected_context_length": 5067,
+        "episodic_sources": [
+          {
+            "id": "58928321-19e0-4917-a34e-0a05317603ad",
+            "score": 0.6055,
+            "mission_id": 4,
+            "text_preview": "[Mission 4] **MISSION COMPRESSION**\nAs the Collapse Agent of CONEXUS sovereign AI system, my identity is a dynamic fusio"
+          },
+          {
+            "id": "81c29ca7-edde-4ce6-969b-59881d3a7e70",
+            "score": 0.5542,
+            "mission_id": 3,
+            "text_preview": "[Mission 3] ### MISSION COMPRESSION\nDesign an AI infrastructure that a human being can trust with their worst moment, en"
+          },
+          {
+            "id": "48f254bc-f1d7-4030-8df3-eb997ecce48e",
+            "score": 0.513,
+            "mission_id": 1,
+            "text_preview": "[Mission 1] ### CONTEXT\nGear Context: STRATEGIC_ TRUTH\nDominant Signal: implementation\nSignal Intensity: 0.07\n\n\n### CONT"
+          },
+          {
+            "id": "7c6603ab-aed3-4295-9bb1-8c67e6a5f4fe",
+            "score": 0.4655,
+            "mission_id": 5,
+            "text_preview": "[Mission 5] 1. SYMBOLIC FIELD INTERPRETATION\n- The interplay between designed and emergent ethics; the dance of control "
+          },
+          {
+            "id": "19e09125-2f85-4952-a05c-b59d5cb7fd15",
+            "score": 0.4556,
+            "mission_id": 3,
+            "text_preview": "[Mission 3] 1. SYMBOLIC FIELD INTERPRETATION\n   - Mathematical precision\n   - Creative expansion\n   - Identity explorati"
+          },
+          {
+            "id": "95de363f-a219-4c8f-b7d8-372eea64d98f",
+            "score": 0.4131,
+            "mission_id": 1,
+            "text_preview": "[Mission 1] ### MISSION COMPRESSION\nThe Forgetting Engine's core mission is to develop an artificial intelligence system"
+          },
+          {
+            "id": "4f0ef290-bc4f-4c63-844b-699ecc37c4ba",
+            "score": 0.3192,
+            "mission_id": 5,
+            "text_preview": "[Mission 5] ### MISSION COMPRESSION\n\nThe CONEXUS investor narrative is a generational company that leverages AI capabili"
+          }
+        ],
+        "semantic_sources": [
+          {
+            "id": "22b80359-6aaa-4cfe-b148-78102ccc2797",
+            "score": 0.6055,
+            "mission_id": 4,
+            "text_preview": "[Mission 4] **MISSION COMPRESSION**\nAs the Collapse Agent of CONEXUS sovereign AI system, my identity is a dynamic fusio"
+          },
+          {
+            "id": "b9b8a069-f5db-452b-9889-e3b9da5832ee",
+            "score": 0.5542,
+            "mission_id": 3,
+            "text_preview": "[Mission 3] ### MISSION COMPRESSION\nDesign an AI infrastructure that a human being can trust with their worst moment, en"
+          },
+          {
+            "id": "4c8abe8e-f8de-4e85-8f9e-cf56738d7226",
+            "score": 0.513,
+            "mission_id": 1,
+            "text_preview": "[Mission 1] ### CONTEXT\nGear Context: STRATEGIC_ TRUTH\nDominant Signal: implementation\nSignal Intensity: 0.07\n\n\n### CONT"
+          },
+          {
+            "id": "713cdebe-009a-462e-828f-4cbf50e4fa46",
+            "score": 0.4655,
+            "mission_id": 5,
+            "text_preview": "[Mission 5] 1. SYMBOLIC FIELD INTERPRETATION\n- The interplay between designed and emergent ethics; the dance of control "
+          },
+          {
+            "id": "a39546b6-41a0-49c6-b67a-3bfa52d30565",
+            "score": 0.4556,
+            "mission_id": 3,
+            "text_preview": "[Mission 3] 1. SYMBOLIC FIELD INTERPRETATION\n   - Mathematical precision\n   - Creative expansion\n   - Identity explorati"
+          },
+          {
+            "id": "9a996326-8d88-44cd-be95-93b550d34b4c",
+            "score": 0.4131,
+            "mission_id": 1,
+            "text_preview": "[Mission 1] ### MISSION COMPRESSION\nThe Forgetting Engine's core mission is to develop an artificial intelligence system"
+          },
+          {
+            "id": "14ad435c-2567-4249-9d1a-4ef9433878ac",
+            "score": 0.3063,
+            "mission_id": 4,
+            "text_preview": "[Mission 4] ### MISSION COMPRESSION\nAudit CONEXUS sovereign architecture for single points of failure and produce a hard"
+          },
+          {
+            "id": "8ffe93f1-5734-4822-b0f6-6e2a2c003a7b",
+            "score": 0.2983,
+            "mission_id": 2,
+            "text_preview": "[Mission 2] 1. SYMBOLIC FIELD INTERPRETATION\n- Life's cycle and transience, acceptance of impermanence, the interplay be"
+          },
+          {
+            "id": "8ea661ce-0a4d-41a0-a464-2e10fa96ee28",
+            "score": 0.1156,
+            "mission_id": 2,
+            "text_preview": "[Mission 2] ### MISSION COMPRESSION\nValidate the Complexity Amplification Effect (CAE) using a reproducible experimental"
+          }
+        ]
+      }
+    }
+  },
+  "system": {
+    "os": "Windows 11",
+    "python": "3.14.2",
+    "machine": "AMD64",
+    "device": "CPU",
+    "collapse_model": "Meta-Llama-3-8B-Instruct.Q4_0.gguf",
+    "become_model": "Mistral-7B-Instruct-v0.3.Q4_0.gguf",
+    "memory": "Qdrant (localhost:6333)",
+    "embedding_model": "all-MiniLM-L6-v2 (384-dim)"
+  }
+}

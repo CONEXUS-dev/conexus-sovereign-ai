@@ -1,0 +1,34 @@
+{
+  "experiment_id": "FE-3D-PF-SCALING-2026-02-23",
+  "description": "Option B full scaling sweep: FE vs MC on 3D HP lattice protein folding",
+  "patent_reference": "US 63/898,911",
+
+  "lengths": [20, 25, 30, 35, 40, 45, 50, 75, 100],
+
+  "trials_per_algorithm": 2000,
+  "pilot_trials_per_algorithm": 200,
+
+  "mc": {
+    "max_steps": 10000,
+    "temperature": 1.0
+  },
+
+  "fe": {
+    "pop_size": 50,
+    "forget_rate": 0.3,
+    "max_gen": 100,
+    "paradox_retention_rate": 0.1
+  },
+
+  "seed_formula": "L * 10000 + trial_index",
+  "sequence_seed_formula": "1337 + L",
+
+  "notes": [
+    "All parameters are LOCKED across all lengths. No per-length tuning.",
+    "Seeds are unique per length. No seed reuse across lengths.",
+    "Thresholds E*(L) are declared in Phase A (pilot) before Phase B (main).",
+    "Phase A: 200 FE + 200 MC per length to establish E*(L).",
+    "Phase B: 2000 FE + 2000 MC per length using locked E*(L).",
+    "Parameters match validated production study (FE-3D-PF-2025-10-27)."
+  ]
+}

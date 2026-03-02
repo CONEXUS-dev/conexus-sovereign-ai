@@ -1,0 +1,8 @@
+{
+  "skillsPath": "./skills",
+  "agentsPath": "./agents",
+  "pipelinesPath": "./pipelines",
+  "configsPath": "./configs",
+  "model": "Phi-4-mini-instruct-Q4_K_M.gguf",
+  "logLevel": "info"
+}
