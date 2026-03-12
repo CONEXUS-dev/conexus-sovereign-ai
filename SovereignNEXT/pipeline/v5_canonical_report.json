@@ -1,0 +1,184 @@
+{
+  "experiment": "Canonical V5 Pipeline Run",
+  "status": "canonical",
+  "phase": 5,
+  "passes": 3,
+  "seed": 42,
+  "timestamp": "2026-03-04T22:47:55.980469+00:00",
+  "starting_snapshot": "v3_final_state_snapshot.json",
+  "input_content_hash": "48e2859d1e3e16a0ac23b132a9564f7b1ab4ef2a8b497b414accf95826607b79",
+  "file_bytes_hash": "31b9b898509515946a2871d2316c827bc052f56a6762af7e13829298dc808af3",
+  "final_state_hash": "f9a12fa44008c6998943066d332811971c1223f4261d4209810ee3eb61040bea",
+  "total_duration_sec": 36265.0274769,
+  "baseline": {
+    "claims": 154,
+    "tensions": 327,
+    "paradoxes": 54,
+    "emoji_vectors": 54
+  },
+  "final_state": {
+    "claims": 650,
+    "tensions": 1505,
+    "paradoxes": 84,
+    "emoji_vectors": 84
+  },
+  "deltas": {
+    "claims": 496,
+    "tensions": 1178,
+    "paradoxes": 30,
+    "emoji_vectors": 30
+  },
+  "per_pass": [
+    {
+      "pass": 1,
+      "state_hash": "3d2e8ccfcaec9f6e4bbabfc3c996aae88662939c8c35a66defc49efb0a23128e",
+      "claims_before": 154,
+      "claims_after": 178,
+      "new_claims": 24,
+      "tensions_before": 327,
+      "tensions_after": 388,
+      "new_tensions": 61,
+      "paradoxes_before": 54,
+      "paradoxes_after": 64,
+      "new_promotions": 10,
+      "collapse": {
+        "total_open": 388,
+        "committed": 0,
+        "deferred": 0,
+        "paradox_held": 388,
+        "skipped": 0,
+        "errors": 0
+      },
+      "become": {
+        "total_eligible": 64,
+        "expanded": 64,
+        "stabilized": 0,
+        "skipped": 0,
+        "claims_spawned": 128,
+        "paradoxes_spawned": 0
+      },
+      "hold": {
+        "total_eligible": 64,
+        "stabilized": 64,
+        "nudged": 0,
+        "balance_corrected": 0,
+        "skipped": 0
+      },
+      "held_count": 64,
+      "vetoed_count": 64,
+      "paradox_status_counts": {
+        "paradox_held": 64
+      },
+      "llm_duration_sec": 2737.1109615999994,
+      "phase5_duration_sec": 0.1401077999980771
+    },
+    {
+      "pass": 2,
+      "state_hash": "64450f6d4ddc67b1c7a5655924270f5130fbdcf90a3b94efbae29f8adef134f6",
+      "claims_before": 306,
+      "claims_after": 330,
+      "new_claims": 24,
+      "tensions_before": 388,
+      "tensions_after": 696,
+      "new_tensions": 308,
+      "paradoxes_before": 64,
+      "paradoxes_after": 74,
+      "new_promotions": 10,
+      "collapse": {
+        "total_open": 308,
+        "committed": 0,
+        "deferred": 0,
+        "paradox_held": 308,
+        "skipped": 0,
+        "errors": 0
+      },
+      "become": {
+        "total_eligible": 74,
+        "expanded": 64,
+        "stabilized": 10,
+        "skipped": 0,
+        "claims_spawned": 128,
+        "paradoxes_spawned": 0
+      },
+      "hold": {
+        "total_eligible": 74,
+        "stabilized": 64,
+        "nudged": 10,
+        "balance_corrected": 0,
+        "skipped": 0
+      },
+      "held_count": 74,
+      "vetoed_count": 74,
+      "paradox_status_counts": {
+        "paradox_held": 74
+      },
+      "llm_duration_sec": 10957.018022100001,
+      "phase5_duration_sec": 0.0743637999985367
+    },
+    {
+      "pass": 3,
+      "state_hash": "f9a12fa44008c6998943066d332811971c1223f4261d4209810ee3eb61040bea",
+      "claims_before": 458,
+      "claims_after": 482,
+      "new_claims": 24,
+      "tensions_before": 696,
+      "tensions_after": 1505,
+      "new_tensions": 809,
+      "paradoxes_before": 74,
+      "paradoxes_after": 84,
+      "new_promotions": 10,
+      "collapse": {
+        "total_open": 809,
+        "committed": 0,
+        "deferred": 0,
+        "paradox_held": 809,
+        "skipped": 0,
+        "errors": 0
+      },
+      "become": {
+        "total_eligible": 84,
+        "expanded": 84,
+        "stabilized": 0,
+        "skipped": 0,
+        "claims_spawned": 168,
+        "paradoxes_spawned": 0
+      },
+      "hold": {
+        "total_eligible": 84,
+        "stabilized": 84,
+        "nudged": 0,
+        "balance_corrected": 0,
+        "skipped": 0
+      },
+      "held_count": 84,
+      "vetoed_count": 84,
+      "paradox_status_counts": {
+        "paradox_held": 84
+      },
+      "llm_duration_sec": 22569.6026445,
+      "phase5_duration_sec": 0.14270879999821773
+    }
+  ],
+  "observations": [
+    "All 3 passes completed without operator crash",
+    "Total new paradox promotions across all passes: 30",
+    "Pass 1: 64 held, 64 vetoed (of 64 total paradoxes)",
+    "Pass 2: 74 held, 74 vetoed (of 74 total paradoxes)",
+    "Pass 3: 84 held, 84 vetoed (of 84 total paradoxes)",
+    "Hub concentration: top-3 claims hold 25.3% of tension refs"
+  ],
+  "health_summary": {
+    "run_id": "v3_final_state_snapshot.json",
+    "snapshot_hash_start": "48e2859d1e3e16a0ac23b132a9564f7b1ab4ef2a8b497b414accf95826607b79",
+    "snapshot_hash_end": "f9a12fa44008c6998943066d332811971c1223f4261d4209810ee3eb61040bea",
+    "passes_completed": 3,
+    "anomalies_total": 68,
+    "warnings_total": 8,
+    "regulated_total": 60,
+    "warnings_by_type": {
+      "oscillating": 4,
+      "drifting": 4
+    },
+    "health_statement": "warnings present: review anomalies"
+  }
+}

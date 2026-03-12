@@ -1,0 +1,26 @@
+{
+  "baseline_id": "Sovereign-V5-Anchor",
+  "snapshot_file": "v5_final_state_snapshot.json",
+  "snapshot_hash": "f9a12fa44008c6998943066d332811971c1223f4261d4209810ee3eb61040bea",
+  "origin_run_id": "Canonical V5 Pipeline Run",
+  "origin_run_timestamp": "2026-03-04T22:47:55.980469+00:00",
+  "origin_snapshot": "v3_final_state_snapshot.json",
+  "origin_snapshot_hash": "48e2859d1e3e16a0ac23b132a9564f7b1ab4ef2a8b497b414accf95826607b79",
+  "pipeline_version": "run_sovereign_pipeline_v5.py",
+  "governance_version": "v1",
+  "operator_phase": 5,
+  "passes": 3,
+  "seed": 42,
+  "health_summary": {
+    "anomalies_total": 68,
+    "regulated_total": 60,
+    "warnings_total": 8,
+    "warnings_by_type": {
+      "oscillating": 4,
+      "drifting": 4
+    },
+    "health_statement": "warnings present: review anomalies"
+  },
+  "sealed_at": "2026-03-05T09:41:00+00:00",
+  "sealed_by": "Derek"
+}
