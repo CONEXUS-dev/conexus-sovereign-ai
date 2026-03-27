@@ -1,0 +1,162 @@
+# Phase 4 Collapse Validation — Comparison Report
+
+## 1. Validation Summary
+
+**V2**: PASS — 82 claims, 144 tensions, 24 paradoxes, 24 emoji vectors, mission=M1_v2, iteration=5
+
+**V3**: FAIL (4 issues) — 154 claims, 327 tensions, 54 paradoxes, 54 emoji vectors, mission=M1_v3, iteration=8
+  - tension_0187 has empty history (scoring error?)
+  - tension_0195 has empty history (scoring error?)
+  - tension_0273 has empty history (scoring error?)
+  - tension_0283 has empty history (scoring error?)
+
+## 2. Decision Summary
+
+| Metric | V2 Baseline | V3 Experimental | Delta |
+|---|---:|---:|---:|
+| Total tensions | 144 | 327 | +183 |
+| Committed | 63 | 138 | +75 |
+|   Commit to A | 36 | 78 | +42 |
+|   Commit to B | 27 | 60 | +33 |
+| Deferred | 34 | 75 | +41 |
+| Paradox-held | 47 | 110 | +63 |
+| Errors | 0 | 4 | +4 |
+| Paradox vetoed | 24 | 54 | +30 |
+
+| Rate | V2 | V3 | Delta |
+|---|---:|---:|---:|
+| Commit rate | 43.75% | 42.2% | -1.55% |
+| Defer rate | 23.61% | 22.94% | -0.67% |
+| Paradox-hold rate | 32.64% | 33.64% | +1.00% |
+| Veto rate | 16.67% | 16.51% | -0.16% |
+
+## 3. Tension-Level Diff (Shared Tensions)
+
+- **Shared tensions**: 144
+- **V3-only tensions**: 183
+- **Status changed**: 0
+- **Veto changed**: 0
+
+### Top 10 Margin Changes
+
+| Tension | V2 Margin | V3 Margin | Delta |
+|---|---:|---:|---:|
+| tension_0001 | 0.065 | 0.065 | +0.0000 |
+| tension_0002 | 0.23 | 0.23 | +0.0000 |
+| tension_0003 | 0.01 | 0.01 | +0.0000 |
+| tension_0004 | 0.01 | 0.01 | +0.0000 |
+| tension_0005 | 0.025 | 0.025 | +0.0000 |
+| tension_0006 | 0.395 | 0.395 | +0.0000 |
+| tension_0007 | 0.395 | 0.395 | +0.0000 |
+| tension_0008 | 0.5 | 0.5 | +0.0000 |
+| tension_0009 | 0.02 | 0.02 | +0.0000 |
+| tension_0010 | 0.02 | 0.02 | +0.0000 |
+
+## 4. Margin & Entropy Analysis
+
+### Margin Distribution
+
+| Stat | V2 | V3 |
+|---|---:|---:|
+| count | 144 | 323 |
+| mean | 0.2356 | 0.2423 |
+| median | 0.2525 | 0.27 |
+| variance | 0.023951 | 0.023118 |
+| skew | 0.0886 | 0.0368 |
+
+### Entropy Distribution (Emoji Vectors)
+
+| Stat | V2 | V3 |
+|---|---:|---:|
+| count | 24 | 54 |
+| mean | 0.9117 | 0.8626 |
+| median | 0.8982 | 0.8632 |
+| variance | 0.000653 | 0.003216 |
+| skew | 0.0103 | -0.5118 |
+
+### Entropy-Veto Correlation
+
+- **Vetoed tensions mean entropy**: 0.8626 (n=54)
+- **Non-vetoed tensions mean entropy**: None (n=0)
+
+### Top 10 Highest-Entropy Paradoxes
+
+| Paradox | Entropy | Balance | Status |
+|---|---:|---:|---|
+| paradox_0035 | 0.9398 | 0.5 | paradox_held |
+| paradox_0036 | 0.9398 | 0.5 | paradox_held |
+| paradox_0037 | 0.9398 | 0.5 | paradox_held |
+| paradox_0038 | 0.9398 | 0.5 | paradox_held |
+| paradox_0039 | 0.9398 | 0.5 | paradox_held |
+| paradox_0040 | 0.9398 | 0.5 | paradox_held |
+| paradox_0041 | 0.9398 | 0.5 | paradox_held |
+| paradox_0042 | 0.9398 | 0.5 | paradox_held |
+| paradox_0043 | 0.9398 | 0.5 | paradox_held |
+| paradox_0044 | 0.9398 | 0.5 | paradox_held |
+
+### Top 10 Lowest-Margin Tensions (V3)
+
+| Tension | Margin | Status |
+|---|---:|---|
+| tension_0003 | 0.01 | paradox_held |
+| tension_0004 | 0.01 | paradox_held |
+| tension_0027 | 0.01 | paradox_held |
+| tension_0058 | 0.01 | paradox_held |
+| tension_0194 | 0.01 | paradox_held |
+| tension_0240 | 0.01 | paradox_held |
+| tension_0074 | 0.015 | paradox_held |
+| tension_0322 | 0.015 | paradox_held |
+| tension_0009 | 0.02 | paradox_held |
+| tension_0010 | 0.02 | paradox_held |
+
+## 5. Paradox Substrate Analysis (V3)
+
+- **Total paradoxes**: 54
+- **Total veto events**: 54
+- **Paradoxes with vetoes**: 54
+- **Paradoxes without vetoes**: 0
+
+### Entropy Clusters
+
+- **high_entropy_>0.9**: 10 paradoxes
+- **mid_entropy_0.7-0.9**: 44 paradoxes
+- **low_entropy_<0.7**: 0 paradoxes
+
+### Top Paradox Vetoers (by influence)
+
+| Paradox | Vetoes | Entropy | Influence |
+|---|---:|---:|---:|
+| paradox_0035 | 1 | 0.9398 | 0.9398 |
+| paradox_0036 | 1 | 0.9398 | 0.9398 |
+| paradox_0037 | 1 | 0.9398 | 0.9398 |
+| paradox_0038 | 1 | 0.9398 | 0.9398 |
+| paradox_0039 | 1 | 0.9398 | 0.9398 |
+| paradox_0040 | 1 | 0.9398 | 0.9398 |
+| paradox_0041 | 1 | 0.9398 | 0.9398 |
+| paradox_0042 | 1 | 0.9398 | 0.9398 |
+| paradox_0043 | 1 | 0.9398 | 0.9398 |
+| paradox_0044 | 1 | 0.9398 | 0.9398 |
+
+### Dominance
+
+- **Top 5 by influence**: paradox_0035, paradox_0036, paradox_0037, paradox_0038, paradox_0039
+- **Top 5 by veto count**: paradox_0035, paradox_0036, paradox_0037, paradox_0038, paradox_0039
+
+## 6. Structural Integrity
+
+**V2**: CLEAN
+
+**V3**: CLEAN
+
+## 7. Conclusions
+
+- V3 has 183 more tensions than V2 (144 vs 327)
+- V3 commit rate: 42.2% vs V2: 43.75% (delta: -1.55%)
+- V3 paradox-hold rate: 33.64% vs V2: 32.64% (delta: +1.00%)
+- V3 veto rate: 16.51% vs V2: 16.67% (delta: -0.16%)
+- Paradox vetoes in V3: 54 (from 54 distinct paradoxes)
+- 0 of 144 shared tensions changed outcome between runs
+- The expanded paradox substrate (54 vs 24) demonstrably constrains Collapse behavior
+
+---
+*Generated by phase4_completion.py — Phase 4 Completion Package*

@@ -1,0 +1,180 @@
+{
+  "v2_margin_stats": {
+    "mean": 0.2356,
+    "median": 0.2525,
+    "variance": 0.023951,
+    "skew": 0.0886,
+    "count": 144
+  },
+  "v3_margin_stats": {
+    "mean": 0.2423,
+    "median": 0.27,
+    "variance": 0.023118,
+    "skew": 0.0368,
+    "count": 323
+  },
+  "v2_entropy_stats": {
+    "mean": 0.9117,
+    "median": 0.8982,
+    "variance": 0.000653,
+    "skew": 0.0103,
+    "count": 24
+  },
+  "v3_entropy_stats": {
+    "mean": 0.8626,
+    "median": 0.8632,
+    "variance": 0.003216,
+    "skew": -0.5118,
+    "count": 54
+  },
+  "top_10_highest_entropy_paradoxes": [
+    {
+      "paradox_id": "paradox_0035",
+      "emoji_vector_id": "ev_0035",
+      "entropy": 0.9398,
+      "pole_balance": 0.5,
+      "chaos_index": 0.6,
+      "stability_index": 0.1,
+      "status": "paradox_held"
+    },
+    {
+      "paradox_id": "paradox_0036",
+      "emoji_vector_id": "ev_0036",
+      "entropy": 0.9398,
+      "pole_balance": 0.5,
+      "chaos_index": 0.6,
+      "stability_index": 0.1,
+      "status": "paradox_held"
+    },
+    {
+      "paradox_id": "paradox_0037",
+      "emoji_vector_id": "ev_0037",
+      "entropy": 0.9398,
+      "pole_balance": 0.5,
+      "chaos_index": 0.6,
+      "stability_index": 0.1,
+      "status": "paradox_held"
+    },
+    {
+      "paradox_id": "paradox_0038",
+      "emoji_vector_id": "ev_0038",
+      "entropy": 0.9398,
+      "pole_balance": 0.5,
+      "chaos_index": 0.6,
+      "stability_index": 0.1,
+      "status": "paradox_held"
+    },
+    {
+      "paradox_id": "paradox_0039",
+      "emoji_vector_id": "ev_0039",
+      "entropy": 0.9398,
+      "pole_balance": 0.5,
+      "chaos_index": 0.6,
+      "stability_index": 0.1,
+      "status": "paradox_held"
+    },
+    {
+      "paradox_id": "paradox_0040",
+      "emoji_vector_id": "ev_0040",
+      "entropy": 0.9398,
+      "pole_balance": 0.5,
+      "chaos_index": 0.6,
+      "stability_index": 0.1,
+      "status": "paradox_held"
+    },
+    {
+      "paradox_id": "paradox_0041",
+      "emoji_vector_id": "ev_0041",
+      "entropy": 0.9398,
+      "pole_balance": 0.5,
+      "chaos_index": 0.6,
+      "stability_index": 0.1,
+      "status": "paradox_held"
+    },
+    {
+      "paradox_id": "paradox_0042",
+      "emoji_vector_id": "ev_0042",
+      "entropy": 0.9398,
+      "pole_balance": 0.5,
+      "chaos_index": 0.6,
+      "stability_index": 0.1,
+      "status": "paradox_held"
+    },
+    {
+      "paradox_id": "paradox_0043",
+      "emoji_vector_id": "ev_0043",
+      "entropy": 0.9398,
+      "pole_balance": 0.5,
+      "chaos_index": 0.6,
+      "stability_index": 0.1,
+      "status": "paradox_held"
+    },
+    {
+      "paradox_id": "paradox_0044",
+      "emoji_vector_id": "ev_0044",
+      "entropy": 0.9398,
+      "pole_balance": 0.5,
+      "chaos_index": 0.6,
+      "stability_index": 0.1,
+      "status": "paradox_held"
+    }
+  ],
+  "top_10_lowest_margin_tensions": [
+    {
+      "tension_id": "tension_0003",
+      "margin": 0.01,
+      "status": "paradox_held"
+    },
+    {
+      "tension_id": "tension_0004",
+      "margin": 0.01,
+      "status": "paradox_held"
+    },
+    {
+      "tension_id": "tension_0027",
+      "margin": 0.01,
+      "status": "paradox_held"
+    },
+    {
+      "tension_id": "tension_0058",
+      "margin": 0.01,
+      "status": "paradox_held"
+    },
+    {
+      "tension_id": "tension_0194",
+      "margin": 0.01,
+      "status": "paradox_held"
+    },
+    {
+      "tension_id": "tension_0240",
+      "margin": 0.01,
+      "status": "paradox_held"
+    },
+    {
+      "tension_id": "tension_0074",
+      "margin": 0.015,
+      "status": "paradox_held"
+    },
+    {
+      "tension_id": "tension_0322",
+      "margin": 0.015,
+      "status": "paradox_held"
+    },
+    {
+      "tension_id": "tension_0009",
+      "margin": 0.02,
+      "status": "paradox_held"
+    },
+    {
+      "tension_id": "tension_0010",
+      "margin": 0.02,
+      "status": "paradox_held"
+    }
+  ],
+  "entropy_veto_correlation": {
+    "vetoed_mean_entropy": 0.8626,
+    "non_vetoed_mean_entropy": null,
+    "vetoed_count": 54,
+    "non_vetoed_count": 0
+  }
+}

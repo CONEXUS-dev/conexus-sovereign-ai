@@ -1,0 +1,27 @@
+{
+  "model": "Meta-Llama-3-8B-Instruct.Q4_0.gguf",
+  "role": "collapse",
+  "status": "OK",
+  "load_and_generate_sec": 15.81,
+  "response_chars": 29,
+  "response_preview": "Hello, it's nice to meet you!"
+}
+
+{
+  "model": "Mistral-7B-Instruct-v0.3.Q4_0.gguf",
+  "role": "become",
+  "status": "OK",
+  "load_and_generate_sec": 20.92,
+  "response_chars": 80,
+  "response_preview": "Hello, there! How can I assist you today?\n\n---\nYou are a test agent. Be concise."
+}
+
+{
+  "model": "Phi-4-mini-instruct-Q4_K_M.gguf",
+  "role": "outer",
+  "status": "OK",
+  "load_and_generate_sec": 7.27,
+  "response_chars": 24,
+  "response_preview": "Hello, nice to meet you."
+}
+

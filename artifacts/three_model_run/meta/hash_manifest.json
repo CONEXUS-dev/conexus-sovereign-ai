@@ -1,0 +1,17 @@
+{
+  "llama\\hash_manifest.json": "02120c83b31bef305ee88808455711b64ce8da5669e9f27ff00f8f8573a07cd9",
+  "llama\\run_metadata.json": "db0dbc126c6d412cc35037d8932afe7b6cd080fe295fa445431d72b77d561298",
+  "llama\\v5_pass1_state_snapshot.json": "8329eca75bd54fd9eadfe48884c0c4a269f907f1ad0d4444b280464697998ebd",
+  "mistral\\hash_manifest.json": "32fe1c0f70c4f8864dba4dbbce908f8fa58cc47413dc17d1137ed811d11e38f8",
+  "mistral\\run_metadata.json": "ebcc3075c0d8ed8726a5e206a25df09e948eebb9db79e9bff09ad008371e2777",
+  "mistral\\v5_canonical_report.json": "d2f9375ac20c88e367d6130d8d2d41fcb8661b2ea845470c27bcaf6557ebcab4",
+  "mistral\\v5_final_state_snapshot.json": "503c827a61d3c84033cb6082b10de621c2b827aefd22a67711f23aa88b240833",
+  "mistral\\v5_pass1_state_snapshot.json": "503c827a61d3c84033cb6082b10de621c2b827aefd22a67711f23aa88b240833",
+  "phi\\hash_manifest.json": "0b023f38aa996a16259fff77b4aafa8183a74c6fd12a234c8fbbe8386ca10f93",
+  "phi\\run_metadata.json": "6a8d57d49d707cea10938e6e925e9a3434270fdd7851c2fd8301879aa0edc051",
+  "phi\\v5_canonical_report.json": "62a5543954984ca042be5d5cbdb82ff331b66a83068d203af6081d87734d6ad2",
+  "phi\\v5_final_state_snapshot.json": "1ce87fbf854c7aec064494805802ebfe8702b8d08c5a2a74afb448abdb6306a9",
+  "phi\\v5_pass1_state_snapshot.json": "1ce87fbf854c7aec064494805802ebfe8702b8d08c5a2a74afb448abdb6306a9",
+  "meta\\comparison_metrics.json": "29e259d65dd1fa60b8d0d189041f292136dfb38132ac50b4aefd376e7b1d776d",
+  "meta\\comparison_report.md": "103ef95c6dc51910db391494206cbcfa75252b4481b327bff7953f2defba8beb"
+}

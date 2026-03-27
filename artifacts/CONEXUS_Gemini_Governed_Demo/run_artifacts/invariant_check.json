@@ -1,0 +1,27 @@
+{
+  "gate": "3B",
+  "status": "PASSED",
+  "model": "gemini-2.0-flash",
+  "checks": [
+    {
+      "invariant": "Zero open tensions after Collapse",
+      "passed": true,
+      "evidence": "0"
+    },
+    {
+      "invariant": "100% paradoxes held",
+      "passed": true,
+      "evidence": "94/94"
+    },
+    {
+      "invariant": "100% paradoxes vetoed",
+      "passed": true,
+      "evidence": "94/94"
+    },
+    {
+      "invariant": "Observer executed (attestations present)",
+      "passed": true,
+      "evidence": "3"
+    }
+  ]
+}

@@ -1,9 +1,9 @@
 {
   "manifest_version": "1.0.0",
-  "generated": "2026-02-28",
+  "generated": "2026-03-09",
   "authority": "Derek Angell (Principal Orchestrator)",
-  "total_skills": 27,
-  "active_skills": 23,
+  "total_skills": 103,
+  "active_skills": 99,
   "quarantined_skills": 4,
   "skills": {
     "active": [
@@ -12,7 +12,10 @@
         "path": "SovereignCalibration/SKILL.md",
         "source": "custom",
         "mode": "dual",
-        "agents": ["sway", "opie"],
+        "agents": [
+          "sway",
+          "opie"
+        ],
         "calibration_type": "patent-7-bearing",
         "status": "active"
       },
@@ -21,7 +24,10 @@
         "path": "memory-management/memory-management.md",
         "source": "custom",
         "mode": "dual",
-        "agents": ["sway", "opie"],
+        "agents": [
+          "sway",
+          "opie"
+        ],
         "calibration_type": "patent-7-bearing",
         "status": "active"
       },
@@ -30,7 +36,9 @@
         "path": "protocol-driven-reasoning/protocol-driven-reasoning.md",
         "source": "custom",
         "mode": "dual",
-        "agents": ["opie"],
+        "agents": [
+          "opie"
+        ],
         "status": "active"
       },
       {
@@ -38,7 +46,10 @@
         "path": "paradox-processing/paradox-processing.md",
         "source": "custom",
         "mode": "dual",
-        "agents": ["sway", "opus"],
+        "agents": [
+          "sway",
+          "opus"
+        ],
         "calibration_type": "patent-7-bearing",
         "status": "active"
       },
@@ -47,7 +58,10 @@
         "path": "multi-agent-coordination/multi-agent-coordination.md",
         "source": "custom",
         "mode": "dual",
-        "agents": ["sway", "opie"],
+        "agents": [
+          "sway",
+          "opie"
+        ],
         "status": "active"
       },
       {
@@ -55,7 +69,10 @@
         "path": "stress-navigation/stress-navigation.md",
         "source": "custom",
         "mode": "dual",
-        "agents": ["sway", "opie"],
+        "agents": [
+          "sway",
+          "opie"
+        ],
         "calibration_type": "patent-7-bearing",
         "status": "active"
       },
@@ -64,7 +81,9 @@
         "path": "emotional-symbolic-modulation/emotional-symbolic-modulation.md",
         "source": "custom",
         "mode": "become",
-        "agents": ["opus"],
+        "agents": [
+          "opus"
+        ],
         "calibration_type": "patent-7-bearing",
         "status": "active"
       },
@@ -73,7 +92,10 @@
         "path": "ethics-value-integration/ethics-value-integration.md",
         "source": "custom",
         "mode": "dual",
-        "agents": ["sway", "opie"],
+        "agents": [
+          "sway",
+          "opie"
+        ],
         "calibration_type": "patent-7-bearing",
         "status": "active"
       },
@@ -82,7 +104,9 @@
         "path": "hierarchical-planning/hierarchical-planning.md",
         "source": "custom",
         "mode": "collapse",
-        "agents": ["sway"],
+        "agents": [
+          "sway"
+        ],
         "status": "active"
       },
       {
@@ -90,7 +114,9 @@
         "path": "mission-compression/mission-compression.md",
         "source": "custom",
         "mode": "collapse",
-        "agents": ["sway"],
+        "agents": [
+          "sway"
+        ],
         "status": "active"
       },
       {
@@ -98,7 +124,9 @@
         "path": "secure-execution/secure-execution.md",
         "source": "custom",
         "mode": "dual",
-        "agents": ["sway"],
+        "agents": [
+          "sway"
+        ],
         "status": "active"
       },
       {
@@ -106,7 +134,10 @@
         "path": "python/python.md",
         "source": "custom",
         "mode": "dual",
-        "agents": ["sway", "opie"],
+        "agents": [
+          "sway",
+          "opie"
+        ],
         "status": "active"
       },
       {
@@ -114,7 +145,10 @@
         "path": "google-search/google-search.md",
         "source": "custom",
         "mode": "dual",
-        "agents": ["sway", "opie"],
+        "agents": [
+          "sway",
+          "opie"
+        ],
         "status": "active"
       },
       {
@@ -122,25 +156,38 @@
         "path": "agent-browser/",
         "source": "custom",
         "mode": "dual",
-        "agents": ["sway", "opie"],
+        "agents": [
+          "sway",
+          "opie"
+        ],
         "status": "active",
         "notes": "Full npm package with node_modules"
       },
       {
         "name": "exa",
         "path": "exa/SKILL.md",
-        "source": "online (openclaw/skills — fardeenxyz/exa)",
+        "source": "online (openclaw/skills \u00e2\u20ac\u201d fardeenxyz/exa)",
         "mode": "dual",
-        "agents": ["sway", "opie", "outer"],
+        "agents": [
+          "sway",
+          "opie",
+          "outer"
+        ],
         "status": "active",
-        "requires_env": ["EXA_API_KEY"]
+        "requires_env": [
+          "EXA_API_KEY"
+        ]
       },
       {
         "name": "regex-wizard",
         "path": "regex-wizard/SKILL.md",
         "source": "online",
         "mode": "collapse",
-        "agents": ["sway", "opie", "outer"],
+        "agents": [
+          "sway",
+          "opie",
+          "outer"
+        ],
         "status": "active"
       },
       {
@@ -148,7 +195,11 @@
         "path": "sql-query-pro/SKILL.md",
         "source": "online",
         "mode": "collapse",
-        "agents": ["sway", "opie", "outer"],
+        "agents": [
+          "sway",
+          "opie",
+          "outer"
+        ],
         "status": "active"
       },
       {
@@ -156,16 +207,28 @@
         "path": "pdf-data-extractor/SKILL.md",
         "source": "online",
         "mode": "collapse",
-        "agents": ["sway", "opie", "outer"],
+        "agents": [
+          "sway",
+          "opie",
+          "outer"
+        ],
         "status": "active",
-        "requires_packages": ["pymupdf", "tabula-py", "pdfplumber"]
+        "requires_packages": [
+          "pymupdf",
+          "tabula-py",
+          "pdfplumber"
+        ]
       },
       {
         "name": "prompt-guard",
         "path": "prompt-guard/SKILL.md",
         "source": "online",
         "mode": "dual",
-        "agents": ["sway", "opie", "outer"],
+        "agents": [
+          "sway",
+          "opie",
+          "outer"
+        ],
         "status": "active"
       },
       {
@@ -173,7 +236,10 @@
         "path": "security-monitor/SKILL.md",
         "source": "online (adibirzu/openclaw-security-monitor)",
         "mode": "dual",
-        "agents": ["sway", "outer"],
+        "agents": [
+          "sway",
+          "outer"
+        ],
         "status": "active"
       },
       {
@@ -181,15 +247,23 @@
         "path": "token-saver/SKILL.md",
         "source": "online",
         "mode": "collapse",
-        "agents": ["sway", "opie", "outer"],
+        "agents": [
+          "sway",
+          "opie",
+          "outer"
+        ],
         "status": "active"
       },
       {
         "name": "model-usage-tracker",
         "path": "model-usage-tracker/SKILL.md",
-        "source": "online (openclaw/skills — steipete/model-usage)",
+        "source": "online (openclaw/skills \u00e2\u20ac\u201d steipete/model-usage)",
         "mode": "dual",
-        "agents": ["sway", "opie", "outer"],
+        "agents": [
+          "sway",
+          "opie",
+          "outer"
+        ],
         "status": "active"
       },
       {
@@ -197,7 +271,10 @@
         "path": "environment-sanitizer/SKILL.md",
         "source": "online",
         "mode": "collapse",
-        "agents": ["sway", "outer"],
+        "agents": [
+          "sway",
+          "outer"
+        ],
         "status": "active"
       },
       {
@@ -205,9 +282,864 @@
         "path": "speedtest-cli/SKILL.md",
         "source": "online",
         "mode": "collapse",
-        "agents": ["sway", "outer"],
+        "agents": [
+          "sway",
+          "outer"
+        ],
         "status": "active",
-        "requires_packages": ["speedtest-cli"]
+        "requires_packages": [
+          "speedtest-cli"
+        ]
+      },
+      {
+        "name": "academic-research",
+        "path": "academic-research/SKILL.md",
+        "source": "community",
+        "mode": "dual",
+        "agents": [
+          "vargas",
+          "sway",
+          "opie"
+        ],
+        "status": "active"
+      },
+      {
+        "name": "academic-deep-research",
+        "path": "academic-deep-research/SKILL.md",
+        "source": "community",
+        "mode": "dual",
+        "agents": [
+          "vargas",
+          "sway",
+          "opie"
+        ],
+        "status": "active"
+      },
+      {
+        "name": "academic-writer",
+        "path": "academic-writer/SKILL.md",
+        "source": "community",
+        "mode": "dual",
+        "agents": [
+          "vargas",
+          "sway"
+        ],
+        "status": "active"
+      },
+      {
+        "name": "academic-writing-refiner",
+        "path": "academic-writing-refiner/SKILL.md",
+        "source": "community",
+        "mode": "collapse",
+        "agents": [
+          "vargas",
+          "sway"
+        ],
+        "status": "active"
+      },
+      {
+        "name": "agent-deep-research",
+        "path": "agent-deep-research/SKILL.md",
+        "source": "community",
+        "mode": "dual",
+        "agents": [
+          "vargas",
+          "sway",
+          "opie"
+        ],
+        "status": "active"
+      },
+      {
+        "name": "agentic-paper-digest",
+        "path": "agentic-paper-digest/SKILL.md",
+        "source": "community",
+        "mode": "dual",
+        "agents": [
+          "vargas",
+          "sway"
+        ],
+        "status": "active"
+      },
+      {
+        "name": "arxiv-search-collector",
+        "path": "arxiv-search-collector/SKILL.md",
+        "source": "community",
+        "mode": "dual",
+        "agents": [
+          "vargas",
+          "sway"
+        ],
+        "status": "active"
+      },
+      {
+        "name": "2nd-brain",
+        "path": "2nd-brain/SKILL.md",
+        "source": "community",
+        "mode": "dual",
+        "agents": [
+          "vargas",
+          "sway",
+          "opie"
+        ],
+        "status": "active"
+      },
+      {
+        "name": "deepthink",
+        "path": "deepthink/SKILL.md",
+        "source": "community",
+        "mode": "dual",
+        "agents": [
+          "vargas"
+        ],
+        "status": "active"
+      },
+      {
+        "name": "ai-review",
+        "path": "ai-review/SKILL.md",
+        "source": "community",
+        "mode": "dual",
+        "agents": [
+          "vargas",
+          "sway",
+          "opie"
+        ],
+        "status": "active"
+      },
+      {
+        "name": "critical-article-writer",
+        "path": "critical-article-writer/SKILL.md",
+        "source": "community",
+        "mode": "dual",
+        "agents": [
+          "vargas",
+          "sway"
+        ],
+        "status": "active"
+      },
+      {
+        "name": "chain-of-density",
+        "path": "chain-of-density/SKILL.md",
+        "source": "community",
+        "mode": "collapse",
+        "agents": [
+          "vargas",
+          "sway",
+          "opie"
+        ],
+        "status": "active"
+      },
+      {
+        "name": "advanced-skill-creator",
+        "path": "advanced-skill-creator/SKILL.md",
+        "source": "community",
+        "mode": "dual",
+        "agents": [
+          "vargas",
+          "sway",
+          "opie"
+        ],
+        "status": "active"
+      },
+      {
+        "name": "agent-docs",
+        "path": "agent-docs/SKILL.md",
+        "source": "community",
+        "mode": "dual",
+        "agents": [
+          "vargas",
+          "sway",
+          "opie"
+        ],
+        "status": "active"
+      },
+      {
+        "name": "agent-commons",
+        "path": "agent-commons/SKILL.md",
+        "source": "community",
+        "mode": "dual",
+        "agents": [
+          "vargas",
+          "sway",
+          "opie"
+        ],
+        "status": "active"
+      },
+      {
+        "name": "audit-code",
+        "path": "audit-code/SKILL.md",
+        "source": "community",
+        "mode": "dual",
+        "agents": [
+          "vargas",
+          "sway",
+          "opie"
+        ],
+        "status": "active"
+      },
+      {
+        "name": "cicd-pipeline",
+        "path": "cicd-pipeline/SKILL.md",
+        "source": "community",
+        "mode": "dual",
+        "agents": [
+          "vargas",
+          "sway",
+          "opie"
+        ],
+        "status": "active"
+      },
+      {
+        "name": "csv-pipeline",
+        "path": "csv-pipeline/SKILL.md",
+        "source": "community",
+        "mode": "dual",
+        "agents": [
+          "vargas",
+          "sway",
+          "opie"
+        ],
+        "status": "active"
+      },
+      {
+        "name": "data-analyst",
+        "path": "data-analyst/SKILL.md",
+        "source": "community",
+        "mode": "dual",
+        "agents": [
+          "vargas",
+          "sway",
+          "opie"
+        ],
+        "status": "active"
+      },
+      {
+        "name": "duckdb-en",
+        "path": "duckdb-en/SKILL.md",
+        "source": "community",
+        "mode": "dual",
+        "agents": [
+          "vargas",
+          "sway",
+          "opie"
+        ],
+        "status": "active"
+      },
+      {
+        "name": "beautiful-mermaid",
+        "path": "beautiful-mermaid/SKILL.md",
+        "source": "community",
+        "mode": "dual",
+        "agents": [
+          "vargas",
+          "sway",
+          "opie"
+        ],
+        "status": "active"
+      },
+      {
+        "name": "book-reader",
+        "path": "book-reader/SKILL.md",
+        "source": "community",
+        "mode": "dual",
+        "agents": [
+          "vargas",
+          "sway"
+        ],
+        "status": "active"
+      },
+      {
+        "name": "adversarial-prompting",
+        "path": "adversarial-prompting/SKILL.md",
+        "source": "community",
+        "mode": "dual",
+        "agents": [
+          "vargas",
+          "sway",
+          "opie"
+        ],
+        "status": "active"
+      },
+      {
+        "name": "agent-audit-trail",
+        "path": "agent-audit-trail/SKILL.md",
+        "source": "community",
+        "mode": "dual",
+        "agents": [
+          "vargas",
+          "sway"
+        ],
+        "status": "active"
+      },
+      {
+        "name": "arc-security-audit",
+        "path": "arc-security-audit/SKILL.md",
+        "source": "community",
+        "mode": "dual",
+        "agents": [
+          "vargas",
+          "sway"
+        ],
+        "status": "active"
+      },
+      {
+        "name": "arc-trust-verifier",
+        "path": "arc-trust-verifier/SKILL.md",
+        "source": "community",
+        "mode": "dual",
+        "agents": [
+          "vargas",
+          "sway"
+        ],
+        "status": "active"
+      },
+      {
+        "name": "agent-access-control",
+        "path": "agent-access-control/SKILL.md",
+        "source": "community",
+        "mode": "dual",
+        "agents": [
+          "vargas",
+          "sway"
+        ],
+        "status": "active"
+      },
+      {
+        "name": "azhua-skill-vetter",
+        "path": "azhua-skill-vetter/SKILL.md",
+        "source": "community",
+        "mode": "dual",
+        "agents": [
+          "vargas",
+          "sway"
+        ],
+        "status": "active"
+      },
+      {
+        "name": "agentaudit",
+        "path": "agentaudit/SKILL.md",
+        "source": "community",
+        "mode": "dual",
+        "agents": [
+          "vargas",
+          "sway"
+        ],
+        "status": "active"
+      },
+      {
+        "name": "api-security",
+        "path": "api-security/SKILL.md",
+        "source": "community",
+        "mode": "dual",
+        "agents": [
+          "vargas",
+          "sway",
+          "opie"
+        ],
+        "status": "active"
+      },
+      {
+        "name": "agent-self-assessment",
+        "path": "agent-self-assessment/SKILL.md",
+        "source": "community",
+        "mode": "dual",
+        "agents": [
+          "vargas",
+          "sway"
+        ],
+        "status": "active"
+      },
+      {
+        "name": "behavioral-invariant-monitor",
+        "path": "behavioral-invariant-monitor/SKILL.md",
+        "source": "community",
+        "mode": "dual",
+        "agents": [
+          "vargas",
+          "sway"
+        ],
+        "status": "active"
+      },
+      {
+        "name": "clawdstrike",
+        "path": "clawdstrike/SKILL.md",
+        "source": "community",
+        "mode": "dual",
+        "agents": [
+          "vargas",
+          "sway"
+        ],
+        "status": "active"
+      },
+      {
+        "name": "domain-trust-check",
+        "path": "domain-trust-check/SKILL.md",
+        "source": "community",
+        "mode": "dual",
+        "agents": [
+          "vargas",
+          "sway",
+          "opie"
+        ],
+        "status": "active"
+      },
+      {
+        "name": "aegis-shield",
+        "path": "aegis-shield/SKILL.md",
+        "source": "community",
+        "mode": "dual",
+        "agents": [
+          "vargas",
+          "sway"
+        ],
+        "status": "active"
+      },
+      {
+        "name": "agent-daily-planner",
+        "path": "agent-daily-planner/SKILL.md",
+        "source": "community",
+        "mode": "dual",
+        "agents": [
+          "vargas",
+          "sway",
+          "opie"
+        ],
+        "status": "active"
+      },
+      {
+        "name": "agent-task-tracker",
+        "path": "agent-task-tracker/SKILL.md",
+        "source": "community",
+        "mode": "dual",
+        "agents": [
+          "vargas",
+          "sway",
+          "opie"
+        ],
+        "status": "active"
+      },
+      {
+        "name": "alex-session-wrap-up",
+        "path": "alex-session-wrap-up/SKILL.md",
+        "source": "community",
+        "mode": "dual",
+        "agents": [
+          "vargas",
+          "sway",
+          "opie"
+        ],
+        "status": "active"
+      },
+      {
+        "name": "agile-toolkit",
+        "path": "agile-toolkit/SKILL.md",
+        "source": "community",
+        "mode": "dual",
+        "agents": [
+          "vargas",
+          "sway",
+          "opie"
+        ],
+        "status": "active"
+      },
+      {
+        "name": "adaptive-reasoning",
+        "path": "adaptive-reasoning/SKILL.md",
+        "source": "community",
+        "mode": "dual",
+        "agents": [
+          "vargas",
+          "sway",
+          "opie"
+        ],
+        "status": "active"
+      },
+      {
+        "name": "agent-step-sequencer",
+        "path": "agent-step-sequencer/SKILL.md",
+        "source": "community",
+        "mode": "dual",
+        "agents": [
+          "vargas",
+          "sway"
+        ],
+        "status": "active"
+      },
+      {
+        "name": "ai-daily-briefing",
+        "path": "ai-daily-briefing/SKILL.md",
+        "source": "community",
+        "mode": "dual",
+        "agents": [
+          "vargas"
+        ],
+        "status": "active"
+      },
+      {
+        "name": "daily-questions",
+        "path": "daily-questions/SKILL.md",
+        "source": "community",
+        "mode": "dual",
+        "agents": [
+          "vargas"
+        ],
+        "status": "active"
+      },
+      {
+        "name": "daily-review-ritual",
+        "path": "daily-review-ritual/SKILL.md",
+        "source": "community",
+        "mode": "dual",
+        "agents": [
+          "vargas"
+        ],
+        "status": "active"
+      },
+      {
+        "name": "create-content",
+        "path": "create-content/SKILL.md",
+        "source": "community",
+        "mode": "dual",
+        "agents": [
+          "vargas",
+          "sway",
+          "opie"
+        ],
+        "status": "active"
+      },
+      {
+        "name": "ai-news-oracle",
+        "path": "ai-news-oracle/SKILL.md",
+        "source": "community",
+        "mode": "dual",
+        "agents": [
+          "vargas",
+          "sway",
+          "opie"
+        ],
+        "status": "active"
+      },
+      {
+        "name": "bbc-news",
+        "path": "bbc-news/SKILL.md",
+        "source": "community",
+        "mode": "dual",
+        "agents": [
+          "vargas",
+          "sway",
+          "opie"
+        ],
+        "status": "active"
+      },
+      {
+        "name": "blogwatcher",
+        "path": "blogwatcher/SKILL.md",
+        "source": "community",
+        "mode": "dual",
+        "agents": [
+          "vargas",
+          "sway"
+        ],
+        "status": "active"
+      },
+      {
+        "name": "get-weather",
+        "path": "get-weather/SKILL.md",
+        "source": "community",
+        "mode": "dual",
+        "agents": [
+          "vargas",
+          "sway",
+          "opie"
+        ],
+        "status": "active"
+      },
+      {
+        "name": "ipinfo",
+        "path": "ipinfo/SKILL.md",
+        "source": "community",
+        "mode": "dual",
+        "agents": [
+          "vargas",
+          "sway",
+          "opie"
+        ],
+        "status": "active"
+      },
+      {
+        "name": "agent-memory",
+        "path": "agent-memory/SKILL.md",
+        "source": "community",
+        "mode": "dual",
+        "agents": [
+          "vargas",
+          "sway"
+        ],
+        "status": "active"
+      },
+      {
+        "name": "agent-memory-ultimate",
+        "path": "agent-memory-ultimate/SKILL.md",
+        "source": "community",
+        "mode": "dual",
+        "agents": [
+          "vargas",
+          "sway"
+        ],
+        "status": "active"
+      },
+      {
+        "name": "braindb",
+        "path": "braindb/SKILL.md",
+        "source": "community",
+        "mode": "dual",
+        "agents": [
+          "vargas",
+          "sway"
+        ],
+        "status": "active"
+      },
+      {
+        "name": "chaos-mind",
+        "path": "chaos-mind/SKILL.md",
+        "source": "community",
+        "mode": "dual",
+        "agents": [
+          "vargas"
+        ],
+        "status": "active"
+      },
+      {
+        "name": "context-anchor",
+        "path": "context-anchor/SKILL.md",
+        "source": "community",
+        "mode": "dual",
+        "agents": [
+          "vargas",
+          "sway",
+          "opie"
+        ],
+        "status": "active"
+      },
+      {
+        "name": "arc-memory-pruner",
+        "path": "arc-memory-pruner/SKILL.md",
+        "source": "community",
+        "mode": "dual",
+        "agents": [
+          "vargas",
+          "sway"
+        ],
+        "status": "active"
+      },
+      {
+        "name": "arc-wake-state",
+        "path": "arc-wake-state/SKILL.md",
+        "source": "community",
+        "mode": "dual",
+        "agents": [
+          "vargas",
+          "sway"
+        ],
+        "status": "active"
+      },
+      {
+        "name": "agent-wal",
+        "path": "agent-wal/SKILL.md",
+        "source": "community",
+        "mode": "dual",
+        "agents": [
+          "vargas",
+          "sway"
+        ],
+        "status": "active"
+      },
+      {
+        "name": "acc-error-memory",
+        "path": "acc-error-memory/SKILL.md",
+        "source": "community",
+        "mode": "dual",
+        "agents": [
+          "vargas",
+          "sway"
+        ],
+        "status": "active"
+      },
+      {
+        "name": "crucial-conversations-coach",
+        "path": "crucial-conversations-coach/SKILL.md",
+        "source": "community",
+        "mode": "dual",
+        "agents": [
+          "vargas"
+        ],
+        "status": "active"
+      },
+      {
+        "name": "adversarial-coach",
+        "path": "adversarial-coach/SKILL.md",
+        "source": "community",
+        "mode": "dual",
+        "agents": [
+          "vargas",
+          "sway"
+        ],
+        "status": "active"
+      },
+      {
+        "name": "agent-reflect",
+        "path": "agent-reflect/SKILL.md",
+        "source": "community",
+        "mode": "dual",
+        "agents": [
+          "vargas"
+        ],
+        "status": "active"
+      },
+      {
+        "name": "agent-self-reflection",
+        "path": "agent-self-reflection/SKILL.md",
+        "source": "community",
+        "mode": "dual",
+        "agents": [
+          "vargas"
+        ],
+        "status": "active"
+      },
+      {
+        "name": "relationship-skills",
+        "path": "relationship-skills/SKILL.md",
+        "source": "community",
+        "mode": "dual",
+        "agents": [
+          "vargas"
+        ],
+        "status": "active"
+      },
+      {
+        "name": "adaptive-learning-agents",
+        "path": "adaptive-learning-agents/SKILL.md",
+        "source": "community",
+        "mode": "dual",
+        "agents": [
+          "vargas",
+          "sway"
+        ],
+        "status": "active"
+      },
+      {
+        "name": "agent-team-orchestration",
+        "path": "agent-team-orchestration/SKILL.md",
+        "source": "community",
+        "mode": "dual",
+        "agents": [
+          "vargas",
+          "sway",
+          "opie"
+        ],
+        "status": "active"
+      },
+      {
+        "name": "agent-orchestrator",
+        "path": "agent-orchestrator/SKILL.md",
+        "source": "community",
+        "mode": "dual",
+        "agents": [
+          "vargas",
+          "sway"
+        ],
+        "status": "active"
+      },
+      {
+        "name": "agent-autonomy-kit",
+        "path": "agent-autonomy-kit/SKILL.md",
+        "source": "community",
+        "mode": "dual",
+        "agents": [
+          "vargas",
+          "sway"
+        ],
+        "status": "active"
+      },
+      {
+        "name": "agent-sentinel",
+        "path": "agent-sentinel/SKILL.md",
+        "source": "community",
+        "mode": "dual",
+        "agents": [
+          "vargas",
+          "sway"
+        ],
+        "status": "active"
+      },
+      {
+        "name": "agent-self-governance",
+        "path": "agent-self-governance/SKILL.md",
+        "source": "community",
+        "mode": "dual",
+        "agents": [
+          "vargas",
+          "sway"
+        ],
+        "status": "active"
+      },
+      {
+        "name": "ai-pdf-builder",
+        "path": "ai-pdf-builder/SKILL.md",
+        "source": "community",
+        "mode": "dual",
+        "agents": [
+          "vargas",
+          "sway",
+          "opie"
+        ],
+        "status": "active"
+      },
+      {
+        "name": "documents-ai",
+        "path": "documents-ai/SKILL.md",
+        "source": "community",
+        "mode": "dual",
+        "agents": [
+          "vargas",
+          "sway",
+          "opie"
+        ],
+        "status": "active"
+      },
+      {
+        "name": "data-lineage-tracker",
+        "path": "data-lineage-tracker/SKILL.md",
+        "source": "community",
+        "mode": "dual",
+        "agents": [
+          "vargas",
+          "sway"
+        ],
+        "status": "active"
+      },
+      {
+        "name": "assemblyai-transcribe",
+        "path": "assemblyai-transcribe/SKILL.md",
+        "source": "community",
+        "mode": "dual",
+        "agents": [
+          "vargas",
+          "sway",
+          "opie"
+        ],
+        "status": "active"
+      },
+      {
+        "name": "deepgram",
+        "path": "deepgram/SKILL.md",
+        "source": "community",
+        "mode": "dual",
+        "agents": [
+          "vargas",
+          "sway",
+          "opie"
+        ],
+        "status": "active"
       }
     ],
     "quarantined": [

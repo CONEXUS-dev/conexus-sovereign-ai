@@ -1,0 +1,20 @@
+{
+  "suite": "Three-Model Governed Run",
+  "model_key": "llama",
+  "model_name": "Meta-Llama-3-8B-Instruct.Q4_0.gguf",
+  "model_label": "LLaMA-3.1-8B-Instruct",
+  "model_backend": "gpt4all",
+  "snapshot": "SovereignNEXT/pipeline/v5_final_state_snapshot.json",
+  "seed": 42,
+  "passes": 1,
+  "phase": 5,
+  "governance_version": "v1",
+  "baseline": "Sovereign-V5-Anchor",
+  "operator_sequence": "Collapse -> Become -> Paradox-Hold -> Observer",
+  "status": "completed_pass1_crash_recovered",
+  "note": "Pass 1 completed. Process killed by system freeze before passes 2-3. With --passes 1 policy this is the final artifact.",
+  "final_claims": 862,
+  "final_tensions": 1720,
+  "final_paradoxes": 94,
+  "final_emoji": 0
+}

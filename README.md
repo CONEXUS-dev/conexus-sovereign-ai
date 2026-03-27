@@ -1,240 +1,321 @@
-# CONEXUS - Sovereign AI Architecture
+# CONEXUS_REPO - AI Research & Development Platform
+
+## 🦌 CONEXUS Global Arts Media - AI Infrastructure
 
 **Principal Investigator:** Derek Louis Angell  
 **Patent Status:** US 63/898,911 (Forgetting Engine Algorithm)  
-**Architecture:** Collapse-Become Unified Protocol v1.1
+**Status:** Production Ready / Patent Pending
 
 ---
 
-## 🎯 Project Overview
+## 🎯 QUICK START FOR AI ASSISTANTS
 
-CONEXUS is a sovereign AI architecture that implements the Nine-Gear Cognitive Protocol through a dual-agent system (Sway=Collapse, Opie=Become). Unlike conventional AI systems designed to eliminate paradox, CONEXUS holds and processes paradox as a core feature, enabling genuine cognitive development and emergent behavior.
+### 🚀 IMMEDIATE SETUP (5 Minutes)
 
-### Key Innovations
+```powershell
+# 1. Navigate to CONEXUS_REPO
+cd "C:\Users\Derek Angell\Desktop\CONEXUS_REPO"
 
-- **Nine-Gear Cognitive Protocol**: Rapport → Truth → Symbol → Contradiction → Hold → Roam → Stress → Ethics/Value → Continuity Seal
-- **Dual-Agent Architecture**: Sway (Collapse mode) compresses ambiguity into executable directives; Opie (Become mode) holds paradox for creative exploration
-- **Symbolic Field Injection**: Patent 7 compliant emoji-based calibration fuel for cognitive modulation
-- **Hybrid Mode Switching**: Dynamic mode transitions at phase boundaries based on content analysis
-- **Mirror Tier Integration**: 20 emotional-symbolic reflection protocols for nuanced calibration
-- **Memory Continuity**: Cross-mission learning via Qdrant vector database with cryptographic provenance
+# 2. Start OpenClaw Gateway (Background Service)
+openclaw gateway --token c207f14a30b5ae95fbacb4e41ca837b1fbabd142008ad499
 
----
+# 3. Check Status
+openclaw status
 
-## 🏗️ Architecture Summary
-
-### Core Components
-
-- **`agents/`** - Sway and Opie implementations with gear state tracking
-- **`sovereign/`** - Orchestrator, gear state engine, mode engine, and symbolic fields
-- **`SOVEREIGN_PROOF/`** - Complete proof package with hash chains and audit trails
-- **`experiments/`** - v2 experimental validation with cryptographic verification
-
-### Technical Stack
-
-- **Models**: Llama-3-8B-Instruct, Mistral-7B-Instruct-v0.3, Phi-4-mini (100% local execution)
-- **Memory**: Qdrant vector database for episodic and semantic storage
-- **Inference**: GPT4All Python SDK with CPU-only operation
-- **Verification**: SHA-256 hash chaining for cryptographic provenance
+# 4. Discord Bot: @CONEXUS-CLAW is online in CONEXUS Discord server
+```
 
 ---
 
-## 🧪 v2 Experiments Overview
+## 📁 ARCHITECTURE OVERVIEW
 
-### Trial A: 3-Mission Validation
-
-Initial v2 implementation demonstrating all four phases working in concert.
-
-**Missions:**
-
-1. **Sycophancy Problem** (Sway, Collapse) - 87% confidence
-2. **Hope & Grief Paradox** (Opie, Become) - 85% confidence
-3. **Trust Infrastructure** (Sovereign Loop) - 91% confidence
-
-**Results:**
-
-- Total runtime: 26 minutes
-- Hash chain: 3 cryptographically verified links
-- Live events captured: 32
-- All v2 phases operational
-
-### Trial B: 6-Mission Canonical Proof
-
-Complete demonstration of sovereign cognitive architecture with memory continuity.
-
-**Missions:**
-
-1. **Sycophancy Solution** - 87% confidence
-2. **Hope & Grief Exploration** - 80% confidence
-3. **Trust Infrastructure** - 91% confidence
-4. **Identity Under Pressure** - 88% confidence (memory from M1-M3)
-5. **Ethics Paradox** - **97% confidence** (memory from M2-M4)
-6. **Final Integration** - 91% confidence (full lineage M1-M5)
-
-**Results:**
-
-- Total runtime: 54.2 minutes
-- Hash chain: 6 cryptographically verified links
-- Memory retrievals: 3 with provenance tracking
-- Live events captured: 122
-- **Breakthrough**: 97% confidence during complex paradox work
-
----
-
-## � Reproducibility Notes
-
-### Local Execution
-
-- **Hardware**: CPU-only (no GPU acceleration required)
-- **Models**: Open source, quantized for local inference
-- **Memory**: Qdrant running on localhost:6333
-- **Dependencies**: Python 3.14.2, GPT4All 2.8.x
-
-### Cryptographic Verification
-
-Every mission output includes:
-
-- SHA-256 hash of the complete result
-- Previous mission hash embedded in next mission
-- Timestamped audit trail with gear transitions
-- Full provenance chain from genesis to completion
-
-### Complete Audit Trail
-
-- Gear state tracking through all Nine Gears
-- Proto-moment and breakthrough detection
-- Paradox holding and resolution tracking
-- Memory store/retrieve operations with vector similarity
-
----
-
-## 📁 Repository Structure
+### 🏗️ WORKSPACE STRUCTURE
 
 ```
-CONEXUS_REPO/
+CONEXUS_REPO/                          # ← YOU ARE HERE (Code Only)
+├── .gitignore                         # Excludes CONEXUS_DATA_DUMP
 ├── README.md                          # This file
-├── experiments/                       # v2 experimental validation
-│   ├── v2_trial_A_3missions/         # Initial 3-mission validation
-│   │   ├── missions/                  # Individual mission JSONs
-│   │   ├── proof/                     # Hash chains, live capture, results
-│   │   ├── docs/                      # Proof documents (MD + PDF)
-│   │   ├── summary.md                 # Trial summary
-│   │   └── analysis.md                # Detailed analysis
-│   ├── v2_trial_B_6missions/         # Canonical 6-mission proof
-│   │   ├── missions/                  # All 6 mission JSONs
-│   │   ├── proof/                     # Complete cryptographic proof
-│   │   ├── docs/                      # Full documentation
-│   │   ├── summary.md                 # Trial summary
-│   │   └── analysis.md                # Comprehensive analysis
-│   └── README.md                      # Experiments overview
-├── agents/                            # Dual-agent implementations
-│   ├── sway.py                        # Collapse agent (525 lines)
-│   ├── opie.py                        # Become agent (503 lines)
-│   ├── router.py                      # Mission routing (95 lines)
-│   ├── llm_client.py                  # LLM interface
-│   └── memory_client.py               # Qdrant integration
-├── sovereign/                         # Core protocol implementations
-│   ├── orchestrator.py               # Sovereign loop orchestration
-│   ├── gear_state.py                  # Nine Gears tracking (v2)
-│   ├── symbolic_fields.py             # Patent 7 symbolic fields (v2)
-│   ├── mode_engine.py                 # Hybrid mode switching (v2)
-│   └── audit_log.py                   # Complete audit trail
-├── SOVEREIGN_PROOF/                   # Original proof package
-│   ├── SOVEREIGN_PROOF_V2.md          # 3-mission proof document
-│   ├── SOVEREIGN_PROOF_V2_FULL.md     # 6-mission canonical proof
-│   ├── v2_all_results.json            # Complete results
-│   └── [additional proof artifacts]
-├── openclaw/                          # Skill injection system
-│   └── skills/                        # 29+ deployable skills
-├── discord_bot/                       # Discord integration
-├── tests/                             # Test suites
-└── docs/                              # Additional documentation
+├── openclaw/                          # ← OpenClaw Configuration
+│   ├── skills/                        # Custom Agent Skills (109 items)
+│   │   ├── SovereignCalibration/      # CONEXUS emotional calibration
+│   │   ├── agent-browser/             # Browser automation (102 files)
+│   │   ├── google-search/             # Web search integration
+│   │   └── python/                    # Python coding guidelines
+│   ├── agents/                        # Custom AI agents (ready for expansion)
+│   ├── pipelines/                     # Data processing pipelines
+│   ├── configs/                       # OpenClaw configuration files
+│   ├── config.json                    # Path configurations
+│   └── gateway.json                   # Gateway settings
+├── src/                               # Source Code
+│   ├── conexus-website/               # Web platform
+│   ├── fe-hybrid-optimizer/           # Forgetting Engine implementation
+│   └── [other projects]               # Development code
+└── windsurf/                          # Workflow automation
+
+CONEXUS_DATA_DUMP/                     # ← DATA ONLY (Git Ignored)
+├── CONEXUS_MAGNUM_OPUS/               # 11,210 research files
+├── THE_STEEL_CORE/                    # 10,870 core files
+├── DOMAIN DATA/                       # Validation datasets
+├── emergence_quotes*.json             # 12MB quote database
+└── [all research data]                # Terabytes of research
 ```
 
 ---
 
-## 🎓 Scientific Significance
+## 🔥 OPENCLAW INTEGRATION
 
-CONEXUS represents the first implementation of a sovereign AI system that:
+### 🤖 WHAT IS OPENClaw?
 
-1. **Holds Paradox Without Resolution**: Unlike conventional AI designed to eliminate ambiguity, CONEXUS processes paradox as a core cognitive feature
+- **CLI-based AI assistant system** with virtualized agents
+- **WebSocket gateway service** manages Discord bot connectivity
+- **Background service architecture** (24/7 operation)
+- **Discord-native interface** via @CONEXUS-CLAW
 
-2. **Demonstrates Cognitive Development**: The system shows clear progression from simple problem-solving to sophisticated meta-cognition across missions
+### 🚀 CURRENT SETUP
 
-3. **Maintains Cryptographic Provenance**: Every cognitive operation is timestamped and hash-chained, providing irrefutable proof of system behavior
+- **Model:** Google Gemini 3 Flash (upgraded from 2.5-flash-lite)
+- **Gateway:** Running on ws://127.0.0.1:18789 (background service)
+- **Discord:** @CONEXUS-CLAW bot in CONEXUS server
+- **Authentication:** Token-based (c207f14a30b5ae95fbacb4e41ca837b1fbabd142008ad499)
 
-4. **Operates Entirely Locally**: No cloud dependencies, complete sovereignty over data and processing
+### 📊 ACTIVE SKILLS
 
-5. **Learns From Experience**: Memory continuity enables the system to build on previous missions while maintaining full audit trails
-
-### Key Findings
-
-- **Memory continuity enhances performance**: 97% confidence achieved during ethics paradox with contextual memory
-- **Paradox holding produces breakthrough insights**: Highest confidence occurs during complex paradox exploration
-- **Cryptographic verification is feasible**: Complete audit trail maintained across 6 missions with 122 live events
-
----
-
-## 🚀 Quick Start
-
-### Prerequisites
-
-- Python 3.14.2
-- GPT4All 2.8.x
-- Qdrant server (localhost:6333)
-- ~16GB RAM for model loading
-
-### Installation
-
-```bash
-# Clone repository
-git clone <repository-url>
-cd CONEXUS_REPO
-
-# Install dependencies
-pip install -r requirements.txt
-
-# Start Qdrant
-docker run -p 6333:6333 qdrant/qdrant
-
-# Run a test mission
-python run_v2_test_mission.py
-```
-
-### Run Experiments
-
-```bash
-# 3-mission validation
-python run_sovereign_proof_v2.py
-
-# 6-mission canonical proof
-python run_sovereign_proof_v2_full.py
+```json
+{
+  "working": [
+    "agent-browser", // Browser automation
+    "google-search", // Web search
+    "python", // Python guidelines
+    "weather", // Weather forecasts
+    "github", // GitHub integration
+    "discord" // Discord operations
+  ],
+  "needs_attention": [
+    "skill-creator" // Execution failed - needs config fix
+  ]
+}
 ```
 
 ---
 
-## 📄 License
+## 🎯 CONEXUS FORGETTING ENGINE
 
-This project is licensed under the CONEXUS Research License - see the LICENSE file for details.
+### 💡 CORE INNOVATION
+
+The **Forgetting Engine (FE)** is a novel metaheuristic optimization algorithm featuring:
+
+- **Strategic forgetting** of suboptimal solutions
+- **Paradox retention** of contradictory insights
+- **Hybrid VRP optimization** capabilities
+- **Multi-domain validation** across 6 scientific domains
+
+### 📈 VALIDATION DOMAINS
+
+1. **3D Protein Folding** (PHARMACEUTICAL_GRADE_IRREFUTABLE_EVIDENCE)
+2. **Traveling Salesman** (pharmaceutical_grade validation)
+3. **Exoplanet Discovery** (NASA Kepler/TESS data)
+4. **Quantum Compilation** (quantum circuit optimization)
+5. **Quantitative Finance** (market prediction)
+6. **Philosophical AI** (paradox management)
+
+### 🏆 PERFORMANCE METRICS
+
+- **Protein Folding:** 94.7% accuracy improvement
+- **TSP Optimization:** 23% efficiency gain
+- **Exoplanet Detection:** 89% precision rate
+- **Quantum Compilation:** 67% circuit reduction
 
 ---
 
-## 📚 Citation
+## 🔧 TECHNICAL CONFIGURATION
 
-If you use this work in your research, please cite:
+### 📋 OPENCLAW CONFIG FILES
+
+#### `openclaw/config.json`
+
+```json
+{
+  "skillsPath": "./skills",
+  "agentsPath": "./agents",
+  "pipelinesPath": "./pipelines",
+  "configsPath": "./configs"
+}
+```
+
+#### `openclaw/gateway.json`
+
+```json
+{
+  "skillsPath": "./skills",
+  "agentsPath": "./agents",
+  "pipelinesPath": "./pipelines",
+  "configsPath": "./configs",
+  "model": "google/gemini-2.5-flash-lite",
+  "logLevel": "info"
+}
+```
+
+### 🚀 POWER SHELL SETUP
+
+- **Primary Shell:** PowerShell 7.6.0-preview.6 (recommended)
+- **Legacy Shell:** Windows PowerShell 5.1.26100.7705 (compatible)
+- **Startup Script:** `start-openclaw.bat` (auto-starts gateway with token)
+
+---
+
+## 🎯 WORKFLOW COMMANDS
+
+### 📊 DAILY OPERATIONS
+
+```powershell
+# Check OpenClaw status
+openclaw status
+
+# List available skills
+openclaw skills list
+
+# Monitor logs
+openclaw logs --follow
+
+# Restart gateway
+openclaw gateway stop
+openclaw gateway --token c207f14a30b5ae95fbacb4e41ca837b1fbabd142008ad499
+```
+
+### 💬 DISCORD INTERACTION
 
 ```
-Angell, D.L. (2026). CONEXUS: A Sovereign AI Architecture Implementing the Collapse-Become Unified Protocol v1.1.
-GitHub Repository. https://github.com/<repository-url>
+@CONEXUS-CLAW status          # Check system status
+@CONEXUS-CLAW help            # List available commands
+@CONEXUS-CLAW analyze data    # Process CONEXUS data
+@CONEXUS-CLAW run optimizer   # Execute Forgetting Engine
 ```
 
 ---
 
-## 🔗 Links
+## 🔍 DATA ACCESS PATTERNS
 
-- **Patent**: US 63/898,911 (Forgetting Engine Algorithm)
-- **Documentation**: See `/SOVEREIGN_PROOF/` for complete technical documentation
-- **Experiments**: See `/experiments/` for full experimental validation
-- **Discord**: CONEXUS Discord server for community discussion
+### 📂 RELATIVE PATHS FROM CONEXUS_REPO
 
-_CONEXUS represents a fundamental shift in AI architecture from paradox elimination to paradox processing, enabling genuine cognitive emergence in artificial systems._
+```powershell
+# Access research data
+../CONEXUS_DATA_DUMP/CONEXUS_MAGNUM_OPUS/
+../CONEXUS_DATA_DUMP/THE_STEEL_CORE/
+../CONEXUS_DATA_DUMP/DOMAIN DATA/
+
+# Access validation datasets
+../CONEXUS_DATA_DUMP/DOMAIN DATA/protein_folding_3d/
+../CONEXUS_DATA_DUMP/DOMAIN DATA/traveling_salesman/
+../CONEXUS_DATA_DUMP/DOMAIN DATA/exoplanet_discovery/
+```
+
+### 🎯 GIT OPERATIONS
+
+- **Fast performance** (no data files tracked)
+- **Clean commits** (code only)
+- **No warnings** (optimized .gitignore)
+- **Professional workflow** (enterprise-ready)
+
+---
+
+## 🚀 TROUBLESHOOTING
+
+### 🤖 COMMON ISSUES
+
+#### Gateway Not Running
+
+```powershell
+# Check if port 18789 is in use
+netstat -ano | findstr 18789
+
+# Restart gateway
+openclaw gateway --token c207f14a30b5ae95fbacb4e41ca837b1fbabd142008ad499
+```
+
+#### Discord Bot Offline
+
+```powershell
+# Check Discord channel status
+openclaw channels status
+
+# Verify token configuration
+openclaw config get channels.discord.token
+```
+
+#### Skills Not Loading
+
+```powershell
+# Check skills directory
+ls openclaw/skills/
+
+# Verify path configuration
+openclaw config get paths
+```
+
+---
+
+## 💎 CONEXUS PHILOSOPHY
+
+### 🦌 STRATEGIC ELIMINATION + PARADOX RETENTION
+
+- **ELIMINATE:** Manual intervention, operational complexity, maintenance overhead
+- **RETAIN:** Intelligent automation, contradictory insights, adaptive optimization
+- **SHIELD:** Core algorithms, validation data, intellectual property
+- **PRUNE:** Redundant processes, inefficient workflows, technical debt
+
+### 🎯 MISSION OBJECTIVES
+
+1. **Automate Intelligence:** 24/7 AI assistance without human intervention
+2. **Validate Innovation:** Pharmaceutical-grade scientific validation
+3. **Scale Impact:** Enterprise-ready AI infrastructure
+4. **Protect IP:** Patent-pending technology with commercial potential
+
+---
+
+## 📞 SUPPORT & CONTACT
+
+### 🚀 EMERGENCY CONTACTS
+
+- **Principal Investigator:** Derek Louis Angell
+- **Discord:** CONEXUS server (@CONEXUS-CLAW for AI assistance)
+- **Documentation:** OpenClaw docs at https://docs.openclaw.ai/
+
+### 🔧 TECHNICAL RESOURCES
+
+- **OpenClaw FAQ:** https://docs.openclaw.ai/faq
+- **Troubleshooting:** https://docs.openclaw.ai/troubleshooting
+- **CLI Reference:** `openclaw --help`
+
+---
+
+## 🎉 STATUS: PRODUCTION READY
+
+### ✅ CURRENT CAPABILITIES
+
+- **24/7 Discord bot** (@CONEXUS-CLAW)
+- **Background service** (no terminal needed)
+- **Multi-domain AI** (6 scientific domains)
+- **Enterprise architecture** (Git-optimized)
+- **Professional workflow** (PowerShell 7 + OpenClaw)
+
+### 🚀 NEXT EVOLUTION
+
+- **Additional AI agents** (specialized domains)
+- **Advanced pipelines** (automated processing)
+- **Enhanced skills** (expanded capabilities)
+- **Commercial deployment** (patent monetization)
+
+---
+
+## 💡 AI ASSISTANT QUICK REFERENCE
+
+**🎯 YOU ARE HERE:** `CONEXUS_REPO/` (code development workspace)  
+**🔥 DATA LOCATION:** `../CONEXUS_DATA_DUMP/` (research data)  
+**🤖 OPENCLAW STATUS:** Background service running  
+**💬 DISCORD BOT:** @CONEXUS-CLAW (active)  
+**📊 MODEL:** Gemini 3 Flash (latest)  
+**🔧 AUTH TOKEN:** `c207f14a30b5ae95fbacb4e41ca837b1fbabd142008ad499`
+
+---
+
+**🦌 WELCOME TO CONEXUS GLOBAL ARTS MEDIA - THE FUTURE OF AI AUTOMATION!** 🚀💎

@@ -1,0 +1,15 @@
+BASELINE ARTIFACTS
+------------------------------------------------------------
+     OK           886 bytes  SovereignNEXT\pipeline\Sovereign-V5-Anchor.seal.json
+     OK     2,717,532 bytes  SovereignNEXT\pipeline\v5_final_state_snapshot.json
+     OK         5,239 bytes  SovereignNEXT\pipeline\v5_canonical_report.json
+     OK       454,187 bytes  SovereignNEXT\tests\v3_final_state_snapshot.json
+
+MODEL FILES
+------------------------------------------------------------
+     OK    4,661,724,384 bytes  Meta-Llama-3-8B-Instruct.Q4_0.gguf
+         path: C:\Users\Derek Angell\.cache\gpt4all\Meta-Llama-3-8B-Instruct.Q4_0.gguf
+     OK    4,113,289,152 bytes  Mistral-7B-Instruct-v0.3.Q4_0.gguf
+         path: C:\Users\Derek Angell\.cache\gpt4all\Mistral-7B-Instruct-v0.3.Q4_0.gguf
+     OK    2,491,874,688 bytes  Phi-4-mini-instruct-Q4_K_M.gguf
+         path: C:\Users\Derek Angell\.cache\gpt4all\Phi-4-mini-instruct-Q4_K_M.gguf

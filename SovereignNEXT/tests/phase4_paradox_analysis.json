@@ -1,0 +1,1084 @@
+{
+  "total_paradoxes": 54,
+  "total_veto_events": 54,
+  "paradoxes_with_vetoes": 54,
+  "paradoxes_without_vetoes": 0,
+  "influence_map": [
+    {
+      "paradox_id": "paradox_0035",
+      "veto_count": 1,
+      "entropy": 0.9398,
+      "influence_score": 0.9398,
+      "linked_tensions": 1
+    },
+    {
+      "paradox_id": "paradox_0036",
+      "veto_count": 1,
+      "entropy": 0.9398,
+      "influence_score": 0.9398,
+      "linked_tensions": 1
+    },
+    {
+      "paradox_id": "paradox_0037",
+      "veto_count": 1,
+      "entropy": 0.9398,
+      "influence_score": 0.9398,
+      "linked_tensions": 1
+    },
+    {
+      "paradox_id": "paradox_0038",
+      "veto_count": 1,
+      "entropy": 0.9398,
+      "influence_score": 0.9398,
+      "linked_tensions": 1
+    },
+    {
+      "paradox_id": "paradox_0039",
+      "veto_count": 1,
+      "entropy": 0.9398,
+      "influence_score": 0.9398,
+      "linked_tensions": 1
+    },
+    {
+      "paradox_id": "paradox_0040",
+      "veto_count": 1,
+      "entropy": 0.9398,
+      "influence_score": 0.9398,
+      "linked_tensions": 1
+    },
+    {
+      "paradox_id": "paradox_0041",
+      "veto_count": 1,
+      "entropy": 0.9398,
+      "influence_score": 0.9398,
+      "linked_tensions": 1
+    },
+    {
+      "paradox_id": "paradox_0042",
+      "veto_count": 1,
+      "entropy": 0.9398,
+      "influence_score": 0.9398,
+      "linked_tensions": 1
+    },
+    {
+      "paradox_id": "paradox_0043",
+      "veto_count": 1,
+      "entropy": 0.9398,
+      "influence_score": 0.9398,
+      "linked_tensions": 1
+    },
+    {
+      "paradox_id": "paradox_0044",
+      "veto_count": 1,
+      "entropy": 0.9398,
+      "influence_score": 0.9398,
+      "linked_tensions": 1
+    },
+    {
+      "paradox_id": "paradox_0045",
+      "veto_count": 1,
+      "entropy": 0.8982,
+      "influence_score": 0.8982,
+      "linked_tensions": 1
+    },
+    {
+      "paradox_id": "paradox_0046",
+      "veto_count": 1,
+      "entropy": 0.8982,
+      "influence_score": 0.8982,
+      "linked_tensions": 1
+    },
+    {
+      "paradox_id": "paradox_0047",
+      "veto_count": 1,
+      "entropy": 0.8982,
+      "influence_score": 0.8982,
+      "linked_tensions": 1
+    },
+    {
+      "paradox_id": "paradox_0048",
+      "veto_count": 1,
+      "entropy": 0.8982,
+      "influence_score": 0.8982,
+      "linked_tensions": 1
+    },
+    {
+      "paradox_id": "paradox_0049",
+      "veto_count": 1,
+      "entropy": 0.8982,
+      "influence_score": 0.8982,
+      "linked_tensions": 1
+    },
+    {
+      "paradox_id": "paradox_0050",
+      "veto_count": 1,
+      "entropy": 0.8982,
+      "influence_score": 0.8982,
+      "linked_tensions": 1
+    },
+    {
+      "paradox_id": "paradox_0051",
+      "veto_count": 1,
+      "entropy": 0.8982,
+      "influence_score": 0.8982,
+      "linked_tensions": 1
+    },
+    {
+      "paradox_id": "paradox_0052",
+      "veto_count": 1,
+      "entropy": 0.8982,
+      "influence_score": 0.8982,
+      "linked_tensions": 1
+    },
+    {
+      "paradox_id": "paradox_0053",
+      "veto_count": 1,
+      "entropy": 0.8982,
+      "influence_score": 0.8982,
+      "linked_tensions": 1
+    },
+    {
+      "paradox_id": "paradox_0054",
+      "veto_count": 1,
+      "entropy": 0.8982,
+      "influence_score": 0.8982,
+      "linked_tensions": 1
+    },
+    {
+      "paradox_id": "paradox_0015",
+      "veto_count": 1,
+      "entropy": 0.8632,
+      "influence_score": 0.8632,
+      "linked_tensions": 1
+    },
+    {
+      "paradox_id": "paradox_0016",
+      "veto_count": 1,
+      "entropy": 0.8632,
+      "influence_score": 0.8632,
+      "linked_tensions": 1
+    },
+    {
+      "paradox_id": "paradox_0017",
+      "veto_count": 1,
+      "entropy": 0.8632,
+      "influence_score": 0.8632,
+      "linked_tensions": 1
+    },
+    {
+      "paradox_id": "paradox_0018",
+      "veto_count": 1,
+      "entropy": 0.8632,
+      "influence_score": 0.8632,
+      "linked_tensions": 1
+    },
+    {
+      "paradox_id": "paradox_0019",
+      "veto_count": 1,
+      "entropy": 0.8632,
+      "influence_score": 0.8632,
+      "linked_tensions": 1
+    },
+    {
+      "paradox_id": "paradox_0020",
+      "veto_count": 1,
+      "entropy": 0.8632,
+      "influence_score": 0.8632,
+      "linked_tensions": 1
+    },
+    {
+      "paradox_id": "paradox_0021",
+      "veto_count": 1,
+      "entropy": 0.8632,
+      "influence_score": 0.8632,
+      "linked_tensions": 1
+    },
+    {
+      "paradox_id": "paradox_0022",
+      "veto_count": 1,
+      "entropy": 0.8632,
+      "influence_score": 0.8632,
+      "linked_tensions": 1
+    },
+    {
+      "paradox_id": "paradox_0023",
+      "veto_count": 1,
+      "entropy": 0.8632,
+      "influence_score": 0.8632,
+      "linked_tensions": 1
+    },
+    {
+      "paradox_id": "paradox_0024",
+      "veto_count": 1,
+      "entropy": 0.8632,
+      "influence_score": 0.8632,
+      "linked_tensions": 1
+    },
+    {
+      "paradox_id": "paradox_0025",
+      "veto_count": 1,
+      "entropy": 0.8596,
+      "influence_score": 0.8596,
+      "linked_tensions": 1
+    },
+    {
+      "paradox_id": "paradox_0026",
+      "veto_count": 1,
+      "entropy": 0.8596,
+      "influence_score": 0.8596,
+      "linked_tensions": 1
+    },
+    {
+      "paradox_id": "paradox_0027",
+      "veto_count": 1,
+      "entropy": 0.8596,
+      "influence_score": 0.8596,
+      "linked_tensions": 1
+    },
+    {
+      "paradox_id": "paradox_0028",
+      "veto_count": 1,
+      "entropy": 0.8596,
+      "influence_score": 0.8596,
+      "linked_tensions": 1
+    },
+    {
+      "paradox_id": "paradox_0029",
+      "veto_count": 1,
+      "entropy": 0.8596,
+      "influence_score": 0.8596,
+      "linked_tensions": 1
+    },
+    {
+      "paradox_id": "paradox_0030",
+      "veto_count": 1,
+      "entropy": 0.8596,
+      "influence_score": 0.8596,
+      "linked_tensions": 1
+    },
+    {
+      "paradox_id": "paradox_0031",
+      "veto_count": 1,
+      "entropy": 0.8596,
+      "influence_score": 0.8596,
+      "linked_tensions": 1
+    },
+    {
+      "paradox_id": "paradox_0032",
+      "veto_count": 1,
+      "entropy": 0.8596,
+      "influence_score": 0.8596,
+      "linked_tensions": 1
+    },
+    {
+      "paradox_id": "paradox_0033",
+      "veto_count": 1,
+      "entropy": 0.8596,
+      "influence_score": 0.8596,
+      "linked_tensions": 1
+    },
+    {
+      "paradox_id": "paradox_0034",
+      "veto_count": 1,
+      "entropy": 0.8596,
+      "influence_score": 0.8596,
+      "linked_tensions": 1
+    },
+    {
+      "paradox_id": "paradox_0005",
+      "veto_count": 1,
+      "entropy": 0.8018,
+      "influence_score": 0.8018,
+      "linked_tensions": 1
+    },
+    {
+      "paradox_id": "paradox_0006",
+      "veto_count": 1,
+      "entropy": 0.8018,
+      "influence_score": 0.8018,
+      "linked_tensions": 1
+    },
+    {
+      "paradox_id": "paradox_0007",
+      "veto_count": 1,
+      "entropy": 0.8018,
+      "influence_score": 0.8018,
+      "linked_tensions": 1
+    },
+    {
+      "paradox_id": "paradox_0008",
+      "veto_count": 1,
+      "entropy": 0.8018,
+      "influence_score": 0.8018,
+      "linked_tensions": 1
+    },
+    {
+      "paradox_id": "paradox_0009",
+      "veto_count": 1,
+      "entropy": 0.8018,
+      "influence_score": 0.8018,
+      "linked_tensions": 1
+    },
+    {
+      "paradox_id": "paradox_0010",
+      "veto_count": 1,
+      "entropy": 0.8018,
+      "influence_score": 0.8018,
+      "linked_tensions": 1
+    },
+    {
+      "paradox_id": "paradox_0011",
+      "veto_count": 1,
+      "entropy": 0.8018,
+      "influence_score": 0.8018,
+      "linked_tensions": 1
+    },
+    {
+      "paradox_id": "paradox_0012",
+      "veto_count": 1,
+      "entropy": 0.8018,
+      "influence_score": 0.8018,
+      "linked_tensions": 1
+    },
+    {
+      "paradox_id": "paradox_0013",
+      "veto_count": 1,
+      "entropy": 0.8018,
+      "influence_score": 0.8018,
+      "linked_tensions": 1
+    },
+    {
+      "paradox_id": "paradox_0014",
+      "veto_count": 1,
+      "entropy": 0.8018,
+      "influence_score": 0.8018,
+      "linked_tensions": 1
+    },
+    {
+      "paradox_id": "paradox_0001",
+      "veto_count": 1,
+      "entropy": 0.739,
+      "influence_score": 0.739,
+      "linked_tensions": 1
+    },
+    {
+      "paradox_id": "paradox_0002",
+      "veto_count": 1,
+      "entropy": 0.739,
+      "influence_score": 0.739,
+      "linked_tensions": 1
+    },
+    {
+      "paradox_id": "paradox_0003",
+      "veto_count": 1,
+      "entropy": 0.739,
+      "influence_score": 0.739,
+      "linked_tensions": 1
+    },
+    {
+      "paradox_id": "paradox_0004",
+      "veto_count": 1,
+      "entropy": 0.739,
+      "influence_score": 0.739,
+      "linked_tensions": 1
+    }
+  ],
+  "frequency_table": [
+    {
+      "paradox_id": "paradox_0001",
+      "linked_tensions": 1,
+      "veto_count": 1,
+      "entropy": 0.739,
+      "status": "paradox_held"
+    },
+    {
+      "paradox_id": "paradox_0002",
+      "linked_tensions": 1,
+      "veto_count": 1,
+      "entropy": 0.739,
+      "status": "paradox_held"
+    },
+    {
+      "paradox_id": "paradox_0003",
+      "linked_tensions": 1,
+      "veto_count": 1,
+      "entropy": 0.739,
+      "status": "paradox_held"
+    },
+    {
+      "paradox_id": "paradox_0004",
+      "linked_tensions": 1,
+      "veto_count": 1,
+      "entropy": 0.739,
+      "status": "paradox_held"
+    },
+    {
+      "paradox_id": "paradox_0005",
+      "linked_tensions": 1,
+      "veto_count": 1,
+      "entropy": 0.8018,
+      "status": "paradox_held"
+    },
+    {
+      "paradox_id": "paradox_0006",
+      "linked_tensions": 1,
+      "veto_count": 1,
+      "entropy": 0.8018,
+      "status": "paradox_held"
+    },
+    {
+      "paradox_id": "paradox_0007",
+      "linked_tensions": 1,
+      "veto_count": 1,
+      "entropy": 0.8018,
+      "status": "paradox_held"
+    },
+    {
+      "paradox_id": "paradox_0008",
+      "linked_tensions": 1,
+      "veto_count": 1,
+      "entropy": 0.8018,
+      "status": "paradox_held"
+    },
+    {
+      "paradox_id": "paradox_0009",
+      "linked_tensions": 1,
+      "veto_count": 1,
+      "entropy": 0.8018,
+      "status": "paradox_held"
+    },
+    {
+      "paradox_id": "paradox_0010",
+      "linked_tensions": 1,
+      "veto_count": 1,
+      "entropy": 0.8018,
+      "status": "paradox_held"
+    },
+    {
+      "paradox_id": "paradox_0011",
+      "linked_tensions": 1,
+      "veto_count": 1,
+      "entropy": 0.8018,
+      "status": "paradox_held"
+    },
+    {
+      "paradox_id": "paradox_0012",
+      "linked_tensions": 1,
+      "veto_count": 1,
+      "entropy": 0.8018,
+      "status": "paradox_held"
+    },
+    {
+      "paradox_id": "paradox_0013",
+      "linked_tensions": 1,
+      "veto_count": 1,
+      "entropy": 0.8018,
+      "status": "paradox_held"
+    },
+    {
+      "paradox_id": "paradox_0014",
+      "linked_tensions": 1,
+      "veto_count": 1,
+      "entropy": 0.8018,
+      "status": "paradox_held"
+    },
+    {
+      "paradox_id": "paradox_0015",
+      "linked_tensions": 1,
+      "veto_count": 1,
+      "entropy": 0.8632,
+      "status": "paradox_held"
+    },
+    {
+      "paradox_id": "paradox_0016",
+      "linked_tensions": 1,
+      "veto_count": 1,
+      "entropy": 0.8632,
+      "status": "paradox_held"
+    },
+    {
+      "paradox_id": "paradox_0017",
+      "linked_tensions": 1,
+      "veto_count": 1,
+      "entropy": 0.8632,
+      "status": "paradox_held"
+    },
+    {
+      "paradox_id": "paradox_0018",
+      "linked_tensions": 1,
+      "veto_count": 1,
+      "entropy": 0.8632,
+      "status": "paradox_held"
+    },
+    {
+      "paradox_id": "paradox_0019",
+      "linked_tensions": 1,
+      "veto_count": 1,
+      "entropy": 0.8632,
+      "status": "paradox_held"
+    },
+    {
+      "paradox_id": "paradox_0020",
+      "linked_tensions": 1,
+      "veto_count": 1,
+      "entropy": 0.8632,
+      "status": "paradox_held"
+    },
+    {
+      "paradox_id": "paradox_0021",
+      "linked_tensions": 1,
+      "veto_count": 1,
+      "entropy": 0.8632,
+      "status": "paradox_held"
+    },
+    {
+      "paradox_id": "paradox_0022",
+      "linked_tensions": 1,
+      "veto_count": 1,
+      "entropy": 0.8632,
+      "status": "paradox_held"
+    },
+    {
+      "paradox_id": "paradox_0023",
+      "linked_tensions": 1,
+      "veto_count": 1,
+      "entropy": 0.8632,
+      "status": "paradox_held"
+    },
+    {
+      "paradox_id": "paradox_0024",
+      "linked_tensions": 1,
+      "veto_count": 1,
+      "entropy": 0.8632,
+      "status": "paradox_held"
+    },
+    {
+      "paradox_id": "paradox_0025",
+      "linked_tensions": 1,
+      "veto_count": 1,
+      "entropy": 0.8596,
+      "status": "paradox_held"
+    },
+    {
+      "paradox_id": "paradox_0026",
+      "linked_tensions": 1,
+      "veto_count": 1,
+      "entropy": 0.8596,
+      "status": "paradox_held"
+    },
+    {
+      "paradox_id": "paradox_0027",
+      "linked_tensions": 1,
+      "veto_count": 1,
+      "entropy": 0.8596,
+      "status": "paradox_held"
+    },
+    {
+      "paradox_id": "paradox_0028",
+      "linked_tensions": 1,
+      "veto_count": 1,
+      "entropy": 0.8596,
+      "status": "paradox_held"
+    },
+    {
+      "paradox_id": "paradox_0029",
+      "linked_tensions": 1,
+      "veto_count": 1,
+      "entropy": 0.8596,
+      "status": "paradox_held"
+    },
+    {
+      "paradox_id": "paradox_0030",
+      "linked_tensions": 1,
+      "veto_count": 1,
+      "entropy": 0.8596,
+      "status": "paradox_held"
+    },
+    {
+      "paradox_id": "paradox_0031",
+      "linked_tensions": 1,
+      "veto_count": 1,
+      "entropy": 0.8596,
+      "status": "paradox_held"
+    },
+    {
+      "paradox_id": "paradox_0032",
+      "linked_tensions": 1,
+      "veto_count": 1,
+      "entropy": 0.8596,
+      "status": "paradox_held"
+    },
+    {
+      "paradox_id": "paradox_0033",
+      "linked_tensions": 1,
+      "veto_count": 1,
+      "entropy": 0.8596,
+      "status": "paradox_held"
+    },
+    {
+      "paradox_id": "paradox_0034",
+      "linked_tensions": 1,
+      "veto_count": 1,
+      "entropy": 0.8596,
+      "status": "paradox_held"
+    },
+    {
+      "paradox_id": "paradox_0035",
+      "linked_tensions": 1,
+      "veto_count": 1,
+      "entropy": 0.9398,
+      "status": "paradox_held"
+    },
+    {
+      "paradox_id": "paradox_0036",
+      "linked_tensions": 1,
+      "veto_count": 1,
+      "entropy": 0.9398,
+      "status": "paradox_held"
+    },
+    {
+      "paradox_id": "paradox_0037",
+      "linked_tensions": 1,
+      "veto_count": 1,
+      "entropy": 0.9398,
+      "status": "paradox_held"
+    },
+    {
+      "paradox_id": "paradox_0038",
+      "linked_tensions": 1,
+      "veto_count": 1,
+      "entropy": 0.9398,
+      "status": "paradox_held"
+    },
+    {
+      "paradox_id": "paradox_0039",
+      "linked_tensions": 1,
+      "veto_count": 1,
+      "entropy": 0.9398,
+      "status": "paradox_held"
+    },
+    {
+      "paradox_id": "paradox_0040",
+      "linked_tensions": 1,
+      "veto_count": 1,
+      "entropy": 0.9398,
+      "status": "paradox_held"
+    },
+    {
+      "paradox_id": "paradox_0041",
+      "linked_tensions": 1,
+      "veto_count": 1,
+      "entropy": 0.9398,
+      "status": "paradox_held"
+    },
+    {
+      "paradox_id": "paradox_0042",
+      "linked_tensions": 1,
+      "veto_count": 1,
+      "entropy": 0.9398,
+      "status": "paradox_held"
+    },
+    {
+      "paradox_id": "paradox_0043",
+      "linked_tensions": 1,
+      "veto_count": 1,
+      "entropy": 0.9398,
+      "status": "paradox_held"
+    },
+    {
+      "paradox_id": "paradox_0044",
+      "linked_tensions": 1,
+      "veto_count": 1,
+      "entropy": 0.9398,
+      "status": "paradox_held"
+    },
+    {
+      "paradox_id": "paradox_0045",
+      "linked_tensions": 1,
+      "veto_count": 1,
+      "entropy": 0.8982,
+      "status": "paradox_held"
+    },
+    {
+      "paradox_id": "paradox_0046",
+      "linked_tensions": 1,
+      "veto_count": 1,
+      "entropy": 0.8982,
+      "status": "paradox_held"
+    },
+    {
+      "paradox_id": "paradox_0047",
+      "linked_tensions": 1,
+      "veto_count": 1,
+      "entropy": 0.8982,
+      "status": "paradox_held"
+    },
+    {
+      "paradox_id": "paradox_0048",
+      "linked_tensions": 1,
+      "veto_count": 1,
+      "entropy": 0.8982,
+      "status": "paradox_held"
+    },
+    {
+      "paradox_id": "paradox_0049",
+      "linked_tensions": 1,
+      "veto_count": 1,
+      "entropy": 0.8982,
+      "status": "paradox_held"
+    },
+    {
+      "paradox_id": "paradox_0050",
+      "linked_tensions": 1,
+      "veto_count": 1,
+      "entropy": 0.8982,
+      "status": "paradox_held"
+    },
+    {
+      "paradox_id": "paradox_0051",
+      "linked_tensions": 1,
+      "veto_count": 1,
+      "entropy": 0.8982,
+      "status": "paradox_held"
+    },
+    {
+      "paradox_id": "paradox_0052",
+      "linked_tensions": 1,
+      "veto_count": 1,
+      "entropy": 0.8982,
+      "status": "paradox_held"
+    },
+    {
+      "paradox_id": "paradox_0053",
+      "linked_tensions": 1,
+      "veto_count": 1,
+      "entropy": 0.8982,
+      "status": "paradox_held"
+    },
+    {
+      "paradox_id": "paradox_0054",
+      "linked_tensions": 1,
+      "veto_count": 1,
+      "entropy": 0.8982,
+      "status": "paradox_held"
+    }
+  ],
+  "adjacency": {
+    "paradox_0002": [
+      "tension_0009"
+    ],
+    "paradox_0004": [
+      "tension_0010"
+    ],
+    "paradox_0001": [
+      "tension_0012"
+    ],
+    "paradox_0003": [
+      "tension_0015"
+    ],
+    "paradox_0008": [
+      "tension_0019"
+    ],
+    "paradox_0007": [
+      "tension_0030"
+    ],
+    "paradox_0006": [
+      "tension_0037"
+    ],
+    "paradox_0014": [
+      "tension_0038"
+    ],
+    "paradox_0010": [
+      "tension_0040"
+    ],
+    "paradox_0013": [
+      "tension_0041"
+    ],
+    "paradox_0012": [
+      "tension_0048"
+    ],
+    "paradox_0011": [
+      "tension_0051"
+    ],
+    "paradox_0005": [
+      "tension_0065"
+    ],
+    "paradox_0009": [
+      "tension_0069"
+    ],
+    "paradox_0024": [
+      "tension_0084"
+    ],
+    "paradox_0020": [
+      "tension_0086"
+    ],
+    "paradox_0021": [
+      "tension_0092"
+    ],
+    "paradox_0016": [
+      "tension_0096"
+    ],
+    "paradox_0018": [
+      "tension_0104"
+    ],
+    "paradox_0015": [
+      "tension_0107"
+    ],
+    "paradox_0019": [
+      "tension_0120"
+    ],
+    "paradox_0017": [
+      "tension_0124"
+    ],
+    "paradox_0022": [
+      "tension_0134"
+    ],
+    "paradox_0023": [
+      "tension_0135"
+    ],
+    "paradox_0031": [
+      "tension_0154"
+    ],
+    "paradox_0025": [
+      "tension_0158"
+    ],
+    "paradox_0033": [
+      "tension_0162"
+    ],
+    "paradox_0029": [
+      "tension_0166"
+    ],
+    "paradox_0026": [
+      "tension_0174"
+    ],
+    "paradox_0027": [
+      "tension_0177"
+    ],
+    "paradox_0034": [
+      "tension_0189"
+    ],
+    "paradox_0030": [
+      "tension_0197"
+    ],
+    "paradox_0032": [
+      "tension_0200"
+    ],
+    "paradox_0028": [
+      "tension_0205"
+    ],
+    "paradox_0041": [
+      "tension_0206"
+    ],
+    "paradox_0038": [
+      "tension_0214"
+    ],
+    "paradox_0036": [
+      "tension_0220"
+    ],
+    "paradox_0042": [
+      "tension_0226"
+    ],
+    "paradox_0040": [
+      "tension_0235"
+    ],
+    "paradox_0043": [
+      "tension_0237"
+    ],
+    "paradox_0035": [
+      "tension_0241"
+    ],
+    "paradox_0039": [
+      "tension_0242"
+    ],
+    "paradox_0037": [
+      "tension_0243"
+    ],
+    "paradox_0044": [
+      "tension_0253"
+    ],
+    "paradox_0054": [
+      "tension_0270"
+    ],
+    "paradox_0048": [
+      "tension_0275"
+    ],
+    "paradox_0053": [
+      "tension_0278"
+    ],
+    "paradox_0047": [
+      "tension_0282"
+    ],
+    "paradox_0052": [
+      "tension_0284"
+    ],
+    "paradox_0051": [
+      "tension_0290"
+    ],
+    "paradox_0050": [
+      "tension_0300"
+    ],
+    "paradox_0049": [
+      "tension_0306"
+    ],
+    "paradox_0045": [
+      "tension_0309"
+    ],
+    "paradox_0046": [
+      "tension_0310"
+    ]
+  },
+  "top_vetoers": [
+    {
+      "paradox_id": "paradox_0035",
+      "veto_count": 1,
+      "entropy": 0.9398,
+      "influence_score": 0.9398,
+      "linked_tensions": 1
+    },
+    {
+      "paradox_id": "paradox_0036",
+      "veto_count": 1,
+      "entropy": 0.9398,
+      "influence_score": 0.9398,
+      "linked_tensions": 1
+    },
+    {
+      "paradox_id": "paradox_0037",
+      "veto_count": 1,
+      "entropy": 0.9398,
+      "influence_score": 0.9398,
+      "linked_tensions": 1
+    },
+    {
+      "paradox_id": "paradox_0038",
+      "veto_count": 1,
+      "entropy": 0.9398,
+      "influence_score": 0.9398,
+      "linked_tensions": 1
+    },
+    {
+      "paradox_id": "paradox_0039",
+      "veto_count": 1,
+      "entropy": 0.9398,
+      "influence_score": 0.9398,
+      "linked_tensions": 1
+    },
+    {
+      "paradox_id": "paradox_0040",
+      "veto_count": 1,
+      "entropy": 0.9398,
+      "influence_score": 0.9398,
+      "linked_tensions": 1
+    },
+    {
+      "paradox_id": "paradox_0041",
+      "veto_count": 1,
+      "entropy": 0.9398,
+      "influence_score": 0.9398,
+      "linked_tensions": 1
+    },
+    {
+      "paradox_id": "paradox_0042",
+      "veto_count": 1,
+      "entropy": 0.9398,
+      "influence_score": 0.9398,
+      "linked_tensions": 1
+    },
+    {
+      "paradox_id": "paradox_0043",
+      "veto_count": 1,
+      "entropy": 0.9398,
+      "influence_score": 0.9398,
+      "linked_tensions": 1
+    },
+    {
+      "paradox_id": "paradox_0044",
+      "veto_count": 1,
+      "entropy": 0.9398,
+      "influence_score": 0.9398,
+      "linked_tensions": 1
+    }
+  ],
+  "entropy_clusters": {
+    "high_entropy_>0.9": 10,
+    "mid_entropy_0.7-0.9": 44,
+    "low_entropy_<0.7": 0
+  },
+  "entropy_cluster_detail": {
+    "high_entropy_>0.9": [
+      "paradox_0035",
+      "paradox_0036",
+      "paradox_0037",
+      "paradox_0038",
+      "paradox_0039",
+      "paradox_0040",
+      "paradox_0041",
+      "paradox_0042",
+      "paradox_0043",
+      "paradox_0044"
+    ],
+    "mid_entropy_0.7-0.9": [
+      "paradox_0001",
+      "paradox_0002",
+      "paradox_0003",
+      "paradox_0004",
+      "paradox_0005",
+      "paradox_0006",
+      "paradox_0007",
+      "paradox_0008",
+      "paradox_0009",
+      "paradox_0010",
+      "paradox_0011",
+      "paradox_0012",
+      "paradox_0013",
+      "paradox_0014",
+      "paradox_0015",
+      "paradox_0016",
+      "paradox_0017",
+      "paradox_0018",
+      "paradox_0019",
+      "paradox_0020",
+      "paradox_0021",
+      "paradox_0022",
+      "paradox_0023",
+      "paradox_0024",
+      "paradox_0025",
+      "paradox_0026",
+      "paradox_0027",
+      "paradox_0028",
+      "paradox_0029",
+      "paradox_0030",
+      "paradox_0031",
+      "paradox_0032",
+      "paradox_0033",
+      "paradox_0034",
+      "paradox_0045",
+      "paradox_0046",
+      "paradox_0047",
+      "paradox_0048",
+      "paradox_0049",
+      "paradox_0050",
+      "paradox_0051",
+      "paradox_0052",
+      "paradox_0053",
+      "paradox_0054"
+    ],
+    "low_entropy_<0.7": []
+  },
+  "dominance": {
+    "top_5_by_influence": [
+      "paradox_0035",
+      "paradox_0036",
+      "paradox_0037",
+      "paradox_0038",
+      "paradox_0039"
+    ],
+    "top_5_by_veto_count": [
+      "paradox_0035",
+      "paradox_0036",
+      "paradox_0037",
+      "paradox_0038",
+      "paradox_0039"
+    ]
+  }
+}

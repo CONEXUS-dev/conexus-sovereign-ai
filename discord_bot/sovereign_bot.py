@@ -21,7 +21,10 @@ intents.members = True
 bot = commands.Bot(command_prefix=commands.when_mentioned_or("!"), intents=intents)
 
 # Gateway configuration
-GATEWAY_URL = os.getenv("GATEWAY_URL", "http://localhost:8002")
+GATEWAY_URL = os.getenv("GATEWAY_URL", "http://localhost:8003")
+
+# Channels with an active cycle — suppress natural conversation while running
+_active_cycle_channels = set()
 
 
 @bot.event
@@ -49,11 +52,58 @@ async def on_ready():
 
 @bot.event
 async def on_message(message):
-    """Debug: log every message the bot sees"""
+    """Handle all messages — commands get processed, everything else goes to Sovereign."""
     if message.author == bot.user:
         return
     print(f"[MSG] #{message.channel.name} | {message.author}: {message.content}")
-    await bot.process_commands(message)
+
+    content = message.content.strip()
+
+    # Any message starting with ! goes ONLY to the command handler — no double processing
+    if content.startswith("!"):
+        await bot.process_commands(message)
+        return
+
+    # Suppress natural conversation while a cycle is running in this channel
+    if message.channel.id in _active_cycle_channels:
+        print(f"[MSG] Suppressed — cycle active in #{message.channel.name}")
+        return
+
+    # Natural conversation — route to Sovereign (outer agent)
+    if not content:
+        return
+
+    # All non-command messages go to Sovereign (outer agent)
+    # Strip the bot mention from the text if present
+    query = content.replace(f"<@{bot.user.id}>", "").replace(f"<@!{bot.user.id}>", "").strip()
+    if not query:
+        query = "Hello"
+    # Send to Sovereign (outer)
+    try:
+        task_data = {
+            "task_input": query,
+            "agent_assignment": "outer",
+            "security_context": {
+                "user_id": str(message.author.id),
+                "channel_id": str(message.channel.id),
+                "timestamp": datetime.now().isoformat()
+            }
+        }
+        async with aiohttp.ClientSession() as session:
+            async with session.post(
+                f"{GATEWAY_URL}/tasks",
+                json=task_data,
+                timeout=aiohttp.ClientTimeout(total=120)
+            ) as resp:
+                if resp.status == 200:
+                    result = await resp.json()
+                    embed = _format_response(query, result, "outer")
+                    await message.reply(embed=embed)
+                else:
+                    await message.reply("I'm having trouble reaching the gateway right now.")
+    except Exception as e:
+        print(f"[ERR] Natural conversation error: {e}")
+        await message.reply("Something went wrong. Try again or use `!sovereign <query>`.")
 
 
 @bot.event
@@ -83,7 +133,7 @@ async def info(ctx):
         description="Sovereign multi-agent AI system. Human-directed. Always.",
         color=discord.Color.purple()
     )
-    embed.add_field(name="Agents", value="**Outer** (Phi-4-mini) · **Sway** (Collapse) · **Opie** (Become)", inline=False)
+    embed.add_field(name="Agents", value="**Sovereign** · **Sway** · **Opie**", inline=False)
     embed.add_field(name="Protocol", value="Collapse–Become Unified Protocol v1.1", inline=False)
     embed.add_field(name="Orchestrator", value="Derek (Principal Orchestrator)", inline=False)
     embed.add_field(
@@ -179,9 +229,9 @@ async def _gateway_task(ctx, query: str, agent_assignment: str):
 def _format_response(query: str, result: dict, agent: str) -> discord.Embed:
     """Format a Gateway response as a Discord embed."""
     agent_config = {
-        "outer": {"color": discord.Color.green(), "icon": "🧠", "label": "Outer (Phi-4-mini)"},
-        "sway": {"color": discord.Color.blue(), "icon": "⚡", "label": "Sway (Collapse)"},
-        "opie": {"color": discord.Color.purple(), "icon": "🌀", "label": "Opie (Become)"},
+        "outer": {"color": discord.Color.green(), "icon": "🧠", "label": "Sovereign"},
+        "sway": {"color": discord.Color.blue(), "icon": "⚡", "label": "Sway"},
+        "opie": {"color": discord.Color.purple(), "icon": "🌀", "label": "Opie"},
         "both": {"color": discord.Color.gold(), "icon": "🔄", "label": "Sway + Opie"},
     }
     config = agent_config.get(agent, agent_config["sway"])
@@ -220,9 +270,18 @@ def _format_response(query: str, result: dict, agent: str) -> discord.Embed:
 
 @bot.command()
 async def outer(ctx, *, query: str = None):
-    """Direct query to the calibrated Outer Agent (Phi-4-mini)"""
+    """Direct query to Sovereign (front-layer agent)"""
     if not query:
         await ctx.send("Usage: `!outer <query>`")
+        return
+    await _gateway_task(ctx, query, agent_assignment="outer")
+
+
+@bot.command()
+async def sovereign(ctx, *, query: str = None):
+    """Alias for !outer — talk to Sovereign directly"""
+    if not query:
+        await ctx.send("Just talk to me naturally, or use `!sovereign <query>`")
         return
     await _gateway_task(ctx, query, agent_assignment="outer")
 
@@ -290,6 +349,123 @@ async def narrative(ctx, *, topic: str = None):
     await _gateway_task(ctx, f"create strategic narrative about {topic}", agent_assignment="opie")
 
 
+@bot.command()
+async def cycle(ctx, *, query: str = None):
+    """Trigger a full sovereign cycle: DIVERGE → COLLAPSE → BECOME"""
+    if not query:
+        await ctx.send("Usage: `!cycle <query or paradox>`")
+        return
+    # Signal that the cycle is starting
+    start_embed = discord.Embed(
+        title="🔄 Sovereign Cycle Initiated",
+        description=f"**Input:** {query[:200]}",
+        color=discord.Color.gold()
+    )
+    start_embed.add_field(
+        name="Phases",
+        value="DIVERGE (Opie) → COLLAPSE (Sway) → BECOME (Opie)",
+        inline=False
+    )
+    start_embed.add_field(
+        name="Status",
+        value="⏳ Running... this may take a minute.",
+        inline=False
+    )
+    start_embed.set_footer(text="Sovereign AI — Human Directed")
+    status_msg = await ctx.send(embed=start_embed)
+
+    # Lock this channel to suppress natural conversation during cycle
+    _active_cycle_channels.add(ctx.channel.id)
+
+    try:
+        cycle_data = {
+            "task_input": query,
+            "security_context": {
+                "user_id": str(ctx.author.id),
+                "channel_id": str(ctx.channel.id),
+                "timestamp": datetime.now().isoformat()
+            }
+        }
+        async with aiohttp.ClientSession() as session:
+            async with session.post(
+                f"{GATEWAY_URL}/cycle",
+                json=cycle_data,
+                timeout=aiohttp.ClientTimeout(total=300)
+            ) as resp:
+                if resp.status == 200:
+                    result = await resp.json()
+                    phases = result.get("phases", {})
+                    cycle_mode = result.get("cycle_mode", "STANDARD")
+                    mode_tag = " [HOLDING]" if cycle_mode == "HOLDING" else ""
+
+                    # DIVERGE embed
+                    diverge = phases.get("diverge", {})
+                    d_output = diverge.get("output", "No output")
+                    if len(d_output) > 1000:
+                        d_output = d_output[:997] + "..."
+                    d_embed = discord.Embed(
+                        title=f"🌀 Phase 1: DIVERGE{mode_tag}",
+                        description=d_output,
+                        color=discord.Color.purple()
+                    )
+                    d_proto = diverge.get("proto_moments", [])
+                    if d_proto:
+                        d_embed.add_field(
+                            name="✨ Proto-Moments",
+                            value="\n".join(f"• {m[:150]}" for m in d_proto[:3]),
+                            inline=False
+                        )
+                    d_embed.set_footer(text="Agent: Opie | Sovereign Cycle")
+                    await ctx.send(embed=d_embed)
+
+                    # COLLAPSE embed
+                    collapse = phases.get("collapse", {})
+                    c_output = collapse.get("output", "No output")
+                    if len(c_output) > 1000:
+                        c_output = c_output[:997] + "..."
+                    c_embed = discord.Embed(
+                        title=f"⚡ Phase 2: COLLAPSE{mode_tag}",
+                        description=c_output,
+                        color=discord.Color.blue()
+                    )
+                    c_embed.set_footer(text="Agent: Sway | Sovereign Cycle")
+                    await ctx.send(embed=c_embed)
+
+                    # BECOME embed
+                    become = phases.get("become", {})
+                    b_output = become.get("output", "No output")
+                    if len(b_output) > 1000:
+                        b_output = b_output[:997] + "..."
+                    b_embed = discord.Embed(
+                        title=f"🔄 Phase 3: BECOME{mode_tag}",
+                        description=b_output,
+                        color=discord.Color.gold()
+                    )
+                    b_proto = become.get("proto_moments", [])
+                    if b_proto:
+                        b_embed.add_field(
+                            name="✨ Proto-Moments",
+                            value="\n".join(f"• {m[:150]}" for m in b_proto[:3]),
+                            inline=False
+                        )
+                    b_embed.add_field(
+                        name="📋 Memory",
+                        value="Not stored. Awaiting ratification.",
+                        inline=False
+                    )
+                    b_embed.set_footer(text="Agent: Opie | Sovereign Cycle Complete")
+                    await ctx.send(embed=b_embed)
+
+                else:
+                    await ctx.send(f"❌ Cycle error: {resp.status}")
+    except aiohttp.ClientError:
+        await ctx.send(f"❌ Cannot reach Gateway at {GATEWAY_URL}. Is it running?")
+    except Exception as e:
+        await ctx.send(f"❌ Cycle error: {str(e)[:200]}")
+    finally:
+        _active_cycle_channels.discard(ctx.channel.id)
+
+
 @bot.command(name="help_sovereign")
 async def help_sovereign(ctx):
     """Show available commands"""
@@ -310,9 +486,11 @@ async def help_sovereign(ctx):
         inline=False
     )
     embed.add_field(
-        name="🧠 Outer Agent (Phi-4-mini)",
+        name="🧠 Sovereign (Front Layer)",
         value=(
-            "`!outer <query>` — Direct query to calibrated Outer Agent\n"
+            "`!sovereign <query>` — Talk to Sovereign directly\n"
+            "`!outer <query>` — Alias for !sovereign\n"
+            "Or just type naturally — no prefix needed\n"
         ),
         inline=False
     )
@@ -338,6 +516,7 @@ async def help_sovereign(ctx):
         value=(
             "`!conexus <query>` — Smart-routed query\n"
             "`!become <query>` — Full Collapse+Become\n"
+            "`!cycle <query>` — Full sovereign cycle (DIVERGE → COLLAPSE → BECOME)\n"
         ),
         inline=False
     )

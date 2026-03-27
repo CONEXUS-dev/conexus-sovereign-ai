@@ -1,0 +1,96 @@
+{
+  "experiment": "Canonical V5 Pipeline Run",
+  "status": "canonical",
+  "phase": 5,
+  "passes": 1,
+  "seed": 42,
+  "timestamp": "2026-03-07T22:14:48.767494+00:00",
+  "starting_snapshot": "v5_final_state_snapshot.json",
+  "input_content_hash": "f9a12fa44008c6998943066d332811971c1223f4261d4209810ee3eb61040bea",
+  "file_bytes_hash": "a8e823fe60c1b89721c7e6a57acbfd796935ac17a91019dd51adcc160cb6c796",
+  "final_state_hash": "575b7adfc855dc84757bcba78cff7c2f26753a1166ca253c14bcff87e36142f3",
+  "total_duration_sec": 7653.2821392,
+  "health_summary": {
+    "run_id": "v5_final_state_snapshot.json",
+    "snapshot_hash_start": "f9a12fa44008c6998943066d332811971c1223f4261d4209810ee3eb61040bea",
+    "snapshot_hash_end": "575b7adfc855dc84757bcba78cff7c2f26753a1166ca253c14bcff87e36142f3",
+    "passes_completed": 1,
+    "anomalies_total": 108,
+    "warnings_total": 48,
+    "regulated_total": 60,
+    "warnings_by_type": {
+      "oscillating": 24,
+      "drifting": 24
+    },
+    "health_statement": "warnings present: review anomalies"
+  },
+  "baseline": {
+    "claims": 650,
+    "tensions": 1505,
+    "paradoxes": 84,
+    "emoji_vectors": 84
+  },
+  "final_state": {
+    "claims": 858,
+    "tensions": 1710,
+    "paradoxes": 94,
+    "emoji_vectors": 94
+  },
+  "deltas": {
+    "claims": 208,
+    "tensions": 205,
+    "paradoxes": 10,
+    "emoji_vectors": 10
+  },
+  "per_pass": [
+    {
+      "pass": 1,
+      "state_hash": "575b7adfc855dc84757bcba78cff7c2f26753a1166ca253c14bcff87e36142f3",
+      "claims_before": 650,
+      "claims_after": 670,
+      "new_claims": 20,
+      "tensions_before": 1505,
+      "tensions_after": 1710,
+      "new_tensions": 205,
+      "paradoxes_before": 84,
+      "paradoxes_after": 94,
+      "new_promotions": 10,
+      "collapse": {
+        "total_open": 205,
+        "committed": 0,
+        "deferred": 0,
+        "paradox_held": 205,
+        "skipped": 0,
+        "errors": 0
+      },
+      "become": {
+        "total_eligible": 94,
+        "expanded": 94,
+        "stabilized": 0,
+        "skipped": 0,
+        "claims_spawned": 188,
+        "paradoxes_spawned": 0
+      },
+      "hold": {
+        "total_eligible": 94,
+        "stabilized": 90,
+        "nudged": 4,
+        "balance_corrected": 0,
+        "skipped": 0
+      },
+      "held_count": 94,
+      "vetoed_count": 94,
+      "paradox_status_counts": {
+        "paradox_held": 94
+      },
+      "llm_duration_sec": 7652.9605632,
+      "phase5_duration_sec": 0.08032590000038908
+    }
+  ],
+  "observations": [
+    "All 1 passes completed without operator crash",
+    "Total new paradox promotions across all passes: 10",
+    "Pass 1: 94 held, 94 vetoed (of 94 total paradoxes)",
+    "Hub concentration: top-3 claims hold 23.2% of tension refs"
+  ]
+}
