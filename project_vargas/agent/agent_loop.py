@@ -15,9 +15,10 @@ import asyncio
 import json
 import logging
 from dataclasses import dataclass, field
+from pathlib import Path
 from typing import Any, Dict, List, Optional
 
-from project_vargas.tools.executor import ToolExecutor, ToolCall, SafetyLevel
+from tools.executor import ToolExecutor, ToolCall, SafetyLevel
 
 logger = logging.getLogger(__name__)
 
@@ -318,6 +319,26 @@ class AgentLoop:
             "and what didn't. Do not dump raw data — interpret and present it clearly."
         )
         return "\n".join(lines)
+
+    def get_screenshot_paths(self, channel_id: str) -> List[str]:
+        """Extract screenshot file paths from completed plan steps."""
+        plan = self._active_plans.get(channel_id)
+        if not plan:
+            return []
+        paths = []
+        for step in plan.steps:
+            if (step.status == "completed"
+                    and step.tool_name == "browser"
+                    and step.tool_action == "screenshot"
+                    and step.result):
+                result = step.result
+                if isinstance(result, dict):
+                    path = result.get("path") or result.get("data", "")
+                else:
+                    path = str(result)
+                if path and Path(path).exists():
+                    paths.append(path)
+        return paths
 
     def cleanup(self, channel_id: str):
         """Remove completed/failed plans."""

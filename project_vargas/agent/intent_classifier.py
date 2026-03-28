@@ -18,7 +18,7 @@ Intent is never surfaced to the user. It only shapes internal routing.
 
 import logging
 import re
-from typing import Any, Dict, List
+from typing import Any, Dict, List, Optional
 
 logger = logging.getLogger(__name__)
 
@@ -50,6 +50,9 @@ VALID_INTENTS = [
     "browser_interact",
     "code_execute",
     "site_crawl",
+    # V3 intents
+    "audit_log",
+    "sovereign_state",
 ]
 
 # Pattern groups for classification
@@ -88,6 +91,28 @@ WEB_SEARCH_PATTERNS = [
     "could you try searching", "try searching",
     "see what info you can find", "see what you can find",
     "find what you can", "what info can you find",
+]
+
+# V3 — Audit log patterns
+SOVEREIGN_PATTERNS = [
+    "sovereign state", "sovereign report", "sovereign health",
+    "governance report", "governance status", "governance state",
+    "anomaly flags", "anomaly report", "system anomalies",
+    "paradox status", "paradox report", "paradox health",
+    "baseline health", "baseline status", "sealed baseline",
+    "observer report", "sovereign observer",
+    "integrity attestation", "veto summary",
+    "how is sovereign", "how is the system",
+    "sovereign bridge", "belief stratification",
+]
+
+AUDIT_LOG_PATTERNS = [
+    "show logs", "show the logs", "show my logs",
+    "audit log", "audit logs", "show audit",
+    "what have you done", "what did you do",
+    "what actions have you taken", "what tools have you used",
+    "activity log", "show activity", "recent activity",
+    "what have you been doing", "show your history",
 ]
 
 SKILL_LIST_PATTERNS = [
@@ -218,6 +243,45 @@ CODE_EXECUTE_PATTERNS = [
 ]
 
 
+def _llm_classify_intent(llm_client: Any, user_message: str) -> Optional[Dict[str, Any]]:
+    """Use the lightweight LLM model to classify ambiguous intents.
+
+    Called only when pattern matching fails and the message is long enough
+    to warrant an LLM call. Uses the lightweight/fallback model for cost.
+    """
+    import json as _json
+
+    valid_intents_str = ", ".join(VALID_INTENTS)
+    prompt = (
+        f"Classify the user's intent into exactly one of: {valid_intents_str}\n\n"
+        f"User message: \"{user_message}\"\n\n"
+        f"Respond in JSON: {{\"intent\": \"...\", \"confidence\": 0.0-1.0, \"reasoning\": \"...\"}}\n"
+        f"If unsure, use \"converse\" with low confidence."
+    )
+
+    # Prefer lightweight model if available, else default
+    model = getattr(llm_client, "fallback_model", None) or llm_client.default_model
+    result = llm_client.generate(
+        model=model,
+        system_prompt="You are an intent classifier. Respond only in valid JSON.",
+        user_prompt=prompt,
+        temp=0.1,
+        max_tokens=200,
+    ).strip()
+
+    # Parse JSON — handle markdown code blocks
+    if result.startswith("```"):
+        result = result.split("\n", 1)[1] if "\n" in result else result
+        result = result.rsplit("```", 1)[0]
+    result = result.strip()
+
+    parsed = _json.loads(result)
+    intent = parsed.get("intent", "converse")
+    if intent not in VALID_INTENTS:
+        return None
+    return parsed
+
+
 def classify_intent(
     llm_client: Any,
     user_message: str,
@@ -265,6 +329,18 @@ def classify_intent(
             logger.info("[INTENT] url_read — matched: '%s'", pattern)
             return {"intent": "url_read", "confidence": 0.9, "reasoning": f"Matched: {pattern}"}
 
+    # V3 4A — Check sovereign state queries
+    for pattern in SOVEREIGN_PATTERNS:
+        if pattern in lower:
+            logger.info("[INTENT] sovereign_state — matched: '%s'", pattern)
+            return {"intent": "sovereign_state", "confidence": 0.9, "reasoning": f"Matched: {pattern}"}
+
+    # V3 — Check audit log
+    for pattern in AUDIT_LOG_PATTERNS:
+        if pattern in lower:
+            logger.info("[INTENT] audit_log — matched: '%s'", pattern)
+            return {"intent": "audit_log", "confidence": 0.9, "reasoning": f"Matched: {pattern}"}
+
     # Check web search
     for pattern in WEB_SEARCH_PATTERNS:
         if pattern in lower:
@@ -300,6 +376,19 @@ def classify_intent(
         if pattern in lower:
             logger.info("[INTENT] task_execute — matched: '%s'", pattern)
             return {"intent": "task_execute", "confidence": 0.80, "reasoning": f"Matched: {pattern}"}
+
+    # V3 2C — LLM-based disambiguation fallback before defaulting to converse
+    if llm_client and len(lower) > 15:
+        try:
+            llm_result = _llm_classify_intent(llm_client, user_message)
+            if llm_result and llm_result.get("confidence", 0) >= confidence_threshold:
+                logger.info(
+                    "[INTENT] LLM fallback -> %s (%.2f)",
+                    llm_result["intent"], llm_result["confidence"],
+                )
+                return llm_result
+        except Exception as e:
+            logger.warning("[INTENT] LLM fallback failed: %s", e)
 
     # Default: converse
     logger.info("[INTENT] converse — no special pattern matched")

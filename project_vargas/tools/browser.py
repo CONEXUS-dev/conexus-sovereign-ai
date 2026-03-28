@@ -60,6 +60,8 @@ class BrowserTool:
         self._available = False
         self._bin_path: Optional[str] = None
         self._session = "vargas"
+        self._session_active = False  # V3 3C: track if a browser session is alive
+        self._last_url: Optional[str] = None  # V3 3C: track last navigated URL
         self._initialize()
 
     def _initialize(self):
@@ -141,7 +143,11 @@ class BrowserTool:
 
     async def open(self, url: str) -> Dict[str, Any]:
         """Navigate to a URL."""
-        return await self._run_cmd(["open", url], timeout=_NAV_TIMEOUT)
+        result = await self._run_cmd(["open", url], timeout=_NAV_TIMEOUT)
+        if result.get("success"):
+            self._session_active = True
+            self._last_url = url
+        return result
 
     async def snapshot(self, interactive_only: bool = True, compact: bool = True) -> Dict[str, Any]:
         """Get accessibility tree with element refs."""
@@ -219,7 +225,34 @@ class BrowserTool:
 
     async def close(self) -> Dict[str, Any]:
         """Close the browser."""
-        return await self._run_cmd(["close"])
+        result = await self._run_cmd(["close"])
+        self._session_active = False
+        self._last_url = None
+        return result
+
+    @property
+    def session_active(self) -> bool:
+        """V3 3C: Whether a browser session is currently active."""
+        return self._session_active
+
+    @property
+    def last_url(self) -> Optional[str]:
+        """V3 3C: The last URL navigated to in this session."""
+        return self._last_url
+
+    async def ensure_session(self) -> bool:
+        """V3 3C: Verify the browser session is alive. Returns True if active."""
+        if not self._available:
+            return False
+        try:
+            result = await self.get_url()
+            if result.get("success"):
+                self._session_active = True
+                return True
+        except Exception:
+            pass
+        self._session_active = False
+        return False
 
     async def execute(self, action: str, params: Dict[str, Any]) -> Any:
         """Generic execute interface for the ToolExecutor."""

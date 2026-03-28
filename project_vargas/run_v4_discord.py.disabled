@@ -1,0 +1,17 @@
+# Simple launcher for V4 Discord Bot
+import sys
+from pathlib import Path
+
+# Add paths
+sys.path.append(str(Path(__file__).parent / "vargas_discord"))
+
+from v4_discord_bot import main
+
+if __name__ == "__main__":
+    print("🚀 V4 Discord Bot Launcher")
+    print("🤖 Your Customized OpenClaw Agent")
+    print("🧠 ECP Architecture + 99 Semantic Skills")
+    print("💬 Discord Integration")
+    print("=" * 50)
+    
+    main()

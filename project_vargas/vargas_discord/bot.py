@@ -17,13 +17,13 @@ import discord
 from dotenv import load_dotenv
 
 # Ensure project root is on path for imports
-PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
+PROJECT_ROOT = Path(__file__).resolve().parent.parent
 if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
-from project_vargas.agent.vargas_agent import VargasAgent
+from agent.vargas_agent import VargasAgent
 
-# Load environment variables from project_vargas/.env
+# Load environment variables from project root/.env
 ENV_PATH = Path(__file__).resolve().parent.parent / ".env"
 load_dotenv(ENV_PATH)
 
@@ -168,10 +168,27 @@ async def on_message(message: discord.Message):
     if message.author.bot:
         return
 
+    # V3 1C — DM support: use author ID as channel_id for direct messages
+    if isinstance(message.channel, discord.DMChannel):
+        effective_channel_id = str(message.author.id)
+    else:
+        effective_channel_id = str(message.channel.id)
+
     # Strip mention from content if present
     content = message.content
     if client.user in (message.mentions or []):
         content = content.replace(f"<@{client.user.id}>", "").replace(f"<@!{client.user.id}>", "").strip()
+
+    # V3 1B — Blanket approval via natural language
+    lower_content = content.lower().strip()
+    if vargas and lower_content in ("blanket approve", "approve all", "blanket approval"):
+        vargas._executor.grant_blanket_approval(effective_channel_id)
+        await message.reply("Blanket approval granted for this channel. All gated operations will auto-approve until revoked.")
+        return
+    if vargas and lower_content in ("blanket revoke", "revoke approval", "revoke blanket"):
+        vargas._executor.revoke_blanket_approval(effective_channel_id)
+        await message.reply("Blanket approval revoked. Gated operations will require individual approval again.")
+        return
 
     # Download attachments for multimodal processing
     file_parts = []
@@ -185,6 +202,9 @@ async def on_message(message: discord.Message):
     TEXT_EXTENSIONS = {".md", ".txt", ".py", ".json", ".csv", ".js", ".ts", ".yaml", ".yml",
                       ".toml", ".cfg", ".ini", ".sh", ".bat", ".xml", ".html", ".css", ".sql",
                       ".r", ".rs", ".go", ".java", ".c", ".cpp", ".h", ".rb", ".php", ".log"}
+    # V3 3A — Audio/voice types for Whisper transcription
+    AUDIO_TYPES = {"audio/ogg", "audio/mpeg", "audio/mp3", "audio/wav", "audio/webm", "audio/mp4", "audio/x-m4a"}
+    AUDIO_EXTENSIONS = {".ogg", ".mp3", ".wav", ".m4a", ".webm", ".opus"}
     MAX_ATTACHMENT_BYTES = 10 * 1024 * 1024  # 10MB cap per file
 
     from google.genai import types as genai_types
@@ -231,6 +251,38 @@ async def on_message(message: discord.Message):
                 )
                 logger.info("Downloaded text file: %s (%d chars)", attachment.filename, len(text_content))
 
+            elif mime in AUDIO_TYPES or ext in AUDIO_EXTENSIONS:
+                # V3 3A — Voice/audio: transcribe via OpenAI Whisper
+                import io as _io
+                audio_bytes = await attachment.read()
+                logger.info("Downloaded audio: %s (%d bytes, mime=%s)", attachment.filename, len(audio_bytes), mime)
+                try:
+                    import openai as _openai
+                    api_key = os.environ.get("OPENAI_API_KEY", "")
+                    if not api_key:
+                        logger.warning("OPENAI_API_KEY not set — cannot transcribe voice")
+                        text_attachments.append("[Voice message received but transcription unavailable — OPENAI_API_KEY not set]")
+                    else:
+                        oai_client = _openai.OpenAI(api_key=api_key)
+                        audio_file = _io.BytesIO(audio_bytes)
+                        audio_file.name = attachment.filename or "voice.ogg"
+                        transcript = oai_client.audio.transcriptions.create(
+                            model="whisper-1",
+                            file=audio_file,
+                        )
+                        transcribed = transcript.text if transcript and transcript.text else ""
+                        if transcribed:
+                            text_attachments.append(f"[VOICE MESSAGE — transcribed]: {transcribed}")
+                            logger.info("Transcribed voice: %d chars", len(transcribed))
+                        else:
+                            text_attachments.append("[Voice message received but transcription was empty]")
+                except ImportError:
+                    logger.warning("openai package not installed — cannot transcribe voice")
+                    text_attachments.append("[Voice message received but openai package not installed]")
+                except Exception as whisper_err:
+                    logger.error("Whisper transcription failed: %s", whisper_err)
+                    text_attachments.append(f"[Voice message received but transcription failed: {whisper_err}]")
+
             else:
                 logger.info("Unsupported attachment type: %s (mime=%s, ext=%s)", attachment.filename, mime, ext)
                 text_attachments.append(f"[Unsupported attachment: {attachment.filename} (type: {mime or ext})]")
@@ -260,14 +312,27 @@ async def on_message(message: discord.Message):
     # Show typing indicator
     async with message.channel.typing():
         try:
-            channel_id = str(message.channel.id)
-            response = await vargas.respond(content, channel_id, image_parts=file_parts if file_parts else None)
+            response = await vargas.respond(content, effective_channel_id, image_parts=file_parts if file_parts else None)
+
+            # V3 1A — Collect screenshot attachments from agent loop
+            discord_files = []
+            screenshot_paths = vargas._agent_loop.get_screenshot_paths(effective_channel_id)
+            for spath in screenshot_paths:
+                try:
+                    discord_files.append(discord.File(spath))
+                    logger.info("Attaching screenshot: %s", spath)
+                except Exception as fe:
+                    logger.warning("Failed to attach screenshot %s: %s", spath, fe)
 
             # Split and send
             chunks = split_response(response)
             for i, chunk in enumerate(chunks):
                 if i == 0:
-                    await message.reply(chunk)
+                    # Attach screenshots to first reply if any
+                    if discord_files:
+                        await message.reply(chunk, files=discord_files)
+                    else:
+                        await message.reply(chunk)
                 else:
                     await message.channel.send(chunk)
 

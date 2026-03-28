@@ -25,19 +25,20 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Dict, List
 
-from project_vargas.adapters.cloud_llm.gemini_client import GeminiLLMClient
-from project_vargas.memory.memory_client import VargasMemoryClient
-from project_vargas.memory.emoji.emoji_vector import EmojiVector
-from project_vargas.memory.emoji.emoji_mutator import seed_initial_sequence, mutate_for_operator
-from project_vargas.agent.intent_classifier import classify_intent
-from project_vargas.tools.web_search import WebSearchTool
-from project_vargas.tools.url_reader import URLReaderTool
-from project_vargas.tools.openclaw_bridge import OpenClawBridge
-from project_vargas.tools.executor import ToolExecutor, SafetyLevel
-from project_vargas.tools.browser import BrowserTool
-from project_vargas.tools.shell import ShellTool
-from project_vargas.tools.file_io import FileIOTool
-from project_vargas.agent.agent_loop import AgentLoop
+from adapters.cloud_llm.gemini_client import GeminiLLMClient
+from memory.memory_client import VargasMemoryClient
+from memory.emoji.emoji_vector import EmojiVector
+from memory.emoji.emoji_mutator import seed_initial_sequence, mutate_for_operator
+from agent.intent_classifier import classify_intent
+from tools.web_search import WebSearchTool
+from tools.url_reader import URLReaderTool
+from tools.openclaw_bridge import OpenClawBridge
+from tools.executor import ToolExecutor, ToolCall, SafetyLevel
+from tools.browser import BrowserTool
+from tools.shell import ShellTool
+from tools.file_io import FileIOTool
+from agent.agent_loop import AgentLoop
+from adapters.sovereign_bridge import SovereignBridge
 
 logger = logging.getLogger(__name__)
 
@@ -84,15 +85,30 @@ class VargasAgent:
         self._config = _load_config()
         self._system_prompt = _load_system_prompt()
 
-        # LLM client
-        self._llm = GeminiLLMClient()
+        # LLM client — V3: config-driven model selection with fallback
+        primary_model = self._config.get("model", "gemini-3.1-pro-preview")
+        fallback_model = self._config.get("fallback_model")
+        embedding_model = self._config.get("embedding_model", "gemini-embedding-001")
+        self._llm = GeminiLLMClient(
+            default_model=primary_model,
+            embedding_model=embedding_model,
+            fallback_model=fallback_model,
+        )
+        logger.info(
+            "[VARGAS] Model config — primary=%s, fallback=%s, embedding=%s",
+            primary_model, fallback_model, embedding_model,
+        )
 
-        # Memory
+        # Memory — V3: support URL-based Qdrant connection from config
         qdrant_host = os.getenv("QDRANT_HOST", "localhost")
         qdrant_port = int(os.getenv("QDRANT_PORT", "6333"))
+        qdrant_url = self._config.get("qdrant_url")
+        qdrant_api_key = self._config.get("qdrant_api_key")
         self._memory = VargasMemoryClient(
             qdrant_host=qdrant_host,
             qdrant_port=qdrant_port,
+            qdrant_url=qdrant_url,
+            qdrant_api_key=qdrant_api_key,
             llm_bridge=self._llm,
         )
 
@@ -134,7 +150,19 @@ class VargasAgent:
         # V2.5 — Pending-action latch: channel_id -> {"type", "filename", "content", "turns_remaining"}
         self._pending_actions: Dict[str, Dict] = {}
 
-        logger.info("[VARGAS] Agent initialized (attunement EV: %s)", self._attunement_ev.metrics)
+        # V3 4A — Sovereign governance bridge (read-only)
+        self._sovereign = SovereignBridge()
+        if self._sovereign.available:
+            logger.info("[VARGAS] Sovereign bridge connected")
+
+        # V3 2B — Native function calling (gated behind config flag)
+        self._use_function_calling = self._config.get("use_function_calling", False)
+        self._tool_declarations = self._build_tool_declarations()
+
+        logger.info(
+            "[VARGAS] Agent initialized (attunement EV: %s, function_calling=%s)",
+            self._attunement_ev.metrics, self._use_function_calling,
+        )
 
     def _inject_tool_capabilities(self, prompt: str) -> str:
         """Replace {{TOOL_CAPABILITIES}} and {{OS_CONTEXT}} in system prompt."""
@@ -190,6 +218,78 @@ class VargasAgent:
             )
 
         return prompt.replace("{{TOOL_CAPABILITIES}}", "\n".join(capabilities))
+
+    def _build_tool_declarations(self) -> List[Dict[str, Any]]:
+        """Build tool declaration schemas for native Gemini function calling."""
+        declarations = []
+
+        if self._web_search.available:
+            declarations.append({
+                "name": "web_search",
+                "description": "Search the internet for live information using Google Custom Search.",
+                "parameters": {
+                    "properties": {
+                        "query": {"type": "string", "description": "The search query"},
+                    },
+                    "required": ["query"],
+                },
+            })
+
+        if self._url_reader.available:
+            declarations.append({
+                "name": "url_read",
+                "description": "Read and extract content from a specific public URL.",
+                "parameters": {
+                    "properties": {
+                        "url": {"type": "string", "description": "The URL to read"},
+                    },
+                    "required": ["url"],
+                },
+            })
+
+        if self._browser.available:
+            declarations.append({
+                "name": "browser",
+                "description": "Interact with a headless browser: navigate, click, fill, screenshot.",
+                "parameters": {
+                    "properties": {
+                        "action": {"type": "string", "description": "Browser action: open, snapshot, click, fill, screenshot, scroll"},
+                        "url": {"type": "string", "description": "URL to navigate to (for open action)"},
+                        "selector": {"type": "string", "description": "CSS selector for click/fill actions"},
+                        "value": {"type": "string", "description": "Value for fill action"},
+                    },
+                    "required": ["action"],
+                },
+            })
+
+        if self._file_io.available:
+            declarations.append({
+                "name": "file",
+                "description": "Read, write, list, or check files in the workspace.",
+                "parameters": {
+                    "properties": {
+                        "action": {"type": "string", "description": "File action: read_file, write_file, list_dir, file_exists"},
+                        "path": {"type": "string", "description": "File or directory path"},
+                        "content": {"type": "string", "description": "Content to write (for write_file)"},
+                    },
+                    "required": ["action", "path"],
+                },
+            })
+
+        if self._shell.available:
+            declarations.append({
+                "name": "shell",
+                "description": "Execute a shell command on the local system.",
+                "parameters": {
+                    "properties": {
+                        "command": {"type": "string", "description": "The command to execute"},
+                    },
+                    "required": ["command"],
+                },
+            })
+
+        logger.info("[VARGAS] Built %d tool declarations for function calling", len(declarations))
+        return declarations
 
     def _get_history(self, channel_id: str) -> List[Dict[str, str]]:
         """Get conversation history for a channel."""
@@ -427,6 +527,104 @@ class VargasAgent:
         except Exception as e:
             logger.warning("[VARGAS] Memory summary failed: %s", e)
             return "I had trouble accessing my memory right now."
+
+    def _build_sovereign_context(self) -> str:
+        """Build Sovereign governance context for prompt injection (V3 4A)."""
+        if not self._sovereign.available:
+            return "[SOVEREIGN STATE — unavailable. SovereignNEXT artifacts not found in repository.]"
+
+        parts = []
+        try:
+            # Get health summary
+            health = self._sovereign.get_health_summary()
+            parts.append(f"Health: {health.get('health_statement', 'unknown')}")
+            if health.get("anomalies_total") is not None:
+                parts.append(f"Anomalies: {health['anomalies_total']} total, {health.get('warnings_total', 0)} warnings")
+            if health.get("attestations"):
+                for att in health["attestations"]:
+                    parts.append(f"  Attestation: {att}")
+
+            # Get seal metadata
+            seal = self._sovereign.get_seal_metadata()
+            if seal:
+                parts.append(f"Baseline: {seal.get('baseline_id', 'unknown')}")
+                parts.append(f"Sealed by: {seal.get('sealed_by', 'unknown')}")
+                parts.append(f"Snapshot hash: {str(seal.get('snapshot_hash', ''))[:16]}...")
+
+            # Get state summary
+            summary = self._sovereign.get_state_summary()
+            if "error" not in summary:
+                parts.append(
+                    f"State: {summary.get('claims', 0)} claims, "
+                    f"{summary.get('tensions', 0)} tensions, "
+                    f"{summary.get('paradoxes', 0)} paradoxes, "
+                    f"{summary.get('emoji_vectors', 0)} emoji vectors"
+                )
+
+            # Get governance contracts
+            contracts = self._sovereign.get_governance_contracts()
+            if contracts:
+                names = [c["name"] for c in contracts]
+                parts.append(f"Governance contracts: {', '.join(names)}")
+
+        except Exception as e:
+            logger.warning("[VARGAS] Sovereign context build failed: %s", e)
+            parts.append(f"Error reading Sovereign state: {e}")
+
+        header = "[SOVEREIGN GOVERNANCE STATE — read-only, from SovereignNEXT]\n"
+        footer = "\n[END SOVEREIGN STATE]"
+        return header + "\n".join(parts) + footer
+
+    def _build_audit_log_context(self) -> str:
+        """Read recent entries from log files and build a summary for the user."""
+        import json as _json
+        from pathlib import Path as _Path
+
+        log_dir = _Path(__file__).resolve().parent.parent / "logs"
+        log_files = ["tool_use.log", "memory_writes.log", "intent_log.log", "attunement.log"]
+        sections = []
+
+        for filename in log_files:
+            log_path = log_dir / filename
+            if not log_path.exists():
+                continue
+            try:
+                lines = log_path.read_text(encoding="utf-8").strip().split("\n")
+                recent = lines[-15:]  # Last 15 entries per log
+                entries = []
+                for line in recent:
+                    try:
+                        entry = _json.loads(line)
+                        ts = entry.get("timestamp", "")
+                        if ts:
+                            ts = ts[:19].replace("T", " ")
+                        summary_parts = []
+                        for k, v in entry.items():
+                            if k != "timestamp":
+                                summary_parts.append(f"{k}={v}")
+                        entries.append(f"  [{ts}] {', '.join(summary_parts[:4])}")
+                    except _json.JSONDecodeError:
+                        continue
+                if entries:
+                    label = filename.replace(".log", "").replace("_", " ").title()
+                    sections.append(f"{label} (last {len(entries)}):\n" + "\n".join(entries))
+            except Exception as e:
+                logger.warning("[VARGAS] Failed to read log %s: %s", filename, e)
+
+        if not sections:
+            return (
+                "[AUDIT LOG — no log data found]\n"
+                "Tell the user there is no activity logged yet."
+            )
+
+        log_text = "\n\n".join(sections)
+        return (
+            f"[AUDIT LOG — recent activity from Vargas logs]\n"
+            f"{log_text}\n"
+            f"[END AUDIT LOG]\n"
+            f"Summarize this activity naturally. Group by type (tool use, memory writes, "
+            f"intents, attunement). Mention timestamps. Do not dump raw JSON."
+        )
 
     def _handle_memory_modify(self, user_message: str) -> str:
         """Handle memory modification requests."""
@@ -1538,6 +1736,14 @@ class VargasAgent:
             else:
                 logger.info("[VARGAS] Challenge suppressed — only %d interactions in channel", ch_count)
 
+        elif intent == "sovereign_state":
+            tool_context = self._build_sovereign_context()
+            _log_event("tool_use.log", {"tool": "sovereign_bridge", "trigger": user_message[:200]})
+
+        elif intent == "audit_log":
+            tool_context = self._build_audit_log_context()
+            _log_event("tool_use.log", {"tool": "audit_log", "trigger": user_message[:200]})
+
         # 4b. Bounded Autonomy — self-escalate if circling without acting
         if intent == "converse" and not tool_context:
             if self._should_self_escalate(user_message, history):
@@ -1549,39 +1755,72 @@ class VargasAgent:
         channel_count = self._channel_interactions.get(channel_id, 0)
         attunement_context = self._build_attunement_context(channel_count)
 
-        # 6. Build the full prompt
+        # 6. Build the full prompt with context window management (V3 2A)
         conversation_text = self._format_conversation(history)
 
         prompt_parts = [self._system_prompt]
         prompt_parts.append(attunement_context)
+
+        # V3 4B — Ambient Sovereign health context (lightweight, every response)
+        if self._sovereign.available:
+            sovereign_health = self._sovereign.format_for_prompt()
+            prompt_parts.append(sovereign_health)
+
         if memory_context:
             prompt_parts.append(memory_context)
         if tool_context:
             prompt_parts.append(tool_context)
 
         system_prompt = "\n\n".join(prompt_parts)
-
         user_prompt = f"{conversation_text}\n\nVargas:"
 
-        # 6. Generate response (with one retry on failure)
+        # V3 2A — Trim if over context window limit
+        max_context_tokens = 900_000  # Safe cap for Gemini Pro (~1M limit)
+        total_tokens = self._estimate_tokens(system_prompt) + self._estimate_tokens(user_prompt)
+        if total_tokens > max_context_tokens:
+            logger.warning("[VARGAS] Context window over limit (%d > %d), trimming...", total_tokens, max_context_tokens)
+            # Trim conversation history first (oldest messages)
+            trimmed_history = history.copy()
+            while self._estimate_tokens(self._format_conversation(trimmed_history)) > max_context_tokens * 0.4 and len(trimmed_history) > 2:
+                trimmed_history.pop(0)
+            conversation_text = self._format_conversation(trimmed_history)
+            user_prompt = f"{conversation_text}\n\nVargas:"
+            # If still over, truncate memory context
+            total_tokens = self._estimate_tokens(system_prompt) + self._estimate_tokens(user_prompt)
+            if total_tokens > max_context_tokens and memory_context:
+                memory_context = memory_context[:8000]
+                prompt_parts = [self._system_prompt, attunement_context, memory_context]
+                if tool_context:
+                    prompt_parts.append(tool_context)
+                system_prompt = "\n\n".join(prompt_parts)
+                logger.info("[VARGAS] Trimmed memory context to fit window")
+
+        # 6b. Generate response — with optional native function calling (V3 2B)
         response = None
-        for attempt in range(2):
-            try:
-                response = self._llm.generate(
-                    model=self._llm.default_model,
-                    system_prompt=system_prompt,
-                    user_prompt=user_prompt,
-                    temp=self._config.get("temperature", 0.7),
-                    max_tokens=self._config.get("max_tokens", 2048),
-                    image_parts=image_parts,
-                )
-                response = response.strip()
-                break
-            except Exception as e:
-                logger.error("[VARGAS] Generation failed (attempt %d/2): %s", attempt + 1, e)
-                if attempt == 0:
-                    import time
-                    time.sleep(3)
+        if self._use_function_calling and self._tool_declarations:
+            response = await self._generate_with_function_calling(
+                system_prompt, user_prompt, image_parts, channel_id,
+            )
+
+        if not response:
+            # Standard generation path (with one retry on failure)
+            for attempt in range(2):
+                try:
+                    response = self._llm.generate(
+                        model=self._llm.default_model,
+                        system_prompt=system_prompt,
+                        user_prompt=user_prompt,
+                        temp=self._config.get("temperature", 0.7),
+                        max_tokens=self._config.get("max_tokens", 2048),
+                        image_parts=image_parts,
+                    )
+                    response = response.strip()
+                    break
+                except Exception as e:
+                    logger.error("[VARGAS] Generation failed (attempt %d/2): %s", attempt + 1, e)
+                    if attempt == 0:
+                        import time
+                        time.sleep(3)
         if not response:
             response = "Something broke on my end. Try again in a moment."
 
@@ -1605,6 +1844,11 @@ class VargasAgent:
                 "sequence_length": self._attunement_ev.length,
             })
 
+        # 10b. V3 2E — Periodic memory summarization (every 25 interactions)
+        if self._interaction_count % 25 == 0 and self._interaction_count > 0:
+            max_entries = self._config.get("memory", {}).get("max_memories_per_class", 100)
+            self._memory.run_summarization_pass(max_entries=max_entries, keep_recent=10)
+
         # 11. V2.5 — Detect file-write proposals in Vargas's response and set pending latch
         self._detect_file_write_proposal(response, channel_id)
 
@@ -1612,6 +1856,102 @@ class VargasAgent:
         self._add_to_history(channel_id, "vargas", response)
 
         return response
+
+    async def _generate_with_function_calling(
+        self,
+        system_prompt: str,
+        user_prompt: str,
+        image_parts: list = None,
+        channel_id: str = "",
+    ) -> str:
+        """Generate using native Gemini function calling.
+
+        1. Call generate_with_tools
+        2. If function_calls are returned, execute them via ToolExecutor
+        3. Regenerate with tool results injected
+        4. Return final text response
+
+        Returns None if function calling fails (caller falls back to standard gen).
+        """
+        try:
+            result = self._llm.generate_with_tools(
+                model=self._llm.default_model,
+                system_prompt=system_prompt,
+                user_prompt=user_prompt,
+                tool_declarations=self._tool_declarations,
+                temp=self._config.get("temperature", 0.7),
+                max_tokens=self._config.get("max_tokens", 2048),
+                image_parts=image_parts,
+            )
+
+            function_calls = result.get("function_calls", [])
+            text_response = result.get("text", "").strip()
+
+            if not function_calls:
+                # No function calls — just return text
+                return text_response if text_response else None
+
+            # Execute each function call
+            logger.info("[VARGAS] Function calling: %d calls to execute", len(function_calls))
+            tool_results = []
+            for fc in function_calls:
+                name = fc["name"]
+                args = fc["args"]
+                logger.info("[VARGAS] Executing function call: %s(%s)", name, args)
+
+                try:
+                    safety = self._agent_loop._get_safety_level(name, args.get("action", ""))
+                    call = ToolCall(
+                        tool_name=name,
+                        action=args.get("action", args.get("command", args.get("query", ""))),
+                        params=args,
+                        safety_level=safety,
+                        description=f"Function call: {name}",
+                        channel_id=channel_id,
+                    )
+                    exec_result = await self._executor.execute(call)
+                    tool_results.append({
+                        "name": name,
+                        "result": exec_result.result if not exec_result.error else f"Error: {exec_result.error}",
+                    })
+                    _log_event("tool_use.log", {
+                        "tool": name, "action": args.get("action", ""),
+                        "source": "function_calling",
+                    })
+                except Exception as te:
+                    logger.warning("[VARGAS] Function call %s failed: %s", name, te)
+                    tool_results.append({"name": name, "result": f"Error: {te}"})
+
+            # Regenerate with tool results
+            results_text = "\n".join(
+                f"[{r['name']}] {str(r['result'])[:3000]}" for r in tool_results
+            )
+            augmented_prompt = (
+                f"{user_prompt}\n\n"
+                f"[TOOL RESULTS from function calls — incorporate naturally]\n"
+                f"{results_text}\n"
+                f"[END TOOL RESULTS]\n"
+                f"Vargas:"
+            )
+
+            final_response = self._llm.generate(
+                model=self._llm.default_model,
+                system_prompt=system_prompt,
+                user_prompt=augmented_prompt,
+                temp=self._config.get("temperature", 0.7),
+                max_tokens=self._config.get("max_tokens", 2048),
+            ).strip()
+
+            return final_response if final_response else None
+
+        except Exception as e:
+            logger.warning("[VARGAS] Function calling generation failed: %s — falling back", e)
+            return None
+
+    @staticmethod
+    def _estimate_tokens(text: str) -> int:
+        """Rough token estimate: ~4 chars per token for English text."""
+        return len(text) // 4
 
     def _format_conversation(self, history: List[Dict[str, str]]) -> str:
         """Format conversation history for the prompt."""

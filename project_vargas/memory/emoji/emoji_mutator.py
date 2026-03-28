@@ -14,7 +14,7 @@ Mutation model:
 import random
 from typing import List, Optional
 
-from project_vargas.memory.emoji.emoji_vector import (
+from memory.emoji.emoji_vector import (
     CHAOS_EMOJIS,
     STABLE_EMOJIS,
     SUPERPOSITION_EMOJIS,

@@ -65,12 +65,16 @@ class VargasMemoryClient:
         self,
         qdrant_host: str = "localhost",
         qdrant_port: int = 6333,
+        qdrant_url: Optional[str] = None,
+        qdrant_api_key: Optional[str] = None,
         llm_bridge: Any = None,
     ):
         self._llm_bridge = llm_bridge
         self._qdrant = None
         self._qdrant_host = qdrant_host
         self._qdrant_port = qdrant_port
+        self._qdrant_url = qdrant_url
+        self._qdrant_api_key = qdrant_api_key
         self._qdrant_available = False
         self._fallback_stores: Dict[str, Dict[str, Any]] = {c: {} for c in COLLECTIONS}
         self._init_qdrant()
@@ -80,9 +84,20 @@ class VargasMemoryClient:
         try:
             from qdrant_client import QdrantClient
             from qdrant_client.models import Distance, VectorParams
-            self._qdrant = QdrantClient(
-                host=self._qdrant_host, port=self._qdrant_port, timeout=5
-            )
+
+            # Support URL-based connection (for cloud Qdrant) or host:port (local)
+            if self._qdrant_url:
+                self._qdrant = QdrantClient(
+                    url=self._qdrant_url,
+                    api_key=self._qdrant_api_key,
+                    timeout=5,
+                )
+            else:
+                self._qdrant = QdrantClient(
+                    host=self._qdrant_host, port=self._qdrant_port, timeout=5
+                )
+
+            # Health check: verify we can reach Qdrant
             existing = {c.name for c in self._qdrant.get_collections().collections}
             for collection in COLLECTIONS:
                 if collection not in existing:
@@ -94,9 +109,15 @@ class VargasMemoryClient:
                     )
                     logger.info("[MEMORY] Created Qdrant collection: %s", collection)
             self._qdrant_available = True
-            logger.info("[MEMORY] Qdrant connected at %s:%d", self._qdrant_host, self._qdrant_port)
+            target = self._qdrant_url or f"{self._qdrant_host}:{self._qdrant_port}"
+            logger.info("[MEMORY] Qdrant connected at %s", target)
         except Exception as e:
-            logger.warning("[MEMORY] Qdrant unavailable (%s) — using in-memory fallback", e)
+            target = self._qdrant_url or f"{self._qdrant_host}:{self._qdrant_port}"
+            logger.warning(
+                "[MEMORY] Qdrant not reachable at %s — start with: docker run -d -p 6333:6333 qdrant/qdrant",
+                target,
+            )
+            logger.warning("[MEMORY] Using in-memory fallback (memories will not persist across restarts)")
             self._qdrant_available = False
 
     def _embed(self, text: str) -> list:
@@ -315,6 +336,103 @@ class VargasMemoryClient:
                 "types": list(set(m["type"] for m in memories)),
             }
         return result
+
+    def summarize_collection(
+        self,
+        collection: str,
+        max_entries: int = 50,
+        keep_recent: int = 10,
+    ) -> Optional[str]:
+        """Compress old memories in a collection into a summary entry.
+
+        If a collection exceeds max_entries, the oldest entries (beyond
+        keep_recent) are summarized by the LLM into a single consolidated
+        memory, and the originals are deleted.
+
+        Args:
+            collection: Which collection to compress.
+            max_entries: Trigger summarization when count exceeds this.
+            keep_recent: Number of newest entries to preserve untouched.
+
+        Returns:
+            The new summary memory ID, or None if no summarization needed.
+        """
+        if not self._llm_bridge:
+            logger.warning("[MEMORY] No LLM bridge — cannot summarize")
+            return None
+
+        memories = self.list_memories(collection)
+        if len(memories) <= max_entries:
+            return None
+
+        # Sort by created_at ascending (oldest first)
+        memories.sort(key=lambda m: m.get("created_at", ""))
+
+        # Split into old (to compress) and recent (to keep)
+        cutoff = len(memories) - keep_recent
+        old_memories = memories[:cutoff]
+        if not old_memories:
+            return None
+
+        # Build summarization prompt
+        entries_text = "\n".join(
+            f"- [{m.get('type', 'unknown')}] {m['content']}"
+            for m in old_memories
+        )
+
+        label = collection.replace("vargas_", "")
+        prompt = (
+            f"You are compressing {len(old_memories)} {label} memory entries into a concise summary.\n"
+            f"Preserve all important facts, patterns, and preferences. Remove redundancy.\n"
+            f"Output a single paragraph (max 500 words) that captures the essential information.\n\n"
+            f"Entries to compress:\n{entries_text}"
+        )
+
+        try:
+            summary_text = self._llm_bridge.generate(
+                model=self._llm_bridge.default_model,
+                system_prompt="You are a memory compression assistant. Be precise and factual.",
+                user_prompt=prompt,
+                temp=0.3,
+                max_tokens=1024,
+            ).strip()
+
+            if not summary_text:
+                logger.warning("[MEMORY] Summarization returned empty result")
+                return None
+
+            # Store the summary as a new memory
+            summary_id = self.store(
+                collection=collection,
+                content=f"[SUMMARY of {len(old_memories)} entries] {summary_text}",
+                memory_type=old_memories[0].get("type", "observed_pattern"),
+                confidence=0.9,
+                rationale=f"Auto-summarized {len(old_memories)} older entries to save context space",
+                metadata={"is_summary": True, "compressed_count": len(old_memories)},
+            )
+
+            # Delete the old individual entries
+            deleted = 0
+            for m in old_memories:
+                if self.forget(m["id"], collection):
+                    deleted += 1
+
+            logger.info(
+                "[MEMORY] Summarized %s: compressed %d entries into 1 summary (deleted %d)",
+                collection, len(old_memories), deleted,
+            )
+            return summary_id
+
+        except Exception as e:
+            logger.error("[MEMORY] Summarization failed for %s: %s", collection, e)
+            return None
+
+    def run_summarization_pass(self, max_entries: int = 50, keep_recent: int = 10):
+        """Run summarization across all collections that exceed thresholds."""
+        for coll in COLLECTIONS:
+            result = self.summarize_collection(coll, max_entries, keep_recent)
+            if result:
+                logger.info("[MEMORY] Collection %s summarized -> %s", coll, result)
 
     def health_check(self) -> Dict[str, Any]:
         """Check memory system status."""

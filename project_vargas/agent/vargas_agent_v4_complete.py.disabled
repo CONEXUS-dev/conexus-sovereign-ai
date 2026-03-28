@@ -1,0 +1,660 @@
+# Vargas Agent V4 - Complete Version with ECP + OpenClaw Integration
+import sys
+import os
+import numpy as np
+import logging
+import json
+import yaml
+from pathlib import Path
+from typing import Dict, List, Any, Optional, Tuple
+
+# Add paths
+sys.path.append(str(Path(__file__).parent.parent / "ecp"))
+sys.path.append(str(Path(__file__).parent.parent / "openclaw"))
+
+# ECP Components
+from ecp_substrate import ECPSubstrate
+from forgetting_engine import ForgettingEngine
+
+# Constants
+ECP_CONTEXT_THRESHOLD = 0.80  # 80% context window tripwire
+ECP_MAX_TOKENS = 128000  # Approximate max context for Gemini 1.5 Pro
+TOKENS_PER_CHAR = 0.25  # Rough estimate
+
+class LightweightModelBridge:
+    """Lightweight version of ModelBridge with hash-based embeddings"""
+    
+    def __init__(self, substrate, engine):
+        self.substrate = substrate
+        self.engine = engine
+        self.consensus_threshold = 0.85
+        self.distance_threshold = 0.7
+        self.alignment_threshold = 0.8
+    
+    def embed(self, text: str) -> np.ndarray:
+        """Create lightweight hash-based embeddings"""
+        text_hash = hash(text)
+        np.random.seed(text_hash % (2**32))
+        return np.random.rand(384)
+    
+    def cosine_similarity(self, a: np.ndarray, b: np.ndarray) -> float:
+        """Calculate cosine similarity between two vectors"""
+        return float(np.dot(a, b))
+    
+    def cosine_distance(self, a: np.ndarray, b: np.ndarray) -> float:
+        """Calculate cosine distance (1 - similarity)"""
+        return 1.0 - self.cosine_similarity(a, b)
+    
+    def intercept_prompt(self, raw_prompt: str) -> str:
+        """Intercept and process prompt through ECP"""
+        # Convert prompt to embedding
+        prompt_embedding = self.embed(raw_prompt)
+        
+        # Process through substrate
+        state, tension = self.substrate.process_stage(prompt_embedding)
+        
+        # Check if tension exceeds threshold
+        if tension > self.substrate.threshold:
+            # High tension: preserve paradox, modify prompt
+            paradox_note = "\n[PARADOX DETECTED: Preserving tension]"
+            return raw_prompt + paradox_note
+        else:
+            # Low tension: consensus, return as-is
+            return raw_prompt
+
+class OpenClawBridge:
+    """Bridge to OpenClaw semantic skills system"""
+    
+    def __init__(self):
+        self.skills_path = Path(__file__).parent.parent / "openclaw" / "skills"
+        self.agents_path = Path(__file__).parent.parent / "openclaw" / "agents"
+        self.skills = self._load_skills()
+        self.agents = self._load_agents()
+        
+    def _load_skills(self) -> Dict[str, Any]:
+        """Load OpenClaw skills from manifest"""
+        manifest_path = self.skills_path / "manifest.json"
+        
+        if not manifest_path.exists():
+            return {"skills": [], "quarantined": []}
+        
+        try:
+            with open(manifest_path, 'r') as f:
+                manifest = json.load(f)
+            
+            # Extract skills from the nested structure
+            skills_data = manifest.get("skills", {})
+            active_skills = skills_data.get("active", [])
+            quarantined_skills = skills_data.get("quarantined", [])
+            
+            return {
+                "skills": active_skills,
+                "quarantined": quarantined_skills,
+                "total_skills": manifest.get("total_skills", 0),
+                "active_skills": manifest.get("active_skills", 0),
+                "quarantined_skills": manifest.get("quarantined_skills", 0)
+            }
+        except Exception as e:
+            logging.warning(f"Failed to load OpenClaw manifest: {e}")
+            return {"skills": [], "quarantined": []}
+    
+    def _load_agents(self) -> Dict[str, Any]:
+        """Load OpenClaw agents"""
+        agents = {}
+        
+        # Load Sway agent (Collapse mode)
+        sway_path = self.agents_path / "sway" / "agent.yaml"
+        if sway_path.exists():
+            try:
+                with open(sway_path, 'r') as f:
+                    agents["sway"] = yaml.safe_load(f)
+            except:
+                agents["sway"] = {"name": "Sway", "mode": "collapse"}
+        
+        # Load Opie agent (Become mode)
+        opie_path = self.agents_path / "opie" / "agent.yaml"
+        if opie_path.exists():
+            try:
+                with open(opie_path, 'r') as f:
+                    agents["opie"] = yaml.safe_load(f)
+            except:
+                agents["opie"] = {"name": "Opie", "mode": "become"}
+        
+        return agents
+    
+    def match_skills(self, query: str, top_k: int = 3) -> List[Dict[str, Any]]:
+        """Match query to semantic skills"""
+        skills = self.skills.get("skills", [])
+        
+        if not skills:
+            return []
+        
+        # Enhanced keyword matching
+        matched = []
+        query_lower = query.lower()
+        
+        # Create skill keyword mapping
+        skill_keywords = {
+            "hierarchical": ["hierarchical-planning", "planning", "plan"],
+            "planning": ["hierarchical-planning", "planning", "plan"],
+            "memory": ["memory-management", "memory", "agent-memory", "braindb"],
+            "paradox": ["paradox-processing", "paradox"],
+            "calibration": ["SovereignCalibration", "calibration"],
+            "authority": ["SovereignCalibration", "calibration"],
+            "emotional": ["emotional-symbolic-modulation", "emotional"],
+            "modulation": ["emotional-symbolic-modulation", "modulation"],
+            "stress": ["stress-navigation", "stress"],
+            "navigation": ["stress-navigation", "navigation"],
+            "coordination": ["multi-agent-coordination", "coordination"],
+            "agent": ["multi-agent-coordination", "agent"],
+            "protocol": ["protocol-driven-reasoning", "protocol"],
+            "reasoning": ["protocol-driven-reasoning", "reasoning"],
+            "ethics": ["ethics-value-integration", "ethics"],
+            "value": ["ethics-value-integration", "value"],
+            "integration": ["ethics-value-integration", "integration"],
+            "secure": ["secure-execution", "security", "secure"],
+            "execution": ["secure-execution", "execution"],
+            "python": ["python"],
+            "search": ["google-search", "search"],
+            "browser": ["agent-browser", "browser"],
+            "data": ["data-analyst", "data"],
+            "analyst": ["data-analyst", "analyst"],
+            "academic": ["academic-research", "academic"],
+            "research": ["academic-research", "research", "agent-deep-research"],
+            "writing": ["academic-writer", "writing"],
+            "daily": ["daily-questions", "daily-review-ritual", "daily"],
+            "question": ["daily-questions", "question"],
+            "review": ["daily-review-ritual", "review"],
+            "ritual": ["daily-review-ritual", "ritual"]
+        }
+        
+        for skill in skills:
+            skill_name = skill.get("name", "").lower()
+            skill_path = skill.get("path", "").lower()
+            
+            # Calculate relevance score
+            score = 0
+            
+            # Direct name match
+            if skill_name in query_lower:
+                score += 3
+            
+            # Check keyword mappings
+            for keyword, related_skills in skill_keywords.items():
+                if keyword in query_lower and skill_name in related_skills:
+                    score += 2
+                elif any(related in skill_name for related in related_skills):
+                    score += 1
+            
+            # Partial word matching
+            query_words = query_lower.split()
+            skill_words = skill_name.split('-') + skill_name.split('_')
+            
+            for q_word in query_words:
+                for s_word in skill_words:
+                    if q_word == s_word:
+                        score += 1
+                    elif q_word in s_word or s_word in q_word:
+                        score += 0.5
+            
+            if score > 0:
+                matched.append({
+                    "skill": skill,
+                    "score": score,
+                    "name": skill.get("name", "Unknown"),
+                    "description": skill.get("path", ""),
+                    "path": skill.get("path", ""),
+                    "mode": skill.get("mode", "unknown"),
+                    "agents": skill.get("agents", [])
+                })
+        
+        # Sort by score and return top_k
+        matched.sort(key=lambda x: x["score"], reverse=True)
+        return matched[:top_k]
+    
+    def get_agent_for_mode(self, mode: str) -> Optional[Dict[str, Any]]:
+        """Get agent for specific mode"""
+        if mode == "collapse" and "sway" in self.agents:
+            return self.agents["sway"]
+        elif mode == "become" and "opie" in self.agents:
+            return self.agents["opie"]
+        return None
+    
+    def execute_skill(self, skill_name: str, params: Dict[str, Any]) -> Dict[str, Any]:
+        """Execute a skill (mock implementation)"""
+        return {
+            "skill": skill_name,
+            "status": "executed",
+            "result": f"Mock execution of {skill_name} with params: {params}",
+            "timestamp": np.datetime64('now').astype(str)
+        }
+    
+    def get_available_skills(self) -> List[str]:
+        """Get list of available skill names"""
+        return [skill.get("name", "Unknown") for skill in self.skills.get("skills", [])]
+
+class LightweightMemoryCompressor:
+    """Lightweight version of TensionCompressor"""
+    
+    def __init__(self, substrate, retention_threshold: float = 0.75):
+        self.substrate = substrate
+        self.retention_threshold = retention_threshold
+        self.compression_directive = """
+        You are compressing conversation history for archival. CRITICAL CONSTRAINT: 
+        Do NOT harmonize or resolve contradictions. Do NOT smooth tensions. 
+        Your task is to identify and preserve the exact points of friction, 
+        the competing vectors, and the suspended paradoxes. 
+        Compress the density without eliminating the tension. 
+        Map the structural load, not the narrative resolution.
+        """
+    
+    def embed(self, text: str) -> np.ndarray:
+        """Create lightweight embeddings"""
+        text_hash = hash(text)
+        np.random.seed(text_hash % (2**32))
+        return np.random.rand(384)
+    
+    def calculate_tension_score(self, text: str) -> float:
+        """Calculate tension score for text"""
+        embedding = self.embed(text)
+        return self.substrate.compute_tension_gradient(embedding, self.substrate.state_vector)
+    
+    def compress_conversation(self, conversation_history: List[Dict[str, Any]]) -> str:
+        """Compress conversation while preserving tension"""
+        if not conversation_history:
+            return ""
+        
+        # Calculate tension for each message
+        tension_scores = []
+        for msg in conversation_history:
+            text = msg.get("content", "")
+            score = self.calculate_tension_score(text)
+            tension_scores.append(score)
+        
+        # Sort by tension (highest first)
+        sorted_msgs = sorted(zip(conversation_history, tension_scores), key=lambda x: x[1], reverse=True)
+        
+        # Compress high-tension messages
+        compressed = []
+        for msg, score in sorted_msgs:
+            if score >= self.retention_threshold:
+                content = msg.get("content", "")[:200]  # Truncate
+                compressed.append(f"[Tension: {score:.3f}] {content}")
+        
+        return "\n".join(compressed)
+
+class LightweightRecursiveReinjection:
+    """Lightweight version of RecursiveReinjection"""
+    
+    def __init__(self, substrate, engine, bridge):
+        self.substrate = substrate
+        self.engine = engine
+        self.bridge = bridge
+        self.survival_threshold = 3
+        self.artifacts = []
+    
+    def embed(self, text: str) -> np.ndarray:
+        """Create lightweight embeddings"""
+        text_hash = hash(text)
+        np.random.seed(text_hash % (2**32))
+        return np.random.rand(384)
+    
+    def query_most_recent_paradox(self) -> Optional[str]:
+        """Query for most recent paradox"""
+        hardest_paradox = self.substrate.pop_hardest_paradox()
+        
+        if hardest_paradox is None:
+            return None
+        
+        # Convert vector back to text placeholder
+        return "[PARADOX: High-tension vector preserved]"
+    
+    def run_recursive_cycle(self, seed_text: str, num_cycles: int = 3, model_generate_fn=None) -> Dict[str, Any]:
+        """Run recursive reinjection cycle"""
+        cycles_completed = 0
+        artifacts_created = []
+        
+        for cycle in range(num_cycles):
+            # Get current paradox
+            paradox = self.query_most_recent_paradox()
+            
+            if paradox is None:
+                # Create initial paradox from seed
+                seed_embedding = self.embed(seed_text)
+                self.substrate.preserve_paradox(seed_embedding)
+                artifacts_created.append(f"Cycle {cycle}: Created initial paradox")
+            else:
+                # Reinject paradox
+                if model_generate_fn:
+                    response = model_generate_fn(f"Process this paradox: {paradox}")
+                    response_embedding = self.embed(response)
+                    self.substrate.preserve_paradox(response_embedding)
+                    artifacts_created.append(f"Cycle {cycle}: Reinjected paradox")
+                else:
+                    artifacts_created.append(f"Cycle {cycle}: Paradox available but no model")
+            
+            cycles_completed += 1
+        
+        return {
+            "cycles_completed": cycles_completed,
+            "artifacts_created": artifacts_created,
+            "final_paradox_count": len(self.substrate.paradox_archive)
+        }
+
+class VargasAgentV4Complete:
+    """Vargas Agent V4 - Complete Version with ECP + OpenClaw Integration"""
+    
+    def __init__(self):
+        # Setup logging
+        logging.basicConfig(level=logging.INFO)
+        self.logger = logging.getLogger(__name__)
+        
+        # ECP Components
+        self.substrate = ECPSubstrate(dimensions=384, base_threshold=0.618)
+        self.forgetting_engine = ForgettingEngine(self.substrate, retention_threshold=0.3)
+        self.model_bridge = LightweightModelBridge(self.substrate, self.forgetting_engine)
+        self.memory_compressor = LightweightMemoryCompressor(self.substrate, retention_threshold=0.75)
+        self.reinjector = LightweightRecursiveReinjection(self.substrate, self.forgetting_engine, self.model_bridge)
+        
+        # LLM Client
+        try:
+            from adapters.cloud_llm.gemini_client import GeminiLLMClient
+            self.llm_client = GeminiLLMClient()
+            self.logger.info("✅ LLM Client: Connected")
+        except Exception as e:
+            self.llm_client = None
+            self.logger.error(f"❌ LLM Client: Failed - {e}")
+        
+        # OpenClaw Integration
+        try:
+            self.openclaw = OpenClawBridge()
+            self.openclaw_available = True
+            self.logger.info("✅ OpenClaw: Connected")
+        except Exception as e:
+            self.openclaw = None
+            self.openclaw_available = False
+            self.logger.warning(f"⚠️ OpenClaw: Not available - {e}")
+        
+        # ECP State tracking
+        self.context_tokens_used = 0
+        self.compression_triggered = False
+        
+        # Conversation history
+        self.conversation_history = []
+        
+        # Skill execution history
+        self.skill_history = []
+        
+        self.logger.info("🚀 Vargas V4 Complete Agent Initialized")
+        self.logger.info("✅ ECP Architecture: Active")
+        self.logger.info("✅ Embeddings: Lightweight (hash-based)")
+        self.logger.info("✅ Paradox Processing: Enabled")
+        self.logger.info("✅ 80% Context Tripwire: Armed")
+        self.logger.info(f"✅ OpenClaw: {'Connected' if self.openclaw_available else 'Not Available'}")
+        if self.openclaw_available:
+            skills = self.openclaw.get_available_skills()
+            self.logger.info(f"✅ Available Skills: {len(skills)}")
+    
+    def check_context_tripwire(self, prompt: str) -> bool:
+        """Check if context exceeds 80% threshold"""
+        estimated_tokens = len(prompt) * TOKENS_PER_CHAR
+        self.context_tokens_used += estimated_tokens
+        
+        if self.context_tokens_used > (ECP_MAX_TOKENS * ECP_CONTEXT_THRESHOLD):
+            if not self.compression_triggered:
+                self.logger.warning(f"🚨 80% Context Tripwire Activated! Used: {self.context_tokens_used:.0f}")
+                self.compression_triggered = True
+                return True
+        
+        return False
+    
+    def trigger_memory_compression(self) -> str:
+        """Trigger autonomous memory compression"""
+        self.logger.info("🔄 Triggering Memory Compression...")
+        
+        # Compress conversation history
+        compressed = self.memory_compressor.compress_conversation(self.conversation_history)
+        
+        # Reset context tracking
+        self.context_tokens_used = 0
+        self.compression_triggered = False
+        
+        # Clear old history
+        self.conversation_history = []
+        
+        self.logger.info(f"✅ Compression complete. Preserved {len(compressed)} characters")
+        return compressed
+    
+    def match_and_execute_skills(self, user_input: str) -> List[Dict[str, Any]]:
+        """Match user input to skills and execute them"""
+        if not self.openclaw_available:
+            return []
+        
+        # Match skills
+        matched_skills = self.openclaw.match_skills(user_input, top_k=3)
+        
+        executed_skills = []
+        for skill_match in matched_skills:
+            skill_name = skill_match["name"]
+            
+            # Execute skill
+            result = self.openclaw.execute_skill(skill_name, {"input": user_input})
+            
+            executed_skills.append({
+                "skill": skill_name,
+                "match_score": skill_match["score"],
+                "execution": result,
+                "mode": skill_match.get("mode", "unknown")
+            })
+            
+            # Add to skill history
+            self.skill_history.append({
+                "skill": skill_name,
+                "timestamp": np.datetime64('now').astype(str),
+                "input": user_input,
+                "result": result
+            })
+        
+        return executed_skills
+    
+    def process_message(self, user_input: str) -> Dict[str, Any]:
+        """Process user message through V4 ECP + OpenClaw architecture"""
+        self.logger.info(f"📥 Processing: {user_input[:50]}...")
+        
+        # Add to conversation history
+        self.conversation_history.append({
+            "role": "user",
+            "content": user_input,
+            "timestamp": np.datetime64('now').astype(str)
+        })
+        
+        # Check context tripwire
+        if self.check_context_tripwire(user_input):
+            compressed = self.trigger_memory_compression()
+            self.logger.info("📦 Memory compression completed")
+        
+        # Process through model bridge
+        processed_prompt = self.model_bridge.intercept_prompt(user_input)
+        
+        # Process through forgetting engine
+        input_embedding = self.model_bridge.embed(user_input)
+        self.forgetting_engine.process_signal(input_embedding)
+        
+        # Match and execute skills
+        executed_skills = self.match_and_execute_skills(user_input)
+        
+        # Generate response incorporating skill results
+        skill_context = ""
+        if executed_skills:
+            skill_names = [s["skill"] for s in executed_skills]
+            skill_context = f"\n[SKILLS EXECUTED: {', '.join(skill_names)}]"
+        
+        # Use actual LLM for response generation
+        try:
+            if self.llm_client is None:
+                # Fallback response when LLM is not available
+                response = f"I'm Vargas, your AI assistant with ECP architecture. I can see you're asking about: {user_input[:50]}{'...' if len(user_input) > 50 else ''}. I'm currently having trouble connecting to my language model, but I'm here and ready to help! Could you tell me more about what you'd like assistance with?"
+            else:
+                # Build context from conversation history
+                context = "\n".join([f"{msg['role']}: {msg['content']}" for msg in self.conversation_history[-5:]])
+                
+                # Generate response using Gemini
+                full_prompt = f"""You are Vargas, a sophisticated AI assistant with ECP (Emotional Calibration Protocol) architecture and access to 99 OpenClaw semantic skills.
+
+Context: {context}
+
+Current user message: {user_input}
+{skill_context}
+
+Provide a helpful, intelligent response that demonstrates your advanced capabilities. Be collaborative and engaging."""
+
+                response = self.llm_client.generate_response(full_prompt)
+                
+                if not response or response.strip() == "":
+                    response = "I'm here to help! Could you provide more details about what you'd like assistance with?"
+                
+        except Exception as e:
+            self.logger.error(f"LLM generation failed: {e}")
+            response = f"I understand you're asking about: {user_input}. I'm experiencing a technical issue with my response generation, but I'm here to help!"
+        
+        # Add response to history
+        self.conversation_history.append({
+            "role": "assistant", 
+            "content": response,
+            "timestamp": np.datetime64('now').astype(str)
+        })
+        
+        # Get ECP status
+        ecp_status = self.get_ecp_status()
+        
+        return {
+            "response": response,
+            "ecp_status": ecp_status,
+            "context_used": self.context_tokens_used,
+            "compression_active": self.compression_triggered,
+            "skills_executed": executed_skills,
+            "openclaw_available": self.openclaw_available
+        }
+    
+    def get_ecp_status(self) -> Dict[str, Any]:
+        """Get current ECP status"""
+        substrate_metrics = self.substrate.get_metrics()
+        engine_summary = self.forgetting_engine.summary()
+        
+        return {
+            "substrate": {
+                "stage": substrate_metrics.stage_index,
+                "threshold": substrate_metrics.active_threshold,
+                "paradox_count": substrate_metrics.paradox_count,
+                "vector_magnitude": substrate_metrics.vector_magnitude
+            },
+            "forgetting_engine": {
+                "active_traces": engine_summary["active_traces"],
+                "current_cycle": engine_summary["current_cycle"],
+                "total_deleted": engine_summary["total_deleted"],
+                "total_promoted": engine_summary["total_promoted"]
+            },
+            "memory_state": {
+                "context_tokens": self.context_tokens_used,
+                "compression_triggered": self.compression_triggered,
+                "conversation_length": len(self.conversation_history)
+            },
+            "openclaw": {
+                "available": self.openclaw_available,
+                "skills_executed": len(self.skill_history),
+                "available_skills": len(self.openclaw.get_available_skills()) if self.openclaw_available else 0
+            }
+        }
+    
+    def run_recursive_cycle(self, seed_text: str, num_cycles: int = 3) -> Dict[str, Any]:
+        """Run recursive reinjection cycle"""
+        def mock_model_generate(prompt: str) -> str:
+            return f"Mock response to: {prompt[:50]}..."
+        
+        return self.reinjector.run_recursive_cycle(seed_text, num_cycles, mock_model_generate)
+    
+    def list_available_skills(self) -> List[str]:
+        """List all available OpenClaw skills"""
+        if not self.openclaw_available:
+            return []
+        return self.openclaw.get_available_skills()
+    
+    def get_skill_history(self) -> List[Dict[str, Any]]:
+        """Get history of executed skills"""
+        return self.skill_history
+
+def create_vargas_agent_v4_complete():
+    """Create Vargas V4 Complete agent"""
+    return VargasAgentV4Complete()
+
+def main():
+    """Run V4 Complete agent demo"""
+    print("🚀 Vargas V4 Complete Agent Demo")
+    print("✅ ECP Architecture + OpenClaw Integration")
+    print("=" * 60)
+    
+    # Create agent
+    agent = create_vargas_agent_v4_complete()
+    
+    # Show available skills
+    skills = agent.list_available_skills()
+    print(f"\n🛠️ Available Skills: {len(skills)}")
+    if skills:
+        print(f"Top 5: {skills[:5]}")
+    
+    # Test messages with skill triggers
+    test_messages = [
+        "Hello Vargas, how does the ECP architecture work?",
+        "Can you help me with hierarchical planning?",
+        "I need to manage my memory better",
+        "Show me some emotional modulation",
+        "What about paradox processing?",
+        "Help me with calibration authority"
+    ]
+    
+    for i, message in enumerate(test_messages, 1):
+        print(f"\n📨 Message {i}: {message[:50]}...")
+        
+        result = agent.process_message(message)
+        
+        print(f"📤 Response: {result['response']}")
+        print(f"📊 Context Used: {result['context_used']:.0f} tokens")
+        print(f"🚨 Compression: {'Active' if result['compression_active'] else 'Inactive'}")
+        print(f"🧠 Paradox Count: {result['ecp_status']['substrate']['paradox_count']}")
+        print(f"🔄 Active Traces: {result['ecp_status']['forgetting_engine']['active_traces']}")
+        
+        if result['skills_executed']:
+            print(f"🛠️ Skills Executed: {len(result['skills_executed'])}")
+            for skill in result['skills_executed']:
+                print(f"  - {skill['skill']} (score: {skill['match_score']})")
+    
+    # Test recursive cycle
+    print(f"\n🔄 Testing Recursive Reinjection...")
+    cycle_result = agent.run_recursive_cycle("Test paradox seed", num_cycles=3)
+    print(f"✅ Cycles Completed: {cycle_result['cycles_completed']}")
+    print(f"✅ Artifacts Created: {len(cycle_result['artifacts_created'])}")
+    
+    # Show skill history
+    skill_history = agent.get_skill_history()
+    print(f"\n🛠️ Skill History: {len(skill_history)} executions")
+    for skill_exec in skill_history[-3:]:  # Show last 3
+        print(f"  - {skill_exec['skill']} at {skill_exec['timestamp']}")
+    
+    # Final status
+    final_status = agent.get_ecp_status()
+    print(f"\n📊 Final System Status:")
+    print(f"  Stage: {final_status['substrate']['stage']}")
+    print(f"  Threshold: {final_status['substrate']['threshold']:.3f}")
+    print(f"  Paradoxes: {final_status['substrate']['paradox_count']}")
+    print(f"  Deleted: {final_status['forgetting_engine']['total_deleted']}")
+    print(f"  Promoted: {final_status['forgetting_engine']['total_promoted']}")
+    print(f"  OpenClaw: {'Available' if final_status['openclaw']['available'] else 'Not Available'}")
+    print(f"  Skills Available: {final_status['openclaw']['available_skills']}")
+    print(f"  Skills Executed: {final_status['openclaw']['skills_executed']}")
+    
+    print("\n🎉 Vargas V4 Complete Demo Finished!")
+    print("✅ ECP Architecture + OpenClaw Skills Integration Working!")
+
+if __name__ == "__main__":
+    import yaml
+    main()

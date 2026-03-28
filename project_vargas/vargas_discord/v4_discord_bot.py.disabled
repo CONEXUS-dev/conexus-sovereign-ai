@@ -1,0 +1,190 @@
+# V4 Discord Bot - Your Customized OpenClaw Agent with Discord Integration
+import asyncio
+import logging
+import os
+import sys
+from pathlib import Path
+from typing import Optional
+
+import discord
+from dotenv import load_dotenv
+
+# Add paths for V4 agent
+sys.path.append(str(Path(__file__).parent.parent / "agent"))
+sys.path.append(str(Path(__file__).parent.parent / "ecp"))
+
+from vargas_agent_v4_complete import create_vargas_agent_v4_complete
+
+# Load environment variables
+ENV_PATH = Path(__file__).parent.parent / ".env"
+load_dotenv(ENV_PATH)
+
+# Configure logging
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s [%(name)s] %(levelname)s: %(message)s",
+    datefmt="%Y-%m-%d %H:%M:%S",
+)
+logger = logging.getLogger("vargas.discord")
+
+# Discord setup
+intents = discord.Intents.default()
+intents.message_content = True
+
+class V4DiscordBot(discord.Client):
+    """V4 Customized OpenClaw Agent with Discord Integration"""
+    
+    def __init__(self):
+        super().__init__(intents=intents)
+        self.vargas_agent = None
+        self.conversation_histories = {}  # Per-channel history
+        
+    async def on_ready(self):
+        """Initialize V4 agent when bot is ready"""
+        logger.info(f"🤖 V4 Discord Bot logged in as {self.user}")
+        
+        # Initialize V4 agent
+        try:
+            self.vargas_agent = create_vargas_agent_v4_complete()
+            logger.info("✅ V4 Agent initialized with ECP + OpenClaw")
+            logger.info(f"🛠️ Available Skills: {len(self.vargas_agent.openclaw.get_available_skills())}")
+            logger.info("🧠 ECP Architecture: Active")
+            logger.info("🎯 Ready for Discord conversations!")
+            
+            # Set status
+            await self.change_presence(
+                activity=discord.Activity(
+                    type=discord.ActivityType.playing,
+                    name="ECP + OpenClaw | V4 Agent"
+                )
+            )
+            
+        except Exception as e:
+            logger.error(f"❌ Failed to initialize V4 agent: {e}")
+    
+    async def on_message(self, message):
+        """Handle Discord messages through V4 agent"""
+        # Ignore bot's own messages
+        if message.author == self.user:
+            return
+        
+        # Only respond in server channels (not DMs unless you want that)
+        if isinstance(message.channel, discord.DMChannel):
+            return
+        
+        # Get or create conversation history for this channel
+        channel_id = str(message.channel.id)
+        if channel_id not in self.conversation_histories:
+            self.conversation_histories[channel_id] = []
+        
+        try:
+            # Show typing indicator
+            async with message.channel.typing():
+                # Process message through V4 agent
+                result = self.vargas_agent.process_message(message.content)
+                
+                # Store in conversation history
+                self.conversation_histories[channel_id].append({
+                    "user": message.content,
+                    "vargas": result['response'],
+                    "timestamp": asyncio.get_event_loop().time(),
+                    "author": message.author.name,
+                    "ecp_status": result['ecp_status'],
+                    "skills_executed": result['skills_executed']
+                })
+                
+                # Create Discord response
+                response = result['response']
+                
+                # Check if response is too long for Discord (2000 char limit)
+                if len(response) > 1900:
+                    response = response[:1900] + "..."
+                
+                # Create embed with ECP status
+                embed = discord.Embed(
+                    title="🤖 Vargas V4 Response",
+                    description=response,
+                    color=discord.Color.blue()
+                )
+                
+                # Add ECP status
+                ecp = result['ecp_status']
+                embed.add_field(
+                    name="🧠 ECP Status",
+                    value=f"Stage: {ecp['substrate']['stage']} | Paradoxes: {ecp['substrate']['paradox_count']} | Context: {result['context_used']:.0f} tokens",
+                    inline=False
+                )
+                
+                # Add skill executions if any
+                if result['skills_executed']:
+                    skills_text = "\n".join([
+                        f"• {skill['name']} (score: {skill['score']})"
+                        for skill in result['skills_executed'][:3]  # Show max 3 skills
+                    ])
+                    if len(result['skills_executed']) > 3:
+                        skills_text += f"\n... and {len(result['skills_executed']) - 3} more"
+                    
+                    embed.add_field(
+                        name="🛠️ OpenClaw Skills Used",
+                        value=skills_text,
+                        inline=False
+                    )
+                
+                # Add footer with session info
+                embed.set_footer(
+                    text=f"V4 Customized OpenClaw Agent | Channel: #{message.channel.name}"
+                )
+                
+                # Send response
+                await message.reply(embed=embed)
+                
+                # Log the interaction
+                logger.info(f"📨 {message.author.name}: {message.content[:50]}...")
+                logger.info(f"📤 V4: Stage {ecp['substrate']['stage']}, {len(result['skills_executed'])} skills")
+                
+        except Exception as e:
+            logger.error(f"❌ Error processing message: {e}")
+            await message.reply(f"❌ Sorry, I encountered an error: {str(e)}")
+    
+    async def on_guild_join(self, guild):
+        """When bot joins a new server"""
+        logger.info(f"🎉 Joined new server: {guild.name}")
+        
+        # Find a system channel to send welcome message
+        system_channel = guild.system_channel
+        if system_channel:
+            await system_channel.send(
+                "🤖 **Vargas V4 Customized OpenClaw Agent** is here!\n\n"
+                "🧠 **ECP Architecture** - Paradox-based memory\n"
+                "🛠️ **99 OpenClaw Skills** - Semantic skill matching\n"
+                "🎯 **Ready to help** - Just mention me in any channel!\n\n"
+                "Type anything and I'll respond with my custom ECP + OpenClaw integration!"
+            )
+
+def main():
+    """Main entry point"""
+    # Check for Discord token
+    token = os.getenv("DISCORD_TOKEN")
+    if not token:
+        logger.error("❌ DISCORD_TOKEN not found in .env file!")
+        logger.error("Please add DISCORD_TOKEN=your_bot_token to your .env file")
+        return
+    
+    logger.info("🚀 Starting V4 Discord Bot")
+    logger.info("🤖 Your Customized OpenClaw Agent")
+    logger.info("🧠 ECP Architecture + 99 Semantic Skills")
+    logger.info("💬 Discord Integration Ready")
+    
+    # Create and run bot
+    bot = V4DiscordBot()
+    
+    try:
+        bot.run(token)
+    except discord.errors.LoginFailure:
+        logger.error("❌ Invalid Discord token!")
+        logger.error("Please check your DISCORD_TOKEN in .env file")
+    except Exception as e:
+        logger.error(f"❌ Bot error: {e}")
+
+if __name__ == "__main__":
+    main()

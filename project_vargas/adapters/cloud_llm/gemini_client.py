@@ -16,12 +16,13 @@ import logging
 import uuid
 from typing import Any
 
-from project_vargas.adapters.cloud_llm.base import CloudLLMBase
+from adapters.cloud_llm.base import CloudLLMBase
 
 logger = logging.getLogger(__name__)
 
-DEFAULT_GEMINI_MODEL = "gemini-3.1-pro-preview"
+DEFAULT_GEMINI_MODEL = "gemini-3.1-pro-preview"  # Highest-tier model - API key updated
 DEFAULT_EMBEDDING_MODEL = "gemini-embedding-001"
+DEFAULT_FALLBACK_MODEL = "gemini-2.5-pro"  # Stable deep reasoning fallback
 MAX_RETRIES = 6
 INITIAL_BACKOFF_SEC = 15
 
@@ -34,6 +35,7 @@ class GeminiLLMClient(CloudLLMBase):
         api_key: str | None = None,
         default_model: str = DEFAULT_GEMINI_MODEL,
         embedding_model: str = DEFAULT_EMBEDDING_MODEL,
+        fallback_model: str | None = None,
     ):
         self._api_key = (
             api_key
@@ -57,11 +59,12 @@ class GeminiLLMClient(CloudLLMBase):
 
         self.default_model = default_model
         self.embedding_model = embedding_model
+        self.fallback_model = fallback_model
         self._request_count = 0
         self._total_latency = 0.0
         logger.info(
-            "[GEMINI] Client initialized — model=%s, embedding=%s",
-            self.default_model, self.embedding_model,
+            "[GEMINI] Client initialized — model=%s, fallback=%s, embedding=%s",
+            self.default_model, self.fallback_model, self.embedding_model,
         )
 
     def generate(
@@ -100,7 +103,17 @@ class GeminiLLMClient(CloudLLMBase):
             content = user_prompt
 
         t0 = time.perf_counter()
-        response_text = self._call_with_retry(active_model, content, config, request_id)
+        try:
+            response_text = self._call_with_retry(active_model, content, config, request_id)
+        except Exception as primary_err:
+            if self.fallback_model and self.fallback_model != active_model:
+                logger.warning(
+                    "[GEMINI] req=%s primary model failed (%s), trying fallback %s",
+                    request_id, primary_err, self.fallback_model,
+                )
+                response_text = self._call_with_retry(self.fallback_model, content, config, request_id)
+            else:
+                raise
         elapsed = time.perf_counter() - t0
 
         self._request_count += 1
@@ -146,6 +159,192 @@ class GeminiLLMClient(CloudLLMBase):
                     time.sleep(wait)
                 else:
                     raise
+
+    def generate_with_tools(
+        self,
+        model: str,
+        system_prompt: str,
+        user_prompt: str,
+        tool_declarations: list[dict],
+        temp: float = 0.7,
+        max_tokens: int = 2048,
+        image_parts: list | None = None,
+        **kwargs: Any,
+    ) -> dict:
+        """Generate with native function calling support.
+
+        Args:
+            tool_declarations: List of tool schemas in Gemini format, e.g.:
+                [{"name": "web_search", "description": "...", "parameters": {...}}]
+
+        Returns:
+            {"text": str, "function_calls": [{"name": str, "args": dict}]}
+        """
+        from google.genai import types
+
+        active_model = model or self.default_model
+        request_id = str(uuid.uuid4())[:8]
+
+        logger.info(
+            "[GEMINI] generate_with_tools() req=%s model=%s tools=%d",
+            request_id, active_model, len(tool_declarations),
+        )
+
+        # Build tool definitions
+        gemini_tools = []
+        for decl in tool_declarations:
+            props = decl.get("parameters", {}).get("properties", {})
+            required = decl.get("parameters", {}).get("required", [])
+            schema_props = {}
+            for pname, pinfo in props.items():
+                schema_props[pname] = types.Schema(
+                    type=pinfo.get("type", "STRING").upper(),
+                    description=pinfo.get("description", ""),
+                )
+            func_decl = types.FunctionDeclaration(
+                name=decl["name"],
+                description=decl.get("description", ""),
+                parameters=types.Schema(
+                    type="OBJECT",
+                    properties=schema_props,
+                    required=required,
+                ),
+            )
+            gemini_tools.append(func_decl)
+
+        config = types.GenerateContentConfig(
+            system_instruction=system_prompt if system_prompt else None,
+            temperature=temp,
+            max_output_tokens=max_tokens,
+            tools=[types.Tool(function_declarations=gemini_tools)] if gemini_tools else None,
+        )
+
+        if image_parts:
+            content = [user_prompt] + image_parts
+        else:
+            content = user_prompt
+
+        t0 = time.perf_counter()
+        try:
+            resp = self._call_with_retry_raw(active_model, content, config, request_id)
+        except Exception as primary_err:
+            if self.fallback_model and self.fallback_model != active_model:
+                logger.warning(
+                    "[GEMINI] req=%s tools primary failed (%s), trying fallback %s",
+                    request_id, primary_err, self.fallback_model,
+                )
+                resp = self._call_with_retry_raw(self.fallback_model, content, config, request_id)
+            else:
+                raise
+        elapsed = time.perf_counter() - t0
+
+        self._request_count += 1
+        self._total_latency += elapsed
+
+        # Extract text and function calls from response
+        result = {"text": "", "function_calls": []}
+        if resp.candidates and resp.candidates[0].content and resp.candidates[0].content.parts:
+            for part in resp.candidates[0].content.parts:
+                if part.text and not getattr(part, "thought", False):
+                    result["text"] += part.text
+                if hasattr(part, "function_call") and part.function_call:
+                    fc = part.function_call
+                    result["function_calls"].append({
+                        "name": fc.name,
+                        "args": dict(fc.args) if fc.args else {},
+                    })
+
+        logger.info(
+            "[GEMINI] generate_with_tools() req=%s completed in %.2fs, text=%d chars, calls=%d",
+            request_id, elapsed, len(result["text"]), len(result["function_calls"]),
+        )
+        return result
+
+    def _call_with_retry_raw(
+        self, model: str, content: Any, config: Any, request_id: str,
+    ) -> Any:
+        """Call Gemini with retry, returning the raw response object."""
+        for attempt in range(MAX_RETRIES):
+            try:
+                time.sleep(0.5)
+                resp = self._client.models.generate_content(
+                    model=model,
+                    contents=content,
+                    config=config,
+                )
+                return resp
+            except Exception as e:
+                if "429" in str(e) and attempt < MAX_RETRIES - 1:
+                    wait = INITIAL_BACKOFF_SEC * (attempt + 1)
+                    logger.warning(
+                        "[GEMINI] req=%s rate limited (attempt %d/%d), retrying in %ds...",
+                        request_id, attempt + 1, MAX_RETRIES, wait,
+                    )
+                    time.sleep(wait)
+                else:
+                    raise
+
+    def generate_stream(
+        self,
+        model: str,
+        system_prompt: str,
+        user_prompt: str,
+        temp: float = 0.7,
+        max_tokens: int = 2048,
+        image_parts: list | None = None,
+        **kwargs: Any,
+    ):
+        """Generate text via streaming. Yields text chunks as they arrive.
+
+        Usage:
+            for chunk in client.generate_stream(...):
+                print(chunk, end="")
+        """
+        from google.genai import types
+
+        active_model = model or self.default_model
+        request_id = str(uuid.uuid4())[:8]
+
+        logger.info(
+            "[GEMINI] generate_stream() req=%s model=%s",
+            request_id, active_model,
+        )
+
+        config = types.GenerateContentConfig(
+            system_instruction=system_prompt if system_prompt else None,
+            temperature=temp,
+            max_output_tokens=max_tokens,
+        )
+
+        if image_parts:
+            content = [user_prompt] + image_parts
+        else:
+            content = user_prompt
+
+        t0 = time.perf_counter()
+        total_chars = 0
+        try:
+            time.sleep(0.5)
+            stream = self._client.models.generate_content_stream(
+                model=active_model,
+                contents=content,
+                config=config,
+            )
+            for chunk in stream:
+                if chunk.text:
+                    total_chars += len(chunk.text)
+                    yield chunk.text
+        except Exception as e:
+            logger.error("[GEMINI] generate_stream() req=%s error: %s", request_id, e)
+            raise
+        finally:
+            elapsed = time.perf_counter() - t0
+            self._request_count += 1
+            self._total_latency += elapsed
+            logger.info(
+                "[GEMINI] generate_stream() req=%s completed in %.2fs, total_chars=%d",
+                request_id, elapsed, total_chars,
+            )
 
     def embed(self, text: str | list[str]) -> list[float] | list[list[float]]:
         """Compute embeddings via Gemini embedding API."""
