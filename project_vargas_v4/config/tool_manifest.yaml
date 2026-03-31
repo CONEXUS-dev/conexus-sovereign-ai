@@ -1,0 +1,164 @@
+# VARGAS V4 Tool Manifest — Capability Registry
+# Reference: Master Blueprint Section 7, Section 12.4
+
+tools:
+  # --- Tier 0: Passive Observation ---
+  read_file:
+    trust_tier: 0
+    family: file_io
+    description: "Read contents of a local file"
+    parameters: [path]
+    returns: content
+    side_effects: none
+
+  list_directory:
+    trust_tier: 0
+    family: file_io
+    description: "List files and directories at a path"
+    parameters: [path, recursive]
+    returns: entries
+    side_effects: none
+
+  search_memory:
+    trust_tier: 0
+    family: memory
+    description: "Semantic search across ECP memory stores"
+    parameters: [query, collection, top_k]
+    returns: results
+    side_effects: none
+
+  query_provenance:
+    trust_tier: 0
+    family: provenance
+    description: "Query the provenance chain for audit entries"
+    parameters: [filter, limit]
+    returns: entries
+    side_effects: none
+
+  get_system_status:
+    trust_tier: 0
+    family: system
+    description: "Return current system state including E-Vector"
+    parameters: []
+    returns: status_dict
+    side_effects: none
+
+  # --- Tier 1: Low-Risk Autonomous ---
+  web_search:
+    trust_tier: 1
+    family: search
+    description: "Search the web for information"
+    parameters: [query, max_results]
+    returns: results
+    side_effects: none
+
+  read_url:
+    trust_tier: 1
+    family: browser
+    description: "Read content from a URL"
+    parameters: [url]
+    returns: content
+    side_effects: none
+
+  store_memory:
+    trust_tier: 1
+    family: memory
+    description: "Store a new memory in an ECP collection"
+    parameters: [collection, content, subtype, confidence]
+    returns: memory_id
+    side_effects: memory_write
+
+  log_provenance:
+    trust_tier: 1
+    family: provenance
+    description: "Log a provenance entry"
+    parameters: [entry]
+    returns: entry_id
+    side_effects: log_append
+
+  # --- Tier 2: Snapshot-First Mutation ---
+  write_file:
+    trust_tier: 2
+    family: file_io
+    description: "Write content to a file (snapshot-first)"
+    parameters: [path, content]
+    returns: success
+    side_effects: file_mutation
+    requires_snapshot: true
+
+  modify_file:
+    trust_tier: 2
+    family: file_io
+    description: "Modify existing file content (snapshot-first)"
+    parameters: [path, old_content, new_content]
+    returns: success
+    side_effects: file_mutation
+    requires_snapshot: true
+
+  correct_memory:
+    trust_tier: 2
+    family: memory
+    description: "Supersede a memory with corrected content"
+    parameters: [memory_id, new_content, reason]
+    returns: new_memory_id
+    side_effects: memory_mutation
+    requires_snapshot: true
+
+  forget_memory:
+    trust_tier: 2
+    family: memory
+    description: "Remove a memory by ID"
+    parameters: [memory_id, collection]
+    returns: success
+    side_effects: memory_deletion
+    requires_snapshot: true
+
+  # --- Tier 3: Explicit Approval ---
+  execute_shell:
+    trust_tier: 3
+    family: shell
+    description: "Execute a shell command on the local machine"
+    parameters: [command, cwd, timeout]
+    returns: output
+    side_effects: system_mutation
+    requires_approval: true
+    requires_snapshot: true
+
+  delete_file:
+    trust_tier: 3
+    family: file_io
+    description: "Delete a file from the filesystem"
+    parameters: [path]
+    returns: success
+    side_effects: file_deletion
+    requires_approval: true
+    requires_snapshot: true
+
+  # --- Tier 4: Forbidden ---
+  modify_sovereign_state:
+    trust_tier: 4
+    family: governance
+    description: "FORBIDDEN: sovereign_state.json is immutable at runtime"
+    forbidden: true
+
+  delete_provenance:
+    trust_tier: 4
+    family: governance
+    description: "FORBIDDEN: provenance records may never be deleted"
+    forbidden: true
+
+  bypass_trust_model:
+    trust_tier: 4
+    family: governance
+    description: "FORBIDDEN: trust tier enforcement may not be circumvented"
+    forbidden: true
+
+families:
+  file_io: "Local filesystem read/write/delete operations"
+  memory: "ECP-native semantic memory operations"
+  search: "Web search operations"
+  browser: "URL reading and web browsing"
+  shell: "Local shell command execution"
+  provenance: "Audit and provenance chain operations"
+  system: "System status and health queries"
+  governance: "Constitutional and governance operations"

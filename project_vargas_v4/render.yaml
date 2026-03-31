@@ -1,0 +1,30 @@
+services:
+  - type: worker
+    name: vargas-v4-discord-bot
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    region: oregon
+    plan: starter
+    envVars:
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: DISCORD_BOT_TOKEN
+        sync: false
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: QDRANT_HOST
+        value: localhost
+      - key: QDRANT_PORT
+        value: "6333"
+      - key: QDRANT_URL
+        sync: false
+      - key: QDRANT_API_KEY
+        sync: false
+      - key: GOOGLE_CSE_ID
+        sync: false
+      - key: GOOGLE_CSE_API_KEY
+        sync: false
+      - key: VARGAS_DISCORD_LISTENER
+        value: "true"
+      - key: PYTHONUNBUFFERED
+        value: "1"

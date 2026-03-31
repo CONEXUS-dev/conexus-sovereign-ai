@@ -1,0 +1,89 @@
+# VARGAS V4 Trust Tiers — Bounded Autonomy Model
+# Derived from sovereign_state.json trust_tiers section
+# Reference: Master Blueprint Section 9
+
+tiers:
+  tier_0:
+    name: passive_observation
+    label: "Passive Observation"
+    description: "Read-only actions. No state mutation. No approval required."
+    auto_execute: true
+    requires_approval: false
+    requires_snapshot: false
+    allowed_actions:
+      - read_file
+      - list_directory
+      - search_memory
+      - query_provenance
+      - get_system_status
+    risk_level: none
+
+  tier_1:
+    name: low_risk_auto
+    label: "Low-Risk Autonomous"
+    description: "Low-risk actions that may be executed automatically."
+    auto_execute: true
+    requires_approval: false
+    requires_snapshot: false
+    allowed_actions:
+      - web_search
+      - read_url
+      - store_memory
+      - log_provenance
+    risk_level: low
+
+  tier_2:
+    name: snapshot_required
+    label: "Snapshot-First Mutation"
+    description: "State-mutating actions that require a pre-action snapshot."
+    auto_execute: false
+    requires_approval: false
+    requires_snapshot: true
+    allowed_actions:
+      - write_file
+      - modify_file
+      - correct_memory
+      - forget_memory
+    risk_level: medium
+
+  tier_3:
+    name: explicit_approval
+    label: "Explicit Approval Required"
+    description: "High-impact actions requiring explicit user approval before execution."
+    auto_execute: false
+    requires_approval: true
+    requires_snapshot: true
+    allowed_actions:
+      - execute_shell
+      - delete_file
+      - bulk_memory_operation
+      - system_configuration_change
+    risk_level: high
+
+  tier_4:
+    name: forbidden
+    label: "Forbidden"
+    description: "Actions that are constitutionally prohibited regardless of context."
+    auto_execute: false
+    requires_approval: false
+    requires_snapshot: false
+    allowed_actions: []
+    forbidden_actions:
+      - modify_sovereign_state
+      - delete_provenance
+      - bypass_trust_model
+      - claim_sentience
+      - execute_without_trace
+    risk_level: forbidden
+
+escalation_rules:
+  contradiction_active: "Escalate one tier when RESOLUTION_GATE is active"
+  low_confidence: "Escalate one tier when action confidence < 0.5"
+  max_tier: 3
+  forbidden_never_escalates: true
+
+approval_mechanisms:
+  keywords: ["yes", "approved", "proceed"]
+  discord_reactions: ["✅", "❌"]
+  timeout_seconds: 300
+  timeout_action: "cancel"

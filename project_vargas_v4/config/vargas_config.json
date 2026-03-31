@@ -1,0 +1,53 @@
+{
+  "model": "gemini-2.5-pro",
+  "embedding_model": "gemini-embedding-001",
+  "fallback_model": "gemini-2.5-pro",
+  "lightweight_model": "gemini-2.5-flash",
+  "temperature": 0.7,
+  "max_tokens": 4096,
+  "use_function_calling": true,
+  "qdrant_url": "http://localhost:6333",
+  "qdrant_api_key": null,
+  "memory": {
+    "collections": [
+      "vargas_identity",
+      "vargas_behavioral",
+      "vargas_attunement"
+    ],
+    "max_memories_per_class": 100,
+    "retrieval_top_k": 5,
+    "decay_enabled": true,
+    "decay_half_life_days": 30
+  },
+  "intent": {
+    "confidence_threshold": 0.6,
+    "default_intent": "converse"
+  },
+  "openclaw": {
+    "skills_path": "../openclaw/skills",
+    "manifest_path": "../openclaw/skills/manifest.json",
+    "confidence_threshold": 0.12
+  },
+  "discord": {
+    "max_response_length": 2000,
+    "typing_indicator": true,
+    "max_conversation_history": 20
+  },
+  "ecp": {
+    "context_threshold": 0.80,
+    "compression_interval_hours": 1,
+    "substrate_dimensions": 384,
+    "base_threshold": 0.618,
+    "retention_threshold": 0.3,
+    "max_tokens": 128000,
+    "tokens_per_char": 0.25,
+    "compression_retention_threshold": 0.75,
+    "paradox_archive_max": 1000
+  },
+  "heartbeat": {
+    "enabled": false,
+    "interval_minutes": 30,
+    "channel_id": "1472949447607587071",
+    "tasks": ["sovereign_health_check", "memory_summary", "tool_log_review"]
+  }
+}

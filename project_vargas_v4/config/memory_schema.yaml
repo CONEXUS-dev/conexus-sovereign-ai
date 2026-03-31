@@ -1,0 +1,85 @@
+# VARGAS V4 Memory Schema — ECP-Native Structure
+# Reference: Master Blueprint Section 6
+
+collections:
+  ecp_truth:
+    description: "Durable realities, constraints, and core project definitions"
+    subtypes:
+      - user_constraint
+      - system_principle
+      - architectural_fact
+      - runtime_rule
+      - project_definition
+      - collaboration_boundary
+    confidence_floor: 0.8
+    corrigible: true
+
+  ecp_symbol:
+    description: "Emoji vectors, dialect fragments, archetypes, and compressed motifs"
+    subtypes:
+      - emoji_vector
+      - archetype
+      - mirror_pattern
+      - symbolic_operator
+      - attunement_anchor
+    confidence_floor: 0.5
+    corrigible: true
+
+  ecp_contradiction:
+    description: "Unresolved paradoxes stored as structured runtime fuel"
+    subtypes:
+      - direct_contradiction
+      - behavioral_tension
+      - architectural_conflict
+      - stated_vs_observed
+    valid_statuses:
+      - active
+      - decaying
+      - resolved
+      - archived
+    confidence_floor: 0.5
+    corrigible: true
+
+memory_fact_schema:
+  required_fields:
+    memory_id: "UUID v4 — unique identifier"
+    memory_class: "Collection name (ecp_truth | ecp_symbol | ecp_contradiction)"
+    memory_subtype: "Must be valid for the target collection"
+    content: "Semantic content (text or JSON string)"
+    source_hash: "SHA-256 of content for provenance chain linkage"
+    confidence: "Write confidence (0.0-1.0)"
+    status: "active | decaying | resolved | archived"
+    corrigible: "Always true — user has ultimate authority"
+    created_at: "ISO 8601 UTC timestamp"
+    updated_at: "ISO 8601 UTC timestamp"
+    source_request_id: "Provenance link to originating request"
+    session_id: "Current session identifier"
+    project_scope: "Scope boundary for retrieval filtering"
+    challenge_weight: "Influence on challenge posture (0.0-1.0)"
+    retrieval_priority: "Computed from confidence"
+    metadata: "Additional class-specific metadata dict"
+
+  contradiction_payload_schema:
+    statement_a: "First pole of the contradiction"
+    statement_b: "Opposing pole"
+    severity_score: "Tension intensity (0.0-1.0)"
+    status: "active | decaying | resolved | archived"
+    topic_similarity: "Cosine similarity of topics (if computed)"
+    implication_similarity: "Cosine similarity of implications (if computed)"
+    challenge_eligible: "Whether this can trigger challenge mode"
+    initiative_effect: "Effect on initiative threshold (-1.0 to 1.0)"
+    directness_effect: "Effect on directness index (-1.0 to 1.0)"
+    decay_score: "Current decay value (1.0 = fresh, approaches 0.0)"
+    notes: "Free-text annotation"
+
+embedding:
+  model: "Gemini embedding-001"
+  dimension: 3072
+  fallback: "In-memory cosine similarity with random vectors"
+
+corrigibility:
+  user_has_ultimate_authority: true
+  correction_commands: ["!forget", "!correct", "!query_memory"]
+  corrections_require_approval: true
+  all_memory_is_corrigible: true
+  nothing_remembered_is_unquestionable: true
